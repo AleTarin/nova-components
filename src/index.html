@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
@@ -9,9 +10,29 @@
   <script nomodule src="/build/nova-cascader.js"></script>
 
 </head>
+
 <body>
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-
+  <nova-cascader></nova-cascader>
+  <script>
+    // Fetch the configuration file
+    fetch('./assets/cascader.json')
+      .then(function (response) {
+        // Transform it to JSON
+        return response.json();
+      })
+      .then(function (json) {
+        // Grab de element
+        const cascaderElement = document.querySelector('nova-cascader');
+        // Pass the prop
+        cascaderElement.content = json.data;
+        // console.log(json);
+      })
+      .catch(function (err) {
+        // If any error ocurred, pass it to the console
+        console.log(err);
+      })
+  </script>
 </body>
+
 </html>

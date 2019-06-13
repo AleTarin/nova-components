@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, EventEmitter, Event} from '@stencil/core';
+import { Component, h, Prop, State, EventEmitter, Event } from '@stencil/core';
 
 @Component({
   tag: 'nova-cascader-item',
@@ -15,18 +15,43 @@ export class NovaCascader {
 
   @Event() clickItem: EventEmitter
 
+
+  componentWillLoad() {
+    console.log('loading', this.data);
+  }
+
+  componentDidLoad() {
+    console.log('loaded', this.data);
+  }
+
+  componentWillRender() {
+    console.log('rendering', this.data);
+  }
+
+  componentDidRender() {
+    console.log('rendered', this.data);
+  }
+
+  componentWillUpdate() {
+    console.log('updating', this.data);
+  }
+
+  componentDidUpdate() {
+    console.log('updated', this.data);
+  }
+
   hoverHandler() {
-    if ( this.expandTrigger === 'hover')
+    if (this.expandTrigger === 'hover')
       this.showChildren = true;
   }
 
   blurHandler() {
-    if ( this.expandTrigger === 'hover')
+    if (this.expandTrigger === 'hover')
       this.showChildren = false;
   }
 
-  clickHandler(event: UIEvent){
-    if ( this.expandTrigger === 'click')
+  clickHandler(event: UIEvent) {
+    if (this.expandTrigger === 'click')
       this.showChildren = !this.showChildren;
 
     if (this.data.length === 0)
@@ -35,24 +60,24 @@ export class NovaCascader {
 
   render() {
     return [
-        this.data.map((item:cascaderItem) => {
-          return(
+      this.data.map((item: cascaderItem) => {
+        return (
           <ul
             class={`cascader--${this.isVisible ? 'visible' : 'hidden'}`}
-            onMouseEnter={_ => this.hoverHandler()} 
-            onMouseLeave={_=>this.blurHandler()}
-            >
-            <li onClick={ e => this.clickHandler(e)}>{item.value} {this.path}</li>
-            {item.children && 
+            onMouseEnter={_ => this.hoverHandler()}
+            onMouseLeave={_ => this.blurHandler()}
+          >
+            <li onClick={e => this.clickHandler(e)}>{item.value} {this.path}</li>
+            {item.children &&
               <nova-cascader-item
                 expandTrigger={this.expandTrigger}
-                path={[...this.path, item.value]} 
-                data={item.children} 
-                isVisible={this.showChildren} 
+                path={[...this.path, item.value]}
+                data={item.children}
+                isVisible={this.showChildren}
               />
             }
           </ul>)
-        })
+      })
     ]
   }
 }
