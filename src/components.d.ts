@@ -9,53 +9,54 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+  interface NovaCascader {
+    'content': cascader;
+    'expandTrigger': string;
+  }
+  interface NovaCascaderItem {
+    'data': cascaderItem[];
+    'expandTrigger': string;
+    'isVisible': boolean;
+    'path': string[];
   }
 }
 
 declare global {
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
+  var HTMLNovaCascaderElement: {
+    prototype: HTMLNovaCascaderElement;
+    new (): HTMLNovaCascaderElement;
+  };
+
+  interface HTMLNovaCascaderItemElement extends Components.NovaCascaderItem, HTMLStencilElement {}
+  var HTMLNovaCascaderItemElement: {
+    prototype: HTMLNovaCascaderItemElement;
+    new (): HTMLNovaCascaderItemElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'nova-cascader': HTMLNovaCascaderElement;
+    'nova-cascader-item': HTMLNovaCascaderItemElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+  interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
+    'content'?: cascader;
+    'expandTrigger'?: string;
+  }
+  interface NovaCascaderItem extends JSXBase.HTMLAttributes<HTMLNovaCascaderItemElement> {
+    'data'?: cascaderItem[];
+    'expandTrigger'?: string;
+    'isVisible'?: boolean;
+    'onClickItem'?: (event: CustomEvent<any>) => void;
+    'path'?: string[];
   }
 
   interface IntrinsicElements {
-    'my-component': MyComponent;
+    'nova-cascader': NovaCascader;
+    'nova-cascader-item': NovaCascaderItem;
   }
 }
 
