@@ -1,0 +1,44 @@
+{ "data": {
+    "items":  [
+    {
+      "value": "zhejiang",
+      "label": "Zhejiang",
+      "children": [
+        {
+          "value": "hangzhou",
+          "label": "Hangzhou",
+          "children": [
+            {
+              "value": "xihu",
+              "label": "West Lake"
+            },
+            {
+              "value": "xihe",
+              "label": "East Lake"
+            },
+            {
+              "value": "xiha",
+              "label": "North Lake"
+            }
+          ]
+        }
+      ]
+    },
+    {
+     "value": "jiangsu" ,
+     "label": "Jiangsu",
+     "disabled": "true",
+     "children": [
+        {
+          "value": "nanjing",
+          "label": "Nanjing",
+          "children": [
+            {
+              "value": "zhonghuamen",
+              "label": "Zhong Hua Men"
+            }
+          ]
+        }
+      ]
+    }
+  ]}}
