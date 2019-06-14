@@ -11,7 +11,34 @@
 </head>
 <body>
 
-  <nova-tabs first="Stencil" last="'Don't call me a framework' JS"></nova-tabs>
+
+
+  <div id="myData"></div>
+
+  <nova-tabs></nova-tabs>
+  
+
+  <script>
+    fetch('./assets/tabs.json')
+            .then(function (response) {
+                //transformar a json
+                return response.json();
+            })
+            .then(function (json) {
+                appendData(json.data.items); 
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+        function appendData(json) {
+            var mainContainer = document.querySelector("nova-tabs");
+            for (var i = 0; i < json.length; i++) {
+                var div = document.createElement("div");
+                div.innerHTML = 'Titulo: ' + json[i].title + ' ' + 'Contenido: ' + json[i].content;
+                mainContainer.appendChild(div);
+            }
+        }
+</script>
 
 </body>
 </html>

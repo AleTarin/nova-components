@@ -9,20 +9,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface NovaTabs {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
-  }
+  interface NovaTabs {}
 }
 
 declare global {
@@ -39,20 +26,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
-  }
+  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {}
 
   interface IntrinsicElements {
     'nova-tabs': NovaTabs;
