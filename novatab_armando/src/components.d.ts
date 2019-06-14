@@ -9,7 +9,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface MyComponent {
+  interface NovaTabs {
     /**
     * The first name
     */
@@ -28,18 +28,18 @@ export namespace Components {
 declare global {
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
+  var HTMLNovaTabsElement: {
+    prototype: HTMLNovaTabsElement;
+    new (): HTMLNovaTabsElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'nova-tabs': HTMLNovaTabsElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {
+  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
     /**
     * The first name
     */
@@ -55,7 +55,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
-    'my-component': MyComponent;
+    'nova-tabs': NovaTabs;
   }
 }
 
