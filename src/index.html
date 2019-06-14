@@ -13,9 +13,9 @@
 
 
 
-  <div id="myData"></div>
+  
 
-  <nova-tabs></nova-tabs>
+  <nova-tabs titulo='' descripcion=''></nova-tabs>
   
 
   <script>
@@ -25,19 +25,19 @@
                 return response.json();
             })
             .then(function (json) {
-                appendData(json.data.items); 
+                const tabsInfo = document.querySelector("nova-tabs");
+                for(var i=0; i<json.data.items.length; i++)
+                {
+                    tabsInfo.setAttribute("titulo",json.data.items[i].title);
+                    tabsInfo.setAttribute("descripcion",json.data.items[i].content);
+                }                
+                
+                                   
             })
             .catch(function (err) {
                 console.log('error: ' + err);
             });
-        function appendData(json) {
-            var mainContainer = document.querySelector("nova-tabs");
-            for (var i = 0; i < json.length; i++) {
-                var div = document.createElement("div");
-                div.innerHTML = 'Titulo: ' + json[i].title + ' ' + 'Contenido: ' + json[i].content;
-                mainContainer.appendChild(div);
-            }
-        }
+        
 </script>
 
 </body>
