@@ -13,7 +13,7 @@ export class NovaCascader {
 
   @State() showChildren: boolean = false;
 
-  @Event() clickItem: EventEmitter
+  @Event() clickItem: EventEmitter;
 
 
   componentWillLoad() {
