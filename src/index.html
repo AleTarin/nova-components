@@ -15,7 +15,7 @@
 
   
 
-  <nova-tabs titulo='' descripcion=''></nova-tabs>
+  <nova-tabs></nova-tabs>
   
 
   <script>
@@ -28,10 +28,9 @@
                 const tabsInfo = document.querySelector("nova-tabs");
                 for(var i=0; i<json.data.items.length; i++)
                 {
-                    tabsInfo.setAttribute("titulo",json.data.items[i].title);
-                    tabsInfo.setAttribute("descripcion",json.data.items[i].content);
-                }                
-                
+                    tabsInfo.innerHTML += "<p>Titulo: " + json.data.items[i].title + "</p>";
+                    tabsInfo.innerHTML += "<p>Contenido: " + json.data.items[i].content + "</p>";
+                }          
                                    
             })
             .catch(function (err) {

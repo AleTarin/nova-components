@@ -9,10 +9,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface NovaTabs {
-    'descripcion': string;
-    'titulo': string;
-  }
+  interface NovaTabs {}
 }
 
 declare global {
@@ -29,10 +26,7 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    'descripcion'?: string;
-    'titulo'?: string;
-  }
+  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {}
 
   interface IntrinsicElements {
     'nova-tabs': NovaTabs;
