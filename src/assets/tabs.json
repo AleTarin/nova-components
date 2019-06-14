@@ -1,0 +1,47 @@
+{   
+    "data": {
+        "items":[{
+                "title":"Merida",
+                "icon":"",
+                "enableTab":true,
+                "default":true,
+                "content":"Esta ciudad es la capital del estado de yucatan"      
+
+        },
+        {
+                "title":"Monterrey",
+                "icon":"",
+                "enableTab":true,
+                "default":false,
+                "content":"Esta ciudad es la capital del estado de nuevo leon"
+        },
+
+        {
+                "title":"Campeche",
+                "icon":"",
+                "enableTab":true,
+                "default":false,
+                "content":"Esta ciudad es la capital del estado de campeche"
+
+        },
+
+        {
+                "title":"HTML de PRUEBA",
+                "icon":"",
+                "enableTab":true,
+                "default":false,
+                "content":"<h2>Soy un titulo bien sexy 😛</h2>"
+        },
+
+        {
+                "title":"Zacatecas",
+                "icon":"",
+                "enableTab":true,
+                "default":false,
+                "content":"Esta ciudad es la capital del estado de zacatecas"
+
+        }
+
+        ]
+    }
+}
