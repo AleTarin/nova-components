@@ -10,30 +10,30 @@ export class NovaCascader {
   @Prop() expandTrigger: string = 'click'; // TODO: Pass to Configuration inside content
 
   componentWillLoad() {
-    console.log('loading', this.content);
-    console.log(this);
+    //console.log('loading', this.content);
+    //console.log(this);
     const cascaderItemElement = document.querySelector('nova-cascader-item');
     cascaderItemElement.data = this.content.items;
   }
 
   componentDidLoad() {
-    console.log('loaded', this.content);
+    //console.log('loaded', this.content);
   }
 
   componentWillRender() {
-    console.log('rendering', this.content);
+    //console.log('rendering', this.content);
   }
 
   componentDidRender() {
-    console.log('rendered', this.content);
+    //console.log('rendered', this.content);
   }
 
   componentWillUpdate() {
-    console.log('updating', this.content);
+    //console.log('updating', this.content);
   }
 
   componentDidUpdate() {
-    console.log('updated', this.content);
+    //console.log('updated', this.content);
   }
 
   render() {
