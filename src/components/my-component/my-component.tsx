@@ -1,4 +1,4 @@
-import { Component, Prop,h} from "@stencil/core";
+import { Component, Prop,h,Element} from "@stencil/core";
 
 @Component({
     tag: 'nova-tabs',
@@ -10,14 +10,27 @@ export class NovaTabs {
   
   
   @Prop() datajson :string;
+  @Element() el: HTMLElement;
+ 
  
   
   
-  componentWillLoad(){
+  componentDidRender(){
+
+    //se obtienen datos del json para generar el contenido de las tabs
     var parsedjson = JSON.parse(this.datajson);
-    parsedjson.items.forEach(function (value){
-      console.log(value.title);
+    var arrincona="";
+    parsedjson.items.map(function (value){
+
+      arrincona += '<div id="' + value.title+ '"' + 'class="tabcontent">'
+      +'<h3>' + value.title + '</h3>' 
+      +'<p>' +value.content + '</p>' 
+      + '</div>';
+         
+      
+      
     });
+    this.el.shadowRoot.getElementById('contenido').innerHTML = arrincona;   
    
   }
   /*
@@ -26,7 +39,7 @@ export class NovaTabs {
   }*/
 
   render() {
-    return(<div></div>)
+    return(<div id="contenido"></div>)
       
     
   

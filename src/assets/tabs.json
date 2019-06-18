@@ -25,14 +25,7 @@
 
         },
 
-        {
-                "title":"HTML de PRUEBA",
-                "icon":"",
-                "enableTab":true,
-                "default":false,
-                "content":"<h2>Soy un titulo bien sexy 😛</h2>"
-        },
-
+        
         {
                 "title":"Zacatecas",
                 "icon":"",
