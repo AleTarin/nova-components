@@ -7,12 +7,10 @@
 
   Any global CSS variables should also be applied here.
 */
-@charset "UTF-8";
 
 :root {
   --primary-color: #E20177;
   --secondary-color: white;
-  font-family: Lato;
 }
 
 body {

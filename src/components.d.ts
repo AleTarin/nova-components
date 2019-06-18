@@ -13,11 +13,14 @@ export namespace Components {
     'content': cascader;
     'expandTrigger': string;
   }
-  interface NovaCascaderItem {
-    'data': cascaderItem[];
-    'expandTrigger': string;
-    'isVisible': boolean;
-    'path': string[];
+  interface NovaIcon {
+    /**
+    * Props
+    */
+    'name': string;
+    'options'?: string;
+    'pre'?: string;
+    'size'?: string;
   }
 }
 
@@ -30,14 +33,14 @@ declare global {
     new (): HTMLNovaCascaderElement;
   };
 
-  interface HTMLNovaCascaderItemElement extends Components.NovaCascaderItem, HTMLStencilElement {}
-  var HTMLNovaCascaderItemElement: {
-    prototype: HTMLNovaCascaderItemElement;
-    new (): HTMLNovaCascaderItemElement;
+  interface HTMLNovaIconElement extends Components.NovaIcon, HTMLStencilElement {}
+  var HTMLNovaIconElement: {
+    prototype: HTMLNovaIconElement;
+    new (): HTMLNovaIconElement;
   };
   interface HTMLElementTagNameMap {
     'nova-cascader': HTMLNovaCascaderElement;
-    'nova-cascader-item': HTMLNovaCascaderItemElement;
+    'nova-icon': HTMLNovaIconElement;
   }
 }
 
@@ -46,17 +49,19 @@ declare namespace LocalJSX {
     'content'?: cascader;
     'expandTrigger'?: string;
   }
-  interface NovaCascaderItem extends JSXBase.HTMLAttributes<HTMLNovaCascaderItemElement> {
-    'data'?: cascaderItem[];
-    'expandTrigger'?: string;
-    'isVisible'?: boolean;
-    'onClickItem'?: (event: CustomEvent<any>) => void;
-    'path'?: string[];
+  interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
+    /**
+    * Props
+    */
+    'name'?: string;
+    'options'?: string;
+    'pre'?: string;
+    'size'?: string;
   }
 
   interface IntrinsicElements {
     'nova-cascader': NovaCascader;
-    'nova-cascader-item': NovaCascaderItem;
+    'nova-icon': NovaIcon;
   }
 }
 

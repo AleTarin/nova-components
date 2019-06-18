@@ -1,4 +1,4 @@
-import { Component, h, Prop, Host } from '@stencil/core';
+import { Component, h, Prop, State,  } from '@stencil/core';
 
 @Component({
   tag: 'nova-cascader',
@@ -8,43 +8,52 @@ import { Component, h, Prop, Host } from '@stencil/core';
 export class NovaCascader {
   @Prop() content: cascader;
   @Prop() expandTrigger: string = 'click'; // TODO: Pass to Configuration inside content
+  
+  @State() result: string = '';
+  @State() data: any[];
+  @State() path: string[] = [];
+
+  // @Listen('cascaderClick')
+  clickHandler(list, level, item) {
+    this.updateCascader(list, level, item);
+  }
+
+  hoverHandler(list: cascaderItem[], level: number, item: cascaderItem) {
+    if (item.children)
+      this.updateCascader(list, level, item);
+  }
+  updateCascader(list: cascaderItem[], level: number, item: cascaderItem) {
+    this.path = [...this.path.slice(0,level + 1), item.value];
+    
+    let next = list.find((element:cascaderItem) => element.value === item.value );
+    if ( next && next.children ){
+      this.data = [...this.data.slice(0,level + 1), next.children];
+    }
+    else {
+      this.result = this.path.slice(1).join(" / ");
+    }
+  }
 
   componentWillLoad() {
-    console.log('loading', this.content);
-    console.log(this);
-    const cascaderItemElement = document.querySelector('nova-cascader-item');
-    cascaderItemElement.data = this.content.items;
-  }
-
-  componentDidLoad() {
-    console.log('loaded', this.content);
-  }
-
-  componentWillRender() {
-    console.log('rendering', this.content);
-  }
-
-  componentDidRender() {
-    console.log('rendered', this.content);
-  }
-
-  componentWillUpdate() {
-    console.log('updating', this.content);
-  }
-
-  componentDidUpdate() {
-    console.log('updated', this.content);
+    this.data = [this.content.items]
+    this.path = [null]
   }
 
   render() {
-    return (
-      <Host>
-        {this.content && 
-          <nova-cascader-item 
-            data={this.content.items}
-            expandTrigger={this.expandTrigger}
-          /> }
-      </Host>
-    );
+    return [
+      <input value={this.result}></input>,
+      <section class="cascader__menu">
+        { this.data && this.data.map( (list: cascaderItem[], level: number) => 
+          <ul class="cascader__menu__list"> 
+            { list.map((item:cascaderItem) => 
+              <li class="cascader__menu__item"
+                onMouseEnter={ _ => this.hoverHandler(list, level, item)} 
+                onClick={ _ => this.clickHandler(list, level, item)}> 
+                {item.label} <nova-icon name="chevron-right"></nova-icon>
+              </li>)
+            }
+          </ul>)}
+      </section>
+    ];
   }
 }
