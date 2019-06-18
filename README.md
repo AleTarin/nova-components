@@ -70,3 +70,20 @@ Instead, use a prefix that fits your company or any name for a group of related 
 - Run `npm install my-component --save`
 - Add an import to the npm packages `import my-component;`
 - Then you can use the element anywhere in your template, JSX, html etc
+
+## Properties
+
+JSON ATTRIBUTES
+
+| Attribute | Description     | Type     |
+| --------- | --------------- | -------- | 
+| `title`   | Title of the tab  | `string` |
+| `icon`    | URL of the icon   | `string` | 
+| `enableTab`  | Enable or not tab | `bool` |
+| `default`  | Default tab | `bool` |
+| `content`  | Content of the tab | `string` |
+
+
+----------------------------------------------
+
+*Creado por Armando Aguiar y Arturo Rojas*
