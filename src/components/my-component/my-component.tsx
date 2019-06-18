@@ -54,7 +54,8 @@ closeTab()
       //se generan los onclicks
       <div class="tab">
         {JSON.parse(this.datajson).items.map((entra)=>
-        <button disabled={!entra.enableTab} class="tablinks" onClick={() => this.openTab(this.event,entra.title)} id={entra.default}><span><img src={entra.icon}></img></span>{entra.title}</button>        
+        <button disabled={!entra.enableTab} class="tablinks" onClick={() => this.openTab(this.event,entra.title)} id={entra.default}>
+          <span><img src={entra.icon}></img></span>{entra.title}</button>        
         )      
         }
 
