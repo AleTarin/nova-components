@@ -26,13 +26,8 @@
             })
             .then(function (json) {
                 const tabsInfo = document.querySelector("nova-tabs");
-                /*for(var i=0; i<json.data.items.length; i++)
-                {
-                    tabsInfo.innerHTML += "<p>Titulo: " + json.data.items[i].title + "</p>";
-                    tabsInfo.innerHTML += "<p>Contenido: " + json.data.items[i].content + "</p>";
-                }          
-                 */
-
+                
+                //mandar json como prop                
                 tabsInfo.setAttribute("datajson",JSON.stringify(json.data)); 
                               
             })
