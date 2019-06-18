@@ -7,11 +7,13 @@
 
 ## Properties
 
+JSON PROPERTIES
+
 | Property | Attribute | Description     | Type     | Default     |
 | -------- | --------- | --------------- | -------- | ----------- |
-| `first`  | `first`   | The first name  | `string` | `undefined` |
-| `last`   | `last`    | The last name   | `string` | `undefined` |
-| `middle` | `middle`  | The middle name | `string` | `undefined` |
+| `title`  | `title`   | The first name  | `string` | `undefined` |
+| `icon`   | `icon`    | The last name   | `string` | `undefined` |
+| `enableTab` | `enableTab`  | The middle name | `string` | `undefined` |
 
 
 ----------------------------------------------
