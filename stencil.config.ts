@@ -1,7 +1,7 @@
 import { Config } from '@stencil/core';
 
 export const config: Config = {
-  namespace: 'nova-cascader',
+  namespace: 'popover',
   outputTargets: [
     {
       type: 'dist',
