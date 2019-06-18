@@ -10,17 +10,17 @@ export class NovaTabs {
   
   
   @Prop() datajson :string;
+  @Prop() parsedjson : any;
   @Element() el: HTMLElement;
  
  
   
   
-  componentDidRender(){
+/*  componentDidRender(){
 
-    //se obtienen datos del json para generar el contenido de las tabs
-    var parsedjson = JSON.parse(this.datajson);
+    //se obtienen datos del json para generar el contenido de las tabs    
     var arrincona="";
-    parsedjson.items.map(function (value){
+    JSON.parse(this.datajson).items.map((value) =>{
 
       arrincona += '<div id="' + value.title+ '"' + 'class="tabcontent">'
       +'<h3>' + value.title + '</h3>' 
@@ -33,13 +33,21 @@ export class NovaTabs {
     this.el.shadowRoot.getElementById('contenido').innerHTML = arrincona;   
    
   }
-  /*
-  private _openTab() {
-    
-  }*/
-
+  */
+ 
   render() {
-    return(<div id="contenido"></div>)
+    return(<div>
+      {JSON.parse(this.datajson).items.map((entra)=>
+        //se obtienen datos del json para generar el contenido de las tabs 
+        <div id={entra.title} class="tabcontent">
+          <h3>{entra.title}</h3>
+          <p>{entra.content}</p>
+        </div>
+        
+      )}
+    </div>
+    
+    )
       
     
   
