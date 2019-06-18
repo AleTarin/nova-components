@@ -1,19 +1,67 @@
+.cascader__search {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    input {
+        font-weight: lighter;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: .3em .6em;
+        font-size: 1.1em;
+        border: 1px solid #dcdcdc;
+        width: 300px;
+        cursor: pointer;
+    }
+    nova-icon {
+        position: absolute;
+        right: 10px;
+        color: rgba(0,0,0,0.25);
+        z-index: 1060;
+        cursor: pointer;
+        .fa-times-circle {
+            display: none;
+        }
+        .fa-chevron-down{
+            display: inline-block;
+        }
+    }
+    &:hover {
+        i.fa-times-circle {
+            display: inline-block;
+        }
+        i.fa-chevron-down{
+            display: none;
+        }
+    }
+
+}
+
+
+
 .cascader__menu {
+    display: none;
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
     font-variant: tabular-nums;
-    display: flex;
     position: absolute;
     z-index: 1050;
-    font-size: 14px;
     white-space: nowrap;
-    color: #314659;
-    background: #fff;
+    
     border-radius: 4px;
+    font-size: 14px;
+
     -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    color: #314659;
+    background: #fff;
 }
+.cascader__menu--active {
+    display: flex;
+}
+
 .cascader__menu__list {
+    border-right: 1px solid #e8e8e8;
     border-radius: 4px;
+
     list-style: none;
     display: inline-block;
     margin: 0;
@@ -22,7 +70,6 @@
     height: 180px;
     overflow: auto;
     vertical-align: top;
-    border-right: 1px solid #e8e8e8;
 }
 
 .cascader__menu__item {
@@ -38,10 +85,20 @@
     &:active, &:hover, &:focus       {
         background-color: #fafafa;
     }
-    i {
+    
+    nova-icon {
         position: absolute;
-        right: 4px;
-        top: 10px;
+        right: 1em;
+        color: rgba(0,0,0,0.25);
     }
+}
 
+.cascader__menu__item--disabled{
+    pointer-events: auto;
+    cursor: not-allowed;
+    color: rgba(0,0,0,0.25);
+    
+    &:hover {
+        cursor: not-allowed;
+    }
 }

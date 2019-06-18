@@ -12,6 +12,7 @@ export namespace Components {
   interface NovaCascader {
     'content': cascader;
     'expandTrigger': string;
+    'focusCascader': () => Promise<void>;
   }
   interface NovaIcon {
     /**

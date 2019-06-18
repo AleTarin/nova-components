@@ -8,6 +8,7 @@
           {
             "value": "hangzhou",
             "label": "Hangzhou",
+            "disabled": true,
             "children": [
               {
                 "value": "xihu",
@@ -28,16 +29,16 @@
             "label": "Hangzhou",
             "children": [
               {
-                "value": "xihu",
-                "label": "West Lake"
+                "value": "xe",
+                "label": "South"
               },
               {
-                "value": "xihe",
-                "label": "East Lake"
+                "value": "xa",
+                "label": "East "
               },
               {
-                "value": "xiha",
-                "label": "North Lake"
+                "value": "xi",
+                "label": "North"
               }
             ]
           }
@@ -46,7 +47,7 @@
       {
         "value": "jiangsu",
         "label": "Jiangsu",
-        "disabled": "true",
+        "disabled": true,
         "children": [
           {
             "value": "nanjing",
@@ -61,22 +62,31 @@
         ]
       },
       {
-        "value": "jiangsu",
-        "label": "Jiangsu",
+        "value": "jiang",
+        "label": "Jia",
         "disabled": "true",
         "children": [
           {
-            "value": "nanjing",
-            "label": "Nanjing",
+            "value": "jing",
+            "label": "jing",
             "children": [
               {
-                "value": "zhonghuamen",
-                "label": "Zhong Hua Men"
+                "value": "zhongh",
+                "label": "Zhong Men"
               }
             ]
           }
         ]
       }
     ]
+  },
+  "configuration": {
+    "expandTrigger": "click",
+    "defaultValue": [ "zhejiang" , "hangzhou", "xihe"] ,
+    "separator": "//",
+    "autofocus": true
+  },
+  "styling": {
+
   }
 }

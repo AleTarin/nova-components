@@ -2,7 +2,7 @@ import { Component, Prop, h } from "@stencil/core";
 
 @Component({
   tag: "nova-icon",
-  styleUrls:  ["../../global/all.css","nova-icon.scss"],
+  styleUrls:  ["../../assets/all.css","nova-icon.scss"],
   shadow: false
 })
 export class NovaIcon {

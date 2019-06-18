@@ -1,10 +1,13 @@
 interface cascaderItem {
     value: string,
     label: string,
-    children?: cascaderItem[]
+    children?: cascaderItem[],
+    disabled?: boolean
 }
 interface cascaderData {
-    items?: cascaderItem[],
+    data: {
+        items?: cascaderItem[],
+    }
 }
 
 type cascader = cascaderData & configuration & styling

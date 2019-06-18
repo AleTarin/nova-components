@@ -6,6 +6,10 @@ interface styling {
 
 interface configuration {
     configuration?: {
-        sort?: string
+        sort?: string,
+        expandTrigger?: string,
+        defaultValue?: string[],
+        separator?: string,
+        autofocus?: boolean
     }
 }

@@ -1,4 +1,5 @@
-import { Component, h, Prop, State,  } from '@stencil/core';
+import { Component, h, Prop, State, Element, Method } from '@stencil/core';
+import { ClickOutside } from "stencil-click-outside";
 
 @Component({
   tag: 'nova-cascader',
@@ -7,14 +8,16 @@ import { Component, h, Prop, State,  } from '@stencil/core';
 })
 export class NovaCascader {
   @Prop() content: cascader;
-  @Prop() expandTrigger: string = 'click'; // TODO: Pass to Configuration inside content
+  @Prop() expandTrigger: string = 'click';
   
-  @State() result: string = '';
+  @State() isActive: boolean = false; 
+  @State() result: string = null;
   @State() data: any[];
   @State() path: string[] = [];
 
-  // @Listen('cascaderClick')
-  clickHandler(list, level, item) {
+
+  @Element() host: HTMLElement;
+  clickHandler(list: cascaderItem[], level: number, item: cascaderItem) {
     this.updateCascader(list, level, item);
   }
 
@@ -30,26 +33,71 @@ export class NovaCascader {
       this.data = [...this.data.slice(0,level + 1), next.children];
     }
     else {
-      this.result = this.path.slice(1).join(" / ");
+      this.setSearch();
     }
   }
 
-  componentWillLoad() {
-    this.data = [this.content.items]
+  componentDidLoad(){
+    this.data = [this.content.data.items]
     this.path = [null]
+
+    let { 
+      configuration: {
+      autofocus, defaultValue
+    } } = this.content;
+    
+    if (autofocus) {
+      this.focusCascader()
+    }
+    if (defaultValue) {
+      this.path = defaultValue;
+      this.setSearch();
+    }
+  }
+  
+  @Method()
+  async focusCascader() {
+    this.host.shadowRoot.getElementById('js-search').focus();
+  }
+
+  @ClickOutside()
+  ClickOutsideHandler() {
+    this.data = [this.content.data.items]
+    this.path = [null];
+    this.isActive = false;
+  }
+
+
+  // Search methods
+  toggleCascader() {
+    this.isActive = !this.isActive;
+  }
+
+  clearSearch() {
+    this.result = '';
+  }
+
+  setSearch(){
+    this.result = this.path.slice(1).join(` ${this.content.configuration.separator || '/'} `);
   }
 
   render() {
     return [
-      <input value={this.result}></input>,
-      <section class="cascader__menu">
+      <span class="cascader__search"> 
+        <input id="js-search" value={this.result} onClick={_ => this.toggleCascader()}></input>
+        <nova-icon name="times-circle" onClick={_ =>this.clearSearch()}/>
+        <nova-icon name="chevron-down" />
+      </span>,
+      <section class={`cascader__menu ${this.isActive ? 'cascader__menu--active' : ''}`}>
         { this.data && this.data.map( (list: cascaderItem[], level: number) => 
           <ul class="cascader__menu__list"> 
             { list.map((item:cascaderItem) => 
-              <li class="cascader__menu__item"
-                onMouseEnter={ _ => this.hoverHandler(list, level, item)} 
-                onClick={ _ => this.clickHandler(list, level, item)}> 
-                {item.label} <nova-icon name="chevron-right"></nova-icon>
+              <li 
+                class={`cascader__menu__item ${item.disabled ? 'cascader__menu__item--disabled' : ''}`}
+                onMouseEnter={ _ => item.disabled || this.hoverHandler(list, level, item)} 
+                onClick=     { _ => item.disabled || this.clickHandler(list, level, item)}> 
+                  {item.label} 
+                  {item.children && <nova-icon name="chevron-right"/>}
               </li>)
             }
           </ul>)}
