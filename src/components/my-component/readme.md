@@ -7,13 +7,15 @@
 
 ## Properties
 
-JSON PROPERTIES
+JSON ATTRIBUTES
 
-| Property | Attribute | Description     | Type     | Default     |
-| -------- | --------- | --------------- | -------- | ----------- |
-| `title`  | `title`   | Title of the tab  | `string` | `undefined` |
-| `icon`   | `icon`    | URL of the icon   | `string` | `undefined` |
-| `enableTab` | `enableTab`  | Enable or not tab | `bool` | `undefined` |
+| Attribute | Description     | Type     |
+| --------- | --------------- | -------- | 
+| `title`   | Title of the tab  | `string` |
+| `icon`    | URL of the icon   | `string` | 
+| `enableTab`  | Enable or not tab | `bool` |
+| `default`  | Default tab | `bool` |
+| `content`  | Content of the tab | `string` |
 
 
 ----------------------------------------------
