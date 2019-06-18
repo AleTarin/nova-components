@@ -20,4 +20,4 @@ JSON ATTRIBUTES
 
 ----------------------------------------------
 
-*Built with [StencilJS](https://stenciljs.com/)*
+*Creado por Armando Aguiar y Arturo Rojas*
