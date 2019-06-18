@@ -15,35 +15,53 @@ export class NovaTabs {
   @Prop() styleVertical:string = 'verticalTab.css'
  
  
+  doHomework(callback) {
+    callback();
+  }
   
 
   
 
+ openTab(evt, cityName, funcion, nombreFunc) {
   
-
- openTab(evt, cityName) {
   var i,tabcontent,tablinks;
 
-  tabcontent = this.el.shadowRoot.querySelector(".tabcontent");
+  tabcontent = this.el.shadowRoot.querySelectorAll(".tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-  tablinks = this.el.shadowRoot.querySelector(".tablinks");
+  tablinks = this.el.shadowRoot.querySelectorAll(".tablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  this.el.shadowRoot.getElementById(cityName).style.display = "block";  
-  evt.currentTarget.className += " active";
-  console.log(evt);
+  this.el.shadowRoot.getElementById(cityName).style.display = "block";
+  console.log(funcion)
+  console.log(nombreFunc)  
+  
+
+  
+  if(funcion!="" && nombreFunc!="")
+{
+    this.el.shadowRoot.getElementById("yei").innerHTML = "<script>" + funcion +'</' +"script>";
+    this.doHomework(eval(nombreFunc));
+    
+}
+   evt.currentTarget.className += " active";
 } 
 
 closeTab()
 {
 
  this.el.parentElement.style.display='none';
- 
 
 
+}
+
+
+
+componentWillLoad()
+{
+  console.log(this.datajson)
 }
  
   render() {
@@ -54,7 +72,7 @@ closeTab()
       //se generan los onclicks
       <div class="tab">
         {JSON.parse(this.datajson).items.map((entra)=>
-        <button disabled={!entra.enableTab} class="tablinks" onClick={() => this.openTab(this.event,entra.title)} id={entra.default}>
+        <button disabled={!entra.enableTab} class="tablinks" onClick={() => this.openTab(this.event,entra.title,entra.function,entra.nameFunction)} id={entra.default}>
           <span><img src={entra.icon}></img></span>{entra.title}</button>        
         )      
         }
@@ -76,7 +94,9 @@ closeTab()
       )}
     </div>,
 
-    <slot></slot>
+    <div id="yei">
+
+    </div>
  
 
 
