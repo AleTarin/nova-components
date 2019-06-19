@@ -13,6 +13,8 @@ export namespace Components {
     'content': cascader;
     'expandTrigger': string;
     'focusCascader': () => Promise<void>;
+    'onChange': (callback: Function) => Promise<void>;
+    'onPopupVisibleChange': (callback: Function) => Promise<void>;
   }
   interface NovaIcon {
     /**

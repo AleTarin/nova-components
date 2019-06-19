@@ -10,6 +10,7 @@ interface configuration {
         expandTrigger?: string,
         defaultValue?: string[],
         separator?: string,
-        autofocus?: boolean
+        autofocus?: boolean,
+        placeholder?: string
     }
 }
