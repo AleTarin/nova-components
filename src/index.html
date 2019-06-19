@@ -18,25 +18,33 @@
 
   <script>
     // When cascader is defined
-    customElements.whenDefined("nova-cascader").then(
-      // Fetch the configuration file
-      fetch('./assets/cascader.json')
-        .then(function (response) {
-          // Transform it to JSON
-          return response.json();
+    customElements.whenDefined("nova-cascader")
+      .then( _ => {
+        var cascaderElement = document.querySelector('nova-cascader');
+            cascaderElement.componentOnReady().then( instance => {
+            fetch('./assets/cascader.json')
+              .then( response => {
+                // Transform it to JSON
+                return response.json();
+              })
+              .then( json => {
+                // Pass the prop
+                instance.content = json;
+
+                // Test public api to focus
+                instance.focusCascader();
+                // Test public api that adds a callback when popup is open or close
+                instance.onPopupChange( result => (console.log('popup',result)) );
+                // Test public api that adds a callback when a cascader item is selected
+                instance.onCascaderSelect( result => (console.log('select',result)) );
+
+              })
+              .catch( err => {
+                // If any error ocurred, pass it to the console
+                console.error(err)
+              })
         })
-        .then(function (json) {
-          // Grab de element
-          const cascaderElement = document.querySelector('nova-cascader');
-          // Pass the prop
-          cascaderElement.content = json;
-          // console.log(json);
-        })
-        .catch(function (err) {
-          // If any error ocurred, pass it to the console
-          console.log(err);
-        })
-    )
+      })
 
     fetch('./assets/tabs.json')
       .then(function (response) {

@@ -1,4 +1,4 @@
-import { Component, h, Prop, State, Element, Method } from '@stencil/core';
+import { Component, h, Prop, State, Element, Method, Watch } from '@stencil/core';
 import { ClickOutside } from "stencil-click-outside";
 
 @Component({
@@ -15,12 +15,17 @@ export class NovaCascader {
   @State() data: any[] = null;
   @State() path: string[] = [];
   @State() placeholder: string = '';
-  @State() onPopupChange: Function = null;
+  @State() onPopupVisibleChange: Function = null;
   @State() onSelect: Function = null;
 
   @Element() host: HTMLElement;
 
+  // Life cycle
   componentDidLoad(){
+    this.content && this.setComponentData()
+  }
+  @Watch('content')
+  setComponentData() {
     this.data = [this.content.data.items]
     this.path = [null]
 
@@ -29,10 +34,9 @@ export class NovaCascader {
       configuration: {
       autofocus, defaultValue, placeholder
     } } = this.content;
+
+    autofocus && this.focusCascader()
     
-    if (autofocus) {
-      this.focusCascader()
-    }
     if (defaultValue) {
       this.path = [null, ...defaultValue];
       this.setSearch();
@@ -41,17 +45,7 @@ export class NovaCascader {
       this.placeholder = placeholder;
     }
   }
-
   // Cascader event handlers
-  clickHandler(list: cascaderItem[], level: number, item: cascaderItem) {
-    this.updateCascader(list, level, item);
-  }
-
-  hoverHandler(list: cascaderItem[], level: number, item: cascaderItem) {
-    if (item.children)
-      this.updateCascader(list, level, item);
-  }
-
   updateCascader(list: cascaderItem[], level: number, item: cascaderItem) {
     this.path = [...this.path.slice(0,level + 1), item.value];
     
@@ -71,10 +65,14 @@ export class NovaCascader {
   }
 
   @Method()
-  async onPopupVisibleChange( callback: Function ){
-    this.onPopupChange =  ( result: string ) => callback(result);;
+  async blurCascader() {
+     this.host.shadowRoot.getElementById('js-search').blur();
   }
-
+  
+  @Method()
+  async onPopupChange( callback: Function ){
+    this.onPopupVisibleChange =  ( result: string ) => callback(result);
+  }
   @Method()
   async onCascaderSelect( callback: Function){
     this.onSelect = ( result: string ) => callback(result);
@@ -85,15 +83,13 @@ export class NovaCascader {
     this.data = [this.content.data.items]
     this.path = [null];
     this.isActive = false;
-    if(this.onPopupChange)
-      this.onPopupChange(this.result)
+    this.onPopupVisibleChange && this.onPopupVisibleChange(this.result)
   }
 
   // Search methods
   toggleCascader() {
     this.isActive = !this.isActive;
-    if(this.onPopupChange)
-      this.onPopupChange(this.result)
+    this.onSelect && this.onPopupVisibleChange(this.result)
   }
 
   clearSearch() {
@@ -102,8 +98,7 @@ export class NovaCascader {
 
   setSearch(){
     this.result = this.path.slice(1).join(` ${this.content.configuration.separator || '/'} `);
-    if(this.onSelect)
-      this.onSelect(this.result);
+    this.onSelect && this.onSelect(this.result);
   }
 
   render() {
@@ -124,8 +119,8 @@ export class NovaCascader {
               { list.map((item:cascaderItem) => 
                 <li 
                   class={`cascader__menu__item ${item.disabled ? 'cascader__menu__item--disabled' : ''}`}
-                  onMouseEnter={ _ => item.disabled || this.hoverHandler(list, level, item)} 
-                  onClick=     { _ => item.disabled || this.clickHandler(list, level, item)}> 
+                  onMouseEnter={ _ => item.disabled && item.children || this.updateCascader(list, level, item)} 
+                  onClick=     { _ => item.disabled || this.updateCascader(list, level, item)}> 
                     {item.label} 
                     {item.children && <nova-icon name="chevron-right"/>}
                 </li>)

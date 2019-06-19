@@ -10,11 +10,12 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface NovaCascader {
+    'blurCascader': () => Promise<void>;
     'content': cascader;
     'expandTrigger': string;
     'focusCascader': () => Promise<void>;
     'onCascaderSelect': (callback: Function) => Promise<void>;
-    'onPopupVisibleChange': (callback: Function) => Promise<void>;
+    'onPopupChange': (callback: Function) => Promise<void>;
   }
   interface NovaIcon {
     /**
