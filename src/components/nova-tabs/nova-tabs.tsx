@@ -3,7 +3,7 @@ import { Component, Prop,h,Element,State} from "@stencil/core";
 
 @Component({
     tag: 'nova-tabs',
-    styleUrl: 'my-component.css',
+    styleUrl: 'nova-tabs.css',
     shadow: true
 })
 
@@ -15,17 +15,6 @@ export class NovaTabs {
   @Prop() styleVertical:string = 'verticalTab.css'
   @Prop() funcion:string;
   @Prop() nombreFuncion:string;
-
- 
-
-
- 
-    
-  
-
-  
-
-  
 
  openTab(cityName, nombre, funcion) {
   
@@ -121,10 +110,5 @@ closeTab()
 
     
       ]
-
-      
-      
-    
-  
   }
 }
