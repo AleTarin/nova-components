@@ -10,18 +10,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+    'hover': boolean;
+    'popclick': boolean;
+    'popfocus': boolean;
   }
 }
 
@@ -40,18 +31,9 @@ declare global {
 
 declare namespace LocalJSX {
   interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+    'hover'?: boolean;
+    'popclick'?: boolean;
+    'popfocus'?: boolean;
   }
 
   interface IntrinsicElements {
