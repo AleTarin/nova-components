@@ -76,7 +76,7 @@ export class NovaCascader {
   }
 
   @Method()
-  async onChange( callback: Function){
+  async onCascaderSelect( callback: Function){
     this.onSelect = ( result: string ) => callback(result);
   }
 

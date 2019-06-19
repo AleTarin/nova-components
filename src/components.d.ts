@@ -13,7 +13,7 @@ export namespace Components {
     'content': cascader;
     'expandTrigger': string;
     'focusCascader': () => Promise<void>;
-    'onChange': (callback: Function) => Promise<void>;
+    'onCascaderSelect': (callback: Function) => Promise<void>;
     'onPopupVisibleChange': (callback: Function) => Promise<void>;
   }
   interface NovaIcon {
@@ -24,6 +24,12 @@ export namespace Components {
     'options'?: string;
     'pre'?: string;
     'size'?: string;
+  }
+  interface NovaTabs {
+    'datajson': string;
+    'funcion': string;
+    'nombreFuncion': string;
+    'styleVertical': string;
   }
 }
 
@@ -41,9 +47,16 @@ declare global {
     prototype: HTMLNovaIconElement;
     new (): HTMLNovaIconElement;
   };
+
+  interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
+  var HTMLNovaTabsElement: {
+    prototype: HTMLNovaTabsElement;
+    new (): HTMLNovaTabsElement;
+  };
   interface HTMLElementTagNameMap {
     'nova-cascader': HTMLNovaCascaderElement;
     'nova-icon': HTMLNovaIconElement;
+    'nova-tabs': HTMLNovaTabsElement;
   }
 }
 
@@ -61,10 +74,17 @@ declare namespace LocalJSX {
     'pre'?: string;
     'size'?: string;
   }
+  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
+    'datajson'?: string;
+    'funcion'?: string;
+    'nombreFuncion'?: string;
+    'styleVertical'?: string;
+  }
 
   interface IntrinsicElements {
     'nova-cascader': NovaCascader;
     'nova-icon': NovaIcon;
+    'nova-tabs': NovaTabs;
   }
 }
 
