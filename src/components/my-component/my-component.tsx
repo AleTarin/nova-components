@@ -13,48 +13,83 @@ export class NovaTabs {
   @Element() el: HTMLElement;
   @State() event:any;
   @Prop() styleVertical:string = 'verticalTab.css'
+  @Prop() funcion:string;
+  @Prop() nombreFuncion:string;
+
  
+
+
  
+    
   
 
   
 
   
 
- openTab(evt, cityName) {
+ openTab(cityName, nombre, funcion) {
+  
   var i,tabcontent,tablinks;
 
-  tabcontent = this.el.shadowRoot.querySelector(".tabcontent");
+  tabcontent = this.el.shadowRoot.querySelectorAll(".tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-  tablinks = this.el.shadowRoot.querySelector(".tablinks");
+  tablinks = this.el.shadowRoot.querySelectorAll(".tablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  this.el.shadowRoot.getElementById(cityName).style.display = "block";  
-  evt.currentTarget.className += " active";
-  console.log(evt);
+  this.el.shadowRoot.getElementById(cityName).style.display = "block"; 
+  
+  this.nombreFuncion = nombre;
+  this.funcion = funcion;
+
+  //this.el.shadowRoot.getElementById(this.contador).innerHTML = this.funcion + this.nombreFuncion;
+  //this.el.shadowRoot.getElementById(this.contador).innerHTML = "";
+
+  if(this.funcion != "" && this.nombreFuncion!='')
+  {
+    var btn = document.createElement("script");   // Create a <button> element
+    btn.innerHTML = this.funcion + this.nombreFuncion;                 // Insert text
+    document.body.appendChild(btn);
+  }
+  
+
+  
+
+   //evt.currentTarget.className += " active";
 } 
 
 closeTab()
 {
 
- this.el.parentElement.style.display='none';
- 
+ //this.el.parentElement.style.display='none';
+ var i,tabcontent;
 
+ tabcontent = this.el.shadowRoot.querySelectorAll(".tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
 
 }
+
+
+/*componentWillUpdate()
+{
+  var btn = document.createElement("script");   // Create a <button> element
+  btn.innerHTML = this.funcion + this.nombreFuncion;                 // Insert text
+  document.body.appendChild(btn);               // Append <button> to <body>  
+
+}*/
+
  
   render() {
-    return[
-
-      
+    return[  
       
       //se generan los onclicks
-      <div class="tab">
+      <div id="div_tab" class="tab">
         {JSON.parse(this.datajson).items.map((entra)=>
-        <button disabled={!entra.enableTab} class="tablinks" onClick={() => this.openTab(this.event,entra.title)} id={entra.default}>
+        <button disabled={!entra.enableTab} class="tablinks" onClick={() => this.openTab(entra.title,entra.nameFunction,entra.function)} id={entra.default}>
           <span><img src={entra.icon}></img></span>{entra.title}</button>        
         )      
         }
@@ -74,9 +109,11 @@ closeTab()
         </div>
         
       )}
-    </div>,
+    </div>
 
-    <slot></slot>
+    
+
+
  
 
 

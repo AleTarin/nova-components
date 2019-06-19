@@ -28,9 +28,12 @@
             })
             .then(function (json) {
                 const tabsInfo = document.querySelector("nova-tabs");
+                //tabsInfo.datajson = json.data;
                 
                 //mandar json como prop                
-                tabsInfo.setAttribute("datajson",JSON.stringify(json.data)); 
+                tabsInfo.setAttribute("datajson",JSON.stringify(json.data));
+
+      
                               
             })
             .catch(function (err) {

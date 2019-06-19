@@ -2,26 +2,32 @@
     "data": {
         "items":[{
                 "title":"Merida",
-                "icon":"https://image.flaticon.com/icons/png/128/0/39.png",
+                "icon":"https://img.icons8.com/material/24/000000/mac-os.png",
                 "enableTab":true,
                 "default":"defaultOpen",
-                "content":"Esta ciudad es la capital del estado de yucatan"      
+                "content":"Esta ciudad es la capital del estado de yucatan",
+                "function":"",
+                "nameFunction":"algo()"    
 
         },
         {
                 "title":"Monterrey",
                 "icon":"",
-                "enableTab":false,
+                "enableTab":true,
                 "default":false,
-                "content":"Esta ciudad es la capital del estado de nuevo leon"
+                "content":"Esta ciudad es la capital del estado de nuevo leon",
+                "function":"",
+                "nameFunction":"" 
         },
 
         {
                 "title":"Campeche",
-                "icon":"https://image.flaticon.com/icons/png/128/174/174855.png",
+                "icon":"https://img.icons8.com/material/24/000000/whatsapp.png",
                 "enableTab":true,
                 "default":false,
-                "content":"Esta ciudad es la capital del estado de campeche"
+                "content":"Esta ciudad es la capital del estado de campeche",
+                "function":"function algo2(){alert('hola soy una funcion de callback, campeche');}",
+                "nameFunction":"algo2()"
 
         },
 
@@ -31,7 +37,9 @@
                 "icon":"",
                 "enableTab":false,
                 "default":false,
-                "content":"Esta ciudad es la capital del estado de zacatecas"
+                "content":"Esta ciudad es la capital del estado de zacatecas",
+                "function":"",
+                "nameFunction":"" 
 
         }
 
