@@ -121,7 +121,7 @@ closeTab()
    
    
     /* 
-        se genera el html necesarion que despliefa el contenido de las pestañas.
+        se genera el html necesarion que despliega el contenido de las pestañas.
     */
     <div>
       {JSON.parse(this.datajson).items.map((entra)=>        
