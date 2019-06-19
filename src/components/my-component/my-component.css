@@ -37,14 +37,24 @@
   }
 
   .tabcontent {
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+     /* for chrome and safari*/
+     -webkit-animation-duration: 0.4s;
+     -webkit-animation-name: slidein;
+
+     /*for firefox*/
+     -moz-animation-duration: 0.4s;
+     -moz-animation-name: slidein;
+
+       /* for opera*/
+     -o-animation-duration: 0.4s;
+     -o-animation-name: slidein;
+
+       /* Standard syntax*/
+     animation-duration: 0.4s;
+     animation-name: slidein;
   }
   
-  /* Go from zero to full opacity */
-  @keyframes fadeEffect {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
+ 
 
   /* Style the close button */
 .topright {
@@ -54,3 +64,49 @@
   }
   
   .topright:hover {color: red;}
+
+  @-webkit-keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+@-moz-keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+ @-o-keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+  @keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
