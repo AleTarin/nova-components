@@ -31,7 +31,7 @@ export namespace Components {
     'pophover': boolean;
   }
   interface NovaTabs {
-    'datajson': string;
+    'datajson': any;
     'funcion': string;
     'nombreFuncion': string;
     'styleVertical': string;
@@ -92,7 +92,7 @@ declare namespace LocalJSX {
     'pophover'?: boolean;
   }
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    'datajson'?: string;
+    'datajson'?: any;
     'funcion'?: string;
     'nombreFuncion'?: string;
     'styleVertical'?: string;
