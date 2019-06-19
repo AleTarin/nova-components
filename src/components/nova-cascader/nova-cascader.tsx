@@ -8,7 +8,7 @@ import { ClickOutside } from "stencil-click-outside";
 })
 export class NovaCascader {
   @Prop() content: cascader = null;
-  @Prop() expandTrigger: string = 'click';
+  @Prop() expandTrigger: 'click' | 'hover' = 'click';
   
   @State() isActive: boolean = false; 
   @State() result: string = null;
@@ -47,14 +47,16 @@ export class NovaCascader {
   }
   // Cascader event handlers
   updateCascader(list: cascaderItem[], level: number, item: cascaderItem) {
-    this.path = [...this.path.slice(0,level + 1), item.value];
-    
-    let next = list.find((element:cascaderItem) => element.value === item.value );
-    if ( next && next.children ){
-      this.data = [...this.data.slice(0,level + 1), next.children];
-    }
-    else {
-      this.setSearch();
+    if(!item.disabled) {
+      this.path = [...this.path.slice(0,level + 1), item.value];
+      
+      let next = list.find((element:cascaderItem) => element.value === item.value );
+      if ( next && next.children ){
+        this.data = [...this.data.slice(0,level + 1), next.children];
+      }
+      else {
+        this.setSearch();
+      }
     }
   }
   
@@ -119,8 +121,8 @@ export class NovaCascader {
               { list.map((item:cascaderItem) => 
                 <li 
                   class={`cascader__menu__item ${item.disabled ? 'cascader__menu__item--disabled' : ''}`}
-                  onMouseEnter={ _ => item.disabled && item.children || this.updateCascader(list, level, item)} 
-                  onClick=     { _ => item.disabled || this.updateCascader(list, level, item)}> 
+                  onMouseEnter={ _ => this.expandTrigger === "hover" && item.children && this.updateCascader(list, level, item)} 
+                  onClick=     { _ => this.expandTrigger === "click" && this.updateCascader(list, level, item)}> 
                     {item.label} 
                     {item.children && <nova-icon name="chevron-right"/>}
                 </li>)
