@@ -20,8 +20,8 @@
                 "enableTab":true/flase,
                 "default":"defaultOpen",
                 "content":"tab content",
-                "function":"",
-                "nameFunction":"algo()"    
+                "function":"function nameFunction(){ code ...}",
+                "nameFunction":"nameFunction()"    
 
         }      
 
@@ -30,6 +30,10 @@
 }
 
 ```
+
+##PROPERTIES.
+
+***none***
 
 
 ----------------------------------------------
