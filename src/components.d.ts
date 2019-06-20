@@ -34,7 +34,6 @@ export namespace Components {
     'datajson': any;
     'funcion': string;
     'nombreFuncion': string;
-    'styleVertical': string;
   }
 }
 
@@ -95,7 +94,6 @@ declare namespace LocalJSX {
     'datajson'?: any;
     'funcion'?: string;
     'nombreFuncion'?: string;
-    'styleVertical'?: string;
   }
 
   interface IntrinsicElements {
