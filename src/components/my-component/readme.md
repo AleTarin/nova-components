@@ -12,7 +12,7 @@
 ```
 ---------------------------------------
 
-# SEND JSON AS PROP
+## SEND JSON AS PROP
 
 ```javascript
 fetch('./assets/tabs.json')
@@ -39,7 +39,7 @@ fetch('./assets/tabs.json')
 ---------------------------------------
 
 
-# JSON DATA MODEL
+## JSON DATA MODEL
 
 ```json
 {   
@@ -62,7 +62,7 @@ fetch('./assets/tabs.json')
 ```
 -------------------------------------
 
-# PROPERTIES.
+## PROPERTIES.
 
 ***none***
 
