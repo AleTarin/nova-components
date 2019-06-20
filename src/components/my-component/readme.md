@@ -5,17 +5,27 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
+## How do I do? (HTML Markup)
 
-JSON ATTRIBUTES
+<nova-tabs></nova-tabs>
 
-| Attribute | Description     | Type     |
-| --------- | --------------- | -------- | 
-| `title`   | Title of the tab  | `string` |
-| `icon`    | URL of the icon   | `string` | 
-| `enableTab`  | Enable or not tab | `bool` |
-| `default`  | Default tab | `bool` |
-| `content`  | Content of the tab | `string` |
+##JSON DATA MODEL
+`{   
+    "data": {
+        "items":[{
+                "title":"Tab name",
+                "icon":"url icon",
+                "enableTab":true/flase,
+                "default":"defaultOpen",
+                "content":"tab content",
+                "function":"",
+                "nameFunction":"algo()"    
+
+        }      
+
+        ]
+    }
+}`
 
 
 ----------------------------------------------
