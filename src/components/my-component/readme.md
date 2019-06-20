@@ -10,7 +10,7 @@
 <nova-tabs></nova-tabs>
 
 ##JSON DATA MODEL
-`{   
+{   
     "data": {
         "items":[{
                 "title":"Tab name",
@@ -25,7 +25,7 @@
 
         ]
     }
-}`
+}
 
 
 ----------------------------------------------
