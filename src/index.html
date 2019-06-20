@@ -15,7 +15,7 @@
 
   
 
-  <nova-tabs datajson="">  
+  <nova-tabs>  
   </nova-tabs>
 
   
@@ -28,10 +28,8 @@
             })
             .then(function (json) {
                 const tabsInfo = document.querySelector("nova-tabs");
-                //tabsInfo.datajson = json.data;
-                
-                //mandar json como prop                
-                tabsInfo.setAttribute("datajson",JSON.stringify(json.data));
+                tabsInfo.datajson = json.data;
+    
 
       
                               
