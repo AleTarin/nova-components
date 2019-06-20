@@ -60,7 +60,7 @@ export class NovaCascader {
   componentDidLoad() {
     if (this.size) {
       const element = this.host.shadowRoot.querySelector('input');
-      element.style.height = this.size;
+      element.style.minHeight = this.size;
     }
     this.content && this.setComponentData()
   }
