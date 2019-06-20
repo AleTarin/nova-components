@@ -15,11 +15,10 @@ export class Popover {
 
   activateClick(){
     this.popoverClass = "popover__text--active"
-    console.log(this.popoverClass)
   }
 
-
-  render() {
+  setActivationClass() {
+    this.popoverClass = "popover__text";
     if(this.pophover){
       this.popoverClass += " popover__text--hover"
     }
@@ -29,6 +28,14 @@ export class Popover {
     if(this.popclick){
       this.popoverClass += " popover__text--active"
     }
+  }
+
+  componentDidLoad() {
+
+  }
+
+  render() {
+
     return(
       <div class="popover">
         <button tabIndex={0} type="button">Click Me!</button>

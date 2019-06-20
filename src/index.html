@@ -14,7 +14,7 @@
 <body>
   <nova-cascader></nova-cascader>
   <nova-tabs></nova-tabs>
-  <nova-popover pophover popfocus>Hello</nova-popover>
+  <nova-popover popfocus>Hello</nova-popover>
 
   <script>
     // When cascader is defined
@@ -46,12 +46,9 @@
       .then(function (json) {
           const tabsInfo = document.querySelector("nova-tabs");
           //tabsInfo.datajson = json.data;
-
-          //mandar json como prop
-          tabsInfo.setAttribute("datajson",JSON.stringify(json.data));
-
-
-
+    
+          //mandar json como prop                
+          tabsInfo.setAttribute("datajson",JSON.stringify(json.data));             
       })
       .catch(function (err) {
           console.log('error: ' + err);
