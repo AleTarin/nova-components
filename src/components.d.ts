@@ -27,6 +27,7 @@ export namespace Components {
     * onPopupChange
     */
     'onPopupChange': (callback: cascaderCallback) => Promise<void>;
+    'size': string;
   }
   interface NovaIcon {
     /**
@@ -87,6 +88,7 @@ declare global {
 declare namespace LocalJSX {
   interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
     'content'?: cascader;
+    'size'?: string;
   }
   interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
     /**
