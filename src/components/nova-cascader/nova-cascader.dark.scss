@@ -1,0 +1,39 @@
+@import "./nova-cascader.common.scss";
+$primary: rgba(0,0,0,0.8);
+$secondary: #ffffff;
+$shadow: rgba(255,255,255,0.15);
+$danger: rgba(255,0,0,0.5);
+.cascader__search {
+    input {
+        color: $secondary;
+        border: 1px solid $secondary;
+        background: $primary;
+    }
+    nova-icon {
+        color: $secondary;
+    }
+}
+
+.cascader__menu {
+    -webkit-box-shadow: 0 2px 8px $shadow;
+    box-shadow: 0 2px 8px $shadow;
+    color: #314659;
+    background: $secondary;
+}
+.cascader__menu__list {
+    background: $primary;
+    border-right: 1px solid $secondary;
+}
+.cascader__menu__item {
+    color: $secondary;
+    &:active, &:hover, &:focus {
+        color: $primary;
+        background-color: $secondary;
+    }
+    nova-icon {
+        color: $primary;
+    }
+}
+.cascader__menu__item--disabled{
+    color: $danger;
+}

@@ -7,10 +7,15 @@ interface styling {
 interface configuration {
     configuration?: {
         sort?: string,
-        expandTrigger?: string,
+        expandTrigger?: 'click' | 'hover',
         defaultValue?: string[],
         separator?: string,
         autofocus?: boolean,
-        placeholder?: string
+        placeholder?: string,
+        name?: string,
+        readonly?: boolean,
+        disabled?: boolean
     }
 }
+
+type cascaderCallback  = (result: string) => void;

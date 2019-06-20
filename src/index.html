@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <nova-cascader></nova-cascader>
+  <nova-cascader mode="dark"></nova-cascader>
   <nova-tabs></nova-tabs>
   <nova-popover popfocus>Hello</nova-popover>
 
@@ -32,7 +32,7 @@
                 instance.content = json;
 
                 // Test public api to focus
-                instance.focusCascader();
+                instance.blurCascader();
                 // Test public api that adds a callback when popup is open or close
                 instance.onPopupChange( result => (console.log('popup',result)) );
                 // Test public api that adds a callback when a cascader item is selected

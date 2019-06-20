@@ -81,11 +81,13 @@
     ]
   },
   "configuration": {
-    "expandTrigger": "click",
+    "expandTrigger": "hover",
     "defaultValue": ["zhejiang" , "hangzhou", "xihe"] ,
     "separator": "//",
     "autofocus": true,
-    "placeholder": "States"
+    "placeholder": "States",
+    "name": "nova-cascader",
+    "readonly": false
   },
   "styling": {
 
