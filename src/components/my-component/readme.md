@@ -73,7 +73,7 @@ fetch('./assets/tabs.json')
 | `stylingSourceUrl`     | `styling-source-url`     |             | `string` | `undefined` |
 
 ---------------------------------------
-##Elements
+## Elements
 
 | Event           | Description | Type                |
 | --------------- | ----------- | ------------------- |
@@ -81,7 +81,7 @@ fetch('./assets/tabs.json')
 
 ----------------------------------------------
 
-##Functions
+## Functions
 
 ```javascript
 
@@ -92,7 +92,7 @@ openTab(tab, nombre, funcion) {
 }
 
 ```
-###Parametros
+### Parametros
 
 `tab -> string`
 `nombre -> string`
