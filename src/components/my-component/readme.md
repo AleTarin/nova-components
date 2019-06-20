@@ -92,13 +92,12 @@ openTab(tab, nombre, funcion) {
 }
 
 ```
-### Parametros
+### Parameters
 
-`tab -> string`
-`nombre -> string`
+| Name        | Type  | Description |
+| ----------- | ----- | ----------- |
+| `tab`       | `string` |             |
+| `nombre`    | `string` |             |
+| `funcion`    | `string` |             |
 
 
-
-
-
-*Created by Armando Aguiar and Arturo Rojas*
