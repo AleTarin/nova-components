@@ -7,7 +7,11 @@
 
 ## How do I do? (HTML Markup)
 
+```html
 <nova-tabs></nova-tabs>
+```
+
+
 
 ##JSON DATA MODEL
 
