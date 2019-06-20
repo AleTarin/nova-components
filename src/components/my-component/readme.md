@@ -100,8 +100,27 @@ openTab(tab, nombre, funcion) {
 | `nombre`    | `string` |             |
 | `funcion`    | `string` |             |
 
-###Return
+### Return
 
-Type: `void`
+Type: `none`
+
+```javascript
+
+closeTab()
+{
+        //code...
+}
+
+```
+### Parameters
+
+| Name        | Type  | Description |
+| ----------- | ----- | ----------- |
+| `--`       | `--` |             |
 
 
+### Return
+
+Type: `none`
+
+---------------------------------------------
