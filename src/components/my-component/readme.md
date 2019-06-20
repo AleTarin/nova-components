@@ -93,6 +93,7 @@ openTab(tab, nombre, funcion) {
 
 ```
 ###Parametros
+
 `tab -> string`
 `nombre -> string`
 
