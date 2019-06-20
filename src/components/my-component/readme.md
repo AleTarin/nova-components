@@ -100,4 +100,8 @@ openTab(tab, nombre, funcion) {
 | `nombre`    | `string` |             |
 | `funcion`    | `string` |             |
 
+###Return
+
+Type: `void`
+
 
