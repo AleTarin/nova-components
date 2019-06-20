@@ -14,7 +14,7 @@ import { Component, Prop,h,Element,State} from "@stencil/core";
 export class NovaTabs {
   /* 
     Atributos y elementos de la clase del componente:
-    @Prop() datajson :string; --> se encarga de recibir el json desde el html como string
+    @Prop() datajson :any; --> se encarga de recibir el json desde el html como objeto
     @Element() el: HTMLElement; -->se encarga de poder permitir el acceso a las funciones nativas de html/jss
                                    usando shadow dom
     @State() event:any; --> se encarga de recibir un evento cuando se cambia de pestaña (pestaña actual)
@@ -22,7 +22,7 @@ export class NovaTabs {
     @Prop() nombreFuncion:string; --> se encarga de guardar la nombre de la funcion.
 
   */
-  @Prop() datajson :string;
+  @Prop() datajson :any;
   @Element() el: HTMLElement;
   @State() event:any;
   @Prop() funcion:string;
@@ -35,7 +35,7 @@ export class NovaTabs {
   * parametros: string cityName(nombre de la tab), nombre(nombre de la funcion), funcion(funcion mandada desde el json)
   * return nada
 */
- openTab(cityName, nombre, funcion) {
+ openTab(tab, nombre, funcion) {
 
   //declaracion de variables.  
   var i,tabcontent,tablinks;
@@ -51,7 +51,7 @@ export class NovaTabs {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  this.el.shadowRoot.getElementById(cityName).style.display = "block";
+  this.el.shadowRoot.getElementById(tab).style.display = "block";
   
   //se recibe el nombre y la funcion de la tab actual (si es que hay)  
   this.nombreFuncion = nombre;
@@ -104,12 +104,13 @@ closeTab()
   render() {
     return[  
       
+      
       /*
         se genera el html necesario que hace los botones de las pestañas, se manda a llamar la funcion openTab
         y poner iconos en caso de existir.
       */
       <div id="div_tab" class="tab">
-        {JSON.parse(this.datajson).items.map((entra)=>
+        {this.datajson.items.map((entra)=>
         <button disabled={!entra.enableTab} class="tablinks" onClick={() => this.openTab(entra.title,entra.nameFunction,entra.function)} id={entra.default}>
           <span><img src={entra.icon}></img></span>{entra.title}</button>        
         )      
@@ -124,7 +125,7 @@ closeTab()
         se genera el html necesarion que despliega el contenido de las pestañas.
     */
     <div>
-      {JSON.parse(this.datajson).items.map((entra)=>        
+      {this.datajson.items.map((entra)=>        
         <div id={entra.title} class="tabcontent">
           <span onClick={() => this.closeTab()} class="topright">x</span>
           <h3>{entra.title}</h3>

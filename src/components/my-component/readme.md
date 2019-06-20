@@ -5,19 +5,124 @@
 <!-- Auto Generated Below -->
 
 
+## How do I do? (HTML Markup)
+
+```html
+<nova-tabs></nova-tabs>
+```
+---------------------------------------
+
+## SEND JSON AS PROP
+
+```javascript
+fetch('./assets/tabs.json')
+            .then(function (response) {
+                //transforme to json
+                return response.json();
+            })
+            .then(function (json) {
+                    //send json as prop
+                const tabsInfo = document.querySelector("nova-tabs");
+                tabsInfo.datajson = json.data;
+    
+
+      
+                              
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+
+```
+
+
+---------------------------------------
+
+
+## JSON DATA MODEL
+
+```json
+{   
+    "data": {
+        "items":[{
+                "title":"Tab name",
+                "icon":"url icon",
+                "enableTab":true/false,
+                "default":"defaultOpen",
+                "content":"tab content",
+                "function":"function nameFunction(){ code ...}",
+                "nameFunction":"nameFunction()"    
+
+        }      
+
+        ]
+    }
+}
+
+```
+-------------------------------------
+
+
 ## Properties
 
-JSON ATTRIBUTES
+| Property               | Attribute                | Description | Type     | Default     |
+| ---------------------- | ------------------------ | ----------- | -------- | ----------- |
+| `datajson`             | `datajson`               |             | `any`    | `json`      |
+| `funcion`              | `funcion`                |             | `string` | `undefinded`|
+| `nombreFuncion`        | `nombreFuncion`          |             | `string` | `undefined` |
+| `stylingSourceUrl`     | `styling-source-url`     |             | `string` | `undefined` |
 
-| Attribute | Description     | Type     |
-| --------- | --------------- | -------- | 
-| `title`   | Title of the tab  | `string` |
-| `icon`    | URL of the icon   | `string` | 
-| `enableTab`  | Enable or not tab | `bool` |
-| `default`  | Default tab | `bool` |
-| `content`  | Content of the tab | `string` |
+---------------------------------------
+## Elements
 
+| Event           | Description | Type                |
+| --------------- | ----------- | ------------------- |
+| `el`            |             | `HTMLElement`       |
 
 ----------------------------------------------
 
-*Creado por Armando Aguiar y Arturo Rojas*
+## Functions
+
+```javascript
+
+openTab(tab, nombre, funcion) {
+
+        //code...
+
+}
+
+```
+### Parameters
+
+| Name        | Type  | Description |
+| ----------- | ----- | ----------- |
+| `tab`       | `string` |             |
+| `nombre`    | `string` |             |
+| `funcion`    | `string` |             |
+
+### Return
+
+Type: `none`
+
+----------------------------------------
+
+```javascript
+
+closeTab()
+{
+        //code...
+}
+
+```
+### Parameters
+
+| Name        | Type  | Description |
+| ----------- | ----- | ----------- |
+| `--`       | `--` |             |
+
+
+### Return
+
+Type: `none`
+
+---------------------------------------------

@@ -10,7 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface NovaTabs {
-    'datajson': string;
+    'datajson': any;
     'funcion': string;
     'nombreFuncion': string;
   }
@@ -31,7 +31,7 @@ declare global {
 
 declare namespace LocalJSX {
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    'datajson'?: string;
+    'datajson'?: any;
     'funcion'?: string;
     'nombreFuncion'?: string;
   }
