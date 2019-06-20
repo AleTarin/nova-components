@@ -104,6 +104,8 @@ openTab(tab, nombre, funcion) {
 
 Type: `none`
 
+----------------------------------------
+
 ```javascript
 
 closeTab()
