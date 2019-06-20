@@ -1,0 +1,92 @@
+/* CSS Guide for popover
+  https://www.w3schools.com/Css/css_tooltip.asp */
+
+/* Popover text */
+.popover__text {
+  visibility: hidden;
+  width: relative;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+
+  // Text abajo - centered
+  top: 100%;
+  left: 0%;
+
+  // Text abajo - right
+  // top: 100%;
+  // left: 10%;
+
+  // Text abajo - left
+  // top: 100%;
+  // left: -10%;
+
+  // Text arriba - centered
+  // bottom: 100%;
+  // left: 0%;
+
+  // Text arriba - right
+  // bottom: 100%;
+  // left: 10%;
+
+  // Text arriba - left
+  // bottom: 100%;
+  // left: -10%;
+
+  // Text izquierda
+  // right: 100%;
+
+  // Text derecha
+  // Nada, es default
+}
+
+.popover__text::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para abajo
+  // margin-left: -5px;
+  // top: 100%;
+  // left: 50%;
+  // border-color: black transparent transparent transparent;
+
+  // Flechita para arriba
+  margin-left: -5px;
+  bottom: 100%;
+  left: 50%;
+  border-color: transparent transparent black transparent;
+
+  // Flechita para la izquierda
+  // margin-top: -5px;
+  // top: 50%;
+  // right: 100%;
+  // border-color: transparent black transparent transparent;
+
+  // Flechita para la derecha
+  // margin-top: -5px;
+  // top: 50%;
+  // left: 100%;
+  // border-color: transparent transparent transparent black;
+}
+
+.popover {
+  position: relative;
+  margin-left: 50%;
+  padding: 5px;
+  /* Show the popover text */
+  &:hover > .popover__text--hover{
+    visibility: visible;
+  }
+  &:focus-within > .popover__text--focus{
+    visibility: visible;
+  }
+  &:active > .popover__text--active{
+    visibility: visible;
+  }
+}
