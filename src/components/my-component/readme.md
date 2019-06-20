@@ -5,7 +5,7 @@
 <!-- Auto Generated Below -->
 
 
-## How do I do? (HTML Markup)
+# How do I do? (HTML Markup)
 
 ```html
 <nova-tabs></nova-tabs>
@@ -13,7 +13,7 @@
 ---------------------------------------
 
 
-##JSON DATA MODEL
+#JSON DATA MODEL
 
 ```json
 {   
@@ -36,7 +36,7 @@
 ```
 -------------------------------------
 
-##PROPERTIES.
+#PROPERTIES.
 
 ***none***
 
