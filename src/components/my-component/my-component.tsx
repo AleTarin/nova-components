@@ -35,7 +35,7 @@ export class NovaTabs {
   * parametros: string cityName(nombre de la tab), nombre(nombre de la funcion), funcion(funcion mandada desde el json)
   * return nada
 */
- openTab(cityName, nombre, funcion) {
+ openTab(tab, nombre, funcion) {
 
   //declaracion de variables.  
   var i,tabcontent,tablinks;
@@ -51,7 +51,7 @@ export class NovaTabs {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  this.el.shadowRoot.getElementById(cityName).style.display = "block";
+  this.el.shadowRoot.getElementById(tab).style.display = "block";
   
   //se recibe el nombre y la funcion de la tab actual (si es que hay)  
   this.nombreFuncion = nombre;

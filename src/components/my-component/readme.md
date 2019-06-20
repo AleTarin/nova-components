@@ -62,11 +62,38 @@ fetch('./assets/tabs.json')
 ```
 -------------------------------------
 
-## PROPERTIES.
 
-***none***
+## Properties
 
+| Property               | Attribute                | Description | Type     | Default     |
+| ---------------------- | ------------------------ | ----------- | -------- | ----------- |
+| `datajson`             | `datajson`               |             | `any`    | `json`      |
+| `funcion`              | `funcion`                |             | `string` | `undefinded`|
+| `nombreFuncion`        | `nombreFuncion`          |             | `string` | `undefined` |
+| `stylingSourceUrl`     | `styling-source-url`     |             | `string` | `undefined` |
+
+---------------------------------------
+##Elements
+
+| Event           | Description | Type                |
+| --------------- | ----------- | ------------------- |
+| `el`            |             | `HTMLElement`       |
 
 ----------------------------------------------
 
-*Creado por Armando Aguiar y Arturo Rojas*
+##Functions
+
+```javascript
+openTab(tab, nombre, funcion) {
+
+}
+
+//parameters
+tab:string
+
+```
+
+
+
+
+*Created by Armando Aguiar and Arturo Rojas*
