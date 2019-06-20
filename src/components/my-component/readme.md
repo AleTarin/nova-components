@@ -84,14 +84,18 @@ fetch('./assets/tabs.json')
 ##Functions
 
 ```javascript
+
 openTab(tab, nombre, funcion) {
+
+        //code...
 
 }
 
-//parameters
-tab:string
-
 ```
+###Parametros
+`tab -> string`
+`nombre -> string`
+
 
 
 
