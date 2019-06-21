@@ -7,13 +7,23 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                                     | Default                                                                                                                                                                                                                                                                |
-| --------- | --------- | ----------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `content` | --        |             | `cascaderData & configuration & styling` | `{     data: {       items: []     },     configuration: {       expandTrigger: 'click',       name: '',       placeholder: 'Select',       autofocus: false,       readonly: false,       disabled: false,       separator: ' / ',       defaultValue: [],     }   }` |
-| `size`    | `size`    |             | `string`                                 | `undefined`                                                                                                                                                                                                                                                            |
+| Property  | Attribute | Description | Type                                                     | Default                                                                                                                                                                                                                                                                                           |
+| --------- | --------- | ----------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `content` | --        |             | `cascaderData & cascaderConfiguration & cascaderStyling` | `{     data: {       items: []     },     configuration: {       expandTrigger: 'click',       name: '',       placeholder: 'Select',       autofocus: false,       readonly: false,       disabled: false,       separator: ' / ',       defaultValue: [],       changeOnSelect: true     }   }` |
+| `size`    | `size`    |             | `string`                                                 | `undefined`                                                                                                                                                                                                                                                                                       |
 
 
 ## Methods
+
+### `addCustomTrigger(el: HTMLElement) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 ### `blurCascader() => Promise<void>`
 
