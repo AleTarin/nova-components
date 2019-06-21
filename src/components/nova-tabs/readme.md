@@ -7,17 +7,14 @@
 
 ## Properties
 
-JSON ATTRIBUTES
-
-| Attribute | Description     | Type     |
-| --------- | --------------- | -------- | 
-| `title`   | Title of the tab  | `string` |
-| `icon`    | URL of the icon   | `string` | 
-| `enableTab`  | Enable or not tab | `bool` |
-| `default`  | Default tab | `bool` |
-| `content`  | Content of the tab | `string` |
+| Property        | Attribute        | Description | Type     | Default             |
+| --------------- | ---------------- | ----------- | -------- | ------------------- |
+| `datajson`      | `datajson`       |             | `string` | `undefined`         |
+| `funcion`       | `funcion`        |             | `string` | `undefined`         |
+| `nombreFuncion` | `nombre-funcion` |             | `string` | `undefined`         |
+| `styleVertical` | `style-vertical` |             | `string` | `'verticalTab.css'` |
 
 
 ----------------------------------------------
 
-*Creado por Armando Aguiar y Arturo Rojas*
+*Built with [StencilJS](https://stenciljs.com/)*
