@@ -36,6 +36,7 @@ export class NovaCascader {
       disabled: false,
       separator: ' / ',
       defaultValue: [],
+      changeOnSelect: true
     }
   };
   @Prop() size: string;
@@ -45,13 +46,14 @@ export class NovaCascader {
   @State() private result: string = null;
   @State() private data: cascaderItem[][] = [];
   @State() private path: string[] = [];
+  @State() customTrigger: any;
 
   // Callbacks
   @State() private onPopupVisibleChange: cascaderCallback = null;
   @State() private onSelect: cascaderCallback = null;
 
   // The nova cascader custom element itself
-  @Element() private host: HTMLElement;
+  @Element() public host: HTMLElement;
 
   // Life cycle methods
   /**
@@ -82,6 +84,7 @@ export class NovaCascader {
       this.setSearch();
     }
   }
+
   /**
    * Update cascader
    * @description Updated the path of the item and the data. If it's a final item, sets the searchbar's text.
@@ -89,16 +92,20 @@ export class NovaCascader {
    * @param level { number } level of the list of items that fired the event
    * @param item  { cascaderItem } item that fired the event
    */
-  updateCascader(list: cascaderItem[], level: number, item: cascaderItem) {
+  updateCascader(list: cascaderItem[], level: number, item: cascaderItem, event: 'click' | 'hover') {
     if (!item.disabled) {
-      this.path = [...this.path.slice(0, level + 1), item.value];
-
-      let next = list.find((element: cascaderItem) => element.value === item.value);
-      if (next && next.children) {
-        this.data = [...this.data.slice(0, level + 1), next.children];
-      }
-      else {
-        this.setSearch();
+      const { expandTrigger } = this.content.configuration;
+      if (  expandTrigger === event || expandTrigger === 'hover') {
+        let next = list.find((element: cascaderItem) => element.value === item.value) ;
+        this.path = [...this.path.slice(0, level + 1), item.value];
+        if (next.children) {
+          this.data = [...this.data.slice(0, level + 1), next.children];
+        } 
+        if (event === 'click') {
+          this.setSearch();
+          if(!next.children)
+            this.toggleCascader()
+        }
       }
     }
   }
@@ -145,6 +152,11 @@ export class NovaCascader {
   async onCascaderSelect(callback: cascaderCallback) {
     this.onSelect = callback;
   }
+
+  @Method()
+  async addCustomTrigger( el: HTMLElement ){
+    this.customTrigger = el;
+  }
   // Ends Public API methods
 
   /**
@@ -185,7 +197,11 @@ export class NovaCascader {
    * @todo add prop to just use last item and verify search
    */
   setSearch() {
-    this.result = this.path.slice(1).join(this.content.configuration.separator);
+    if (this.content.configuration.changeOnSelect) {
+      this.result = this.path[this.path.length - 1];
+    } else {
+      this.result = this.path.slice(1).join(this.content.configuration.separator);
+    }
     this.onSelect && this.onSelect(this.result);
   }
 
@@ -200,17 +216,15 @@ export class NovaCascader {
   }
 
   render() {
-    const { configuration: { expandTrigger, name, placeholder, readonly, autofocus } } = this.content;
+    const { configuration: { name, placeholder, readonly, autofocus } } = this.content;
     return [
-
       // Search bar
       <section class="cascader">
         <span class="cascader__search">
           <input
-            onKeyDown={e => this.disableEvent(e)}
+            onKeyDown={e => readonly && this.disableEvent(e)}
             autoFocus={autofocus}
             name={name}
-            readOnly={readonly}
             value={this.result}
             onClick={_ => this.toggleCascader()}
             placeholder={placeholder} />
@@ -225,8 +239,8 @@ export class NovaCascader {
               {list.map((item: cascaderItem) =>
                 <li
                   class={`cascader__menu__item ${item.disabled ? 'cascader__menu__item--disabled' : ''}`}
-                  onMouseEnter={_ => expandTrigger === "hover" && this.updateCascader(list, level, item)}
-                  onClick={_ => expandTrigger === "click" && this.updateCascader(list, level, item)}>
+                  onMouseEnter={ _ => this.updateCascader(list, level, item, 'hover')}
+                  onClick={      _ => this.updateCascader(list, level, item, 'click')}>
                   {item.label}
                   {item.children && <nova-icon name="chevron-right" />}
                 </li>)

@@ -12,9 +12,11 @@
 </head>
 
 <body>
-  <nova-cascader mode="dark" size="140px"></nova-cascader>
+  <nova-cascader></nova-cascader>
   <nova-tabs></nova-tabs>
   <nova-popover popfocus>Hello</nova-popover>
+
+  <p>Hola</p>
 
   <script>
     // When cascader is defined
@@ -28,8 +30,10 @@
                 return response.json();
               })
               .then( json => {
+                console.log(instance)
                 // Pass the prop
                 instance.content = json;
+                instance.addCustomTrigger(document.querySelector('p'))
 
                 // Test public api to focus
                 instance.blurCascader();
@@ -53,13 +57,8 @@
       })
       .then(function (json) {
           const tabsInfo = document.querySelector("nova-tabs");
-          //tabsInfo.datajson = json.data;
-          
           //mandar json como prop                
           tabsInfo.setAttribute("datajson",JSON.stringify(json.data));
-
-
-                        
       })
       .catch(function (err) {
           console.log('error: ' + err);
