@@ -1,0 +1,8 @@
+/* CSS Guide for popover
+  https://www.w3schools.com/Css/css_tooltip.asp */
+  
+  $background: white;
+  $font: black;
+  $shadow: rgba(0,0,0,0.15);
+  
+  @import './nova-popover.scss';
