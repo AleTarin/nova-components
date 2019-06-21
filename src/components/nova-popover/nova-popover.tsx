@@ -2,44 +2,36 @@ import { Component, Prop, State, h } from '@stencil/core';
 
 @Component({
     tag: 'nova-popover',
-    styleUrl: 'nova-popover.scss',
+    styleUrls: {
+      default: 'nova-popover.default.scss',
+      dark: 'nova-popover.dark.scss'
+    },
     shadow: true
 })
 export class Popover {
 
-  @Prop() pophover: boolean;
-  @Prop() popfocus: boolean;
-  @Prop() popclick: boolean;
+  @Prop() trigger: "hover" | "focus" | "click" = "click"
 
-  @State() popoverClass = "popover__text";
+  @State() popoverActive = false;
 
   activateClick(){
-    this.popoverClass = "popover__text--active"
+    if(this.trigger === "click")
+      this.popoverActive = !this.popoverActive;
   }
-
-  setActivationClass() {
-    this.popoverClass = "popover__text";
-    if(this.pophover){
-      this.popoverClass += " popover__text--hover"
-    }
-    if(this.popfocus){
-      this.popoverClass += " popover__text--focus"
-    }
-    if(this.popclick){
-      this.popoverClass += " popover__text--active"
-    }
-  }
-
-  componentDidLoad() {
-
-  }
-
   render() {
 
     return(
       <div class="popover">
-        <button tabIndex={0} type="button">Click Me!</button>
-        <span class={this.popoverClass} onClick={() => this.activateClick()}>Tooltip text</span>
+        <a onClick={() => this.activateClick()}>
+          <slot name="trigger"/>
+        </a>
+        <div class={`popover__text popover__text--${this.trigger} ${this.popoverActive ? 'popover__text--active' : ''}`}>
+            <slot name="title"/> 
+            <slot name="content"/>
+            <a onClick={() => this.activateClick()} >
+              <slot name="close"/> 
+            </a>
+        </div>
       </div>
     )
   }

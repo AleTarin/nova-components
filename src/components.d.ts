@@ -26,9 +26,7 @@ export namespace Components {
     'size'?: string;
   }
   interface NovaPopover {
-    'popclick': boolean;
-    'popfocus': boolean;
-    'pophover': boolean;
+    'trigger': "hover" | "focus" | "click";
   }
   interface NovaTabs {
     'datajson': string;
@@ -87,9 +85,7 @@ declare namespace LocalJSX {
     'size'?: string;
   }
   interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
-    'popclick'?: boolean;
-    'popfocus'?: boolean;
-    'pophover'?: boolean;
+    'trigger'?: "hover" | "focus" | "click";
   }
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
     'datajson'?: string;

@@ -14,7 +14,13 @@
 <body>
   <nova-cascader></nova-cascader>
   <nova-tabs></nova-tabs>
-  <nova-popover popfocus>Hello</nova-popover>
+  <nova-popover trigger="click">
+    <button slot="trigger">Click me !</button>
+    <p slot="title"> Hi ! </p>
+    <p slot="content"> This is a popover</p>
+    <p slot="close"> click here to close </p>
+
+  </nova-popover>
 
   <script>
     // When cascader is defined
