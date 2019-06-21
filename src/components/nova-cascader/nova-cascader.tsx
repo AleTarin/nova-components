@@ -6,11 +6,12 @@ import { ClickOutside } from "stencil-click-outside";
  * Default value => Verificar que exista el default value
  * Hover => Click para seleccionar el ultimo elemento
  * Change on select => Capabilidad de seleccionar opciones de "enmedio"
- * Size => Cambiar tamaño de la caja selección -- Roiz
+ * Size => Done?
  * Custom Trigger => Cambiar el trigger que abre el cascader y el textbox donde se muestran los datos
- * Custom Render => ?
- * Load Options Lazily => ?
- * Custom Field Names => ?
+ * Custom Render =>
+ * Load Options Lazily =>
+ * Custom Field Names => 
+ * Testing => ?
  * */
 
 @Component({
@@ -38,6 +39,7 @@ export class NovaCascader {
       changeOnSelect: true
     }
   };
+  @Prop() size: string;
 
   // States
   @State() private isActive: boolean = false;
@@ -58,7 +60,11 @@ export class NovaCascader {
    * @description
    */
   componentDidLoad() {
-    this.content && this.setComponentData();
+    if (this.size) {
+      const element = this.host.shadowRoot.querySelector('input');
+      element.style.minHeight = this.size;
+    }
+    this.content && this.setComponentData()
   }
 
   /**
