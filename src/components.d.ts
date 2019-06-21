@@ -10,6 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface NovaCascader {
+    'addCustomTrigger': (el: HTMLElement) => Promise<void>;
     /**
     * blurCascader
     */
