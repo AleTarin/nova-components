@@ -5,27 +5,21 @@
                 "icon":"address-book",
                 "enableTab":true,
                 "defaultOpen": true,
-                "content":"<p>Content of Tab Pane 1</p>",
-                "function":"",
-                "nameFunction":"algo()"    
+                "content":"<p>Content of Tab Pane 1</p>"  
 
         },
         {
                 "title":"Tab 2",
                 "icon":"apple",
                 "enableTab":true,
-                "content":"<p>Content of Tab Pane 2</p>",
-                "function":"",
-                "nameFunction":"" 
+                "content":"<p>Content of Tab Pane 2</p>"
         },
 
         {
                 "title":"Tab 3",
                 "icon":"address-book",
                 "enableTab":true,
-                "content":"<p>Content of Tab Pane 2</p>",
-                "function":"function algo2(){alert('Callback test on tab 3');}",
-                "nameFunction":"algo2()"
+                "content":"<p>Content of Tab Pane 2</p>"
 
         },
 
@@ -34,10 +28,7 @@
                 "title":"Tab 4",
                 "icon":"address-book",
                 "enableTab":false,
-                "content":"<p>Content of Tab Pane 3</p>",
-                "function":"",
-                "nameFunction":"" 
-
+                "content":"<p>Content of Tab Pane 3</p>"
         }
 
         ]

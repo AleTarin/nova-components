@@ -1,4 +1,4 @@
-import { Component, Prop,h,Element,State} from "@stencil/core";
+import { Component, Prop,h,Element,State, Method} from "@stencil/core";
 
 /**
  * JSdocs
@@ -12,10 +12,15 @@ import { Component, Prop,h,Element,State} from "@stencil/core";
 
 export class NovaTabs {
   
-  @Prop() datajson :any;
+  @Prop({mutable: true}) datajson: {
+    items: any[]
+  };
+
   @Element() el: HTMLElement;
   @State() event:any;
   @State() activeKey: number = 0;
+  @State() onEditCallback: any;
+  @State() onClickCallback: any;
 
   @Prop() funcion:string;
   @Prop() nombreFuncion:string;
@@ -27,25 +32,39 @@ export class NovaTabs {
   * @param {string} cityName (nombre de la tab), nombre(nombre de la funcion), funcion(funcion mandada desde el json)
   * 
 */
- openTab(keyIndex, nombre, funcion) {
+@Method()
+async openTab(keyIndex, event?: UIEvent) {
   this.activeKey = keyIndex;
-  this.nombreFuncion = nombre;
-  this.funcion = funcion;
-
-  if(this.funcion != "" && this.nombreFuncion!='')
-    {
-      var btn = document.createElement("script");   // Create a <button> element
-      btn.innerHTML = this.funcion + this.nombreFuncion;                 // Insert text
-      document.body.appendChild(btn);
-    } 
-  } 
-
+  this.onClickCallback && this.onClickCallback(keyIndex, event);
+ }
 /** 
   @description funcion que se encarga de cerrar la pestaña elegida, se elimina la pestaña entera asi como
   el contenido de la misma
 */
-closeTab(){
-  console.log("closd")
+
+@Method()
+async closeTab(index: number){
+  this.datajson.items.splice(index, 1);
+  this.onEditCallback && this.onEditCallback(index, 'close')
+}
+
+@Method() 
+async addTab(tabData: any) {
+  this.datajson.items.push(tabData);
+  this.onEditCallback && this.onEditCallback(this.datajson.items.length, 'add')
+
+}
+
+@Method()
+async onEdit(callback: Function){
+  // this.onEditCallback(keyIndex, eventName: 'close' | 'add')
+  this.onEditCallback = callback;
+}
+
+@Method()
+async onTabClick(callback: Function){
+  // this.onClickCallback(keyIndex, event)
+  this.onClickCallback = callback;
 }
 
 componentWillLoad(){
@@ -60,16 +79,14 @@ componentWillLoad(){
       */
       <div id="tab_container" class="tab">
         { this.datajson && this.datajson.items.map((tabButton, index)=> 
-          <button 
-            id={(index)}
-            
+          <button
             class={this.activeKey === index ? "active" : ""}
-            onClick={() => this.openTab(index,tabButton.nameFunction,tabButton.function)} 
+            onClick={event => this.openTab(index, event)} 
             disabled={!tabButton.enableTab}>
             <span> 
               <nova-icon name={tabButton.icon} />
               {tabButton.title}
-              <span onClick={() => this.closeTab()} class= "closeButton"> X </span>
+              <span onClick={() => this.closeTab(index)} class= "closeButton"> X </span>
             </span>
           </button>    
         )}
@@ -78,11 +95,11 @@ componentWillLoad(){
         se genera el html necesario que hace los botones de las pestañas, se manda a llamar la funcion openTab
         y poner iconos en caso de existir.
       */      
-     <div id="tabcontent_container" class="tabcontent">
+     <section class="tabcontent">
         { this.datajson && this.datajson.items.map((tabContent, index)=> 
-      <div id={(index)}  class={this.activeKey === index ? "active" : ""} innerHTML={tabContent.content}/>
+      <div class={this.activeKey === index ? "active" : ""} innerHTML={tabContent.content}/>
         )}
-    </div>
+    </section>
     ]
   }
 }

@@ -31,9 +31,16 @@ export namespace Components {
     'pophover': boolean;
   }
   interface NovaTabs {
-    'datajson': any;
+    'addTab': (tabData: any) => Promise<void>;
+    'closeTab': (index: number) => Promise<void>;
+    'datajson': {
+      items: any[]
+    };
     'funcion': string;
     'nombreFuncion': string;
+    'onEdit': (callback: Function) => Promise<void>;
+    'onTabClick': (callback: Function) => Promise<void>;
+    'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
   }
 }
 
@@ -91,7 +98,9 @@ declare namespace LocalJSX {
     'pophover'?: boolean;
   }
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    'datajson'?: any;
+    'datajson'?: {
+      items: any[]
+    };
     'funcion'?: string;
     'nombreFuncion'?: string;
   }
