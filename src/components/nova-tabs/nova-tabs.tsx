@@ -44,7 +44,7 @@ export class NovaTabs {
   @description funcion que se encarga de cerrar la pestaña elegida, se elimina la pestaña entera asi como
   el contenido de la misma
 */
-closeTab(){
+closeTab(index){
   console.log("closd")
 }
 
@@ -69,7 +69,7 @@ componentWillLoad(){
             <span> 
               <nova-icon name={tabButton.icon} />
               {tabButton.title}
-              <span onClick={() => this.closeTab()} class= "closeButton"> X </span>
+              <span onClick={() => this.closeTab(index)} class= "closeButton"> X </span>
             </span>
           </button>    
         )}

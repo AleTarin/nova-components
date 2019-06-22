@@ -32,7 +32,6 @@ nova-icon{
   outline-style: hidden;
   cursor: pointer;
   padding: 16px 10px 4px 10px;
-  
 }
   
 /* Change background color of buttons on hover */
@@ -43,6 +42,7 @@ nova-icon{
 /* Create an active/current tablink class */
 .tab .active {
   color: #3381ff;
+  font-weight: bold;
   border-bottom-color: #3381ff;
   transition: 0.5s;
 }

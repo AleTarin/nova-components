@@ -12,7 +12,7 @@
         },
         {
                 "title":"Tab 2",
-                "icon":"apple",
+                "icon":"address-book",
                 "enableTab":true,
                 "content":"<p>Content of Tab Pane 2</p>",
                 "function":"",
