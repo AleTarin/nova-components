@@ -15,9 +15,8 @@ export class NovaTabs {
   @Prop() datajson :any;
   @Element() el: HTMLElement;
   @State() event:any;
-  @State() activeContent: any = null;
+  @State() activeKey: number = 0;
 
-  @Prop() styleVertical:string = 'verticalTab.css'
   @Prop() funcion:string;
   @Prop() nombreFuncion:string;
 
@@ -28,8 +27,8 @@ export class NovaTabs {
   * @param {string} cityName (nombre de la tab), nombre(nombre de la funcion), funcion(funcion mandada desde el json)
   * 
 */
- openTab(tabIndex, nombre, funcion) {
-  this.activeContent = this.datajson.items[tabIndex];
+ openTab(keyIndex, nombre, funcion) {
+  this.activeKey = keyIndex;
   this.nombreFuncion = nombre;
   this.funcion = funcion;
 
@@ -46,7 +45,11 @@ export class NovaTabs {
   el contenido de la misma
 */
 closeTab(){
-  this.activeContent = null;
+  console.log("closd")
+}
+
+componentWillLoad(){
+
 }
  
   render() {
@@ -55,27 +58,31 @@ closeTab(){
         se genera el html necesario que hace los botones de las pestañas, se manda a llamar la funcion openTab
         y poner iconos en caso de existir.
       */
-      <div id="div_tab" class="tab">
-        { this.datajson && this.datajson.items.map((entra, index)=> 
+      <div id="tab_container" class="tab">
+        { this.datajson && this.datajson.items.map((tabButton, index)=> 
           <button 
-            id={entra.default}
-            class="tablinks"
-            onClick={() => this.openTab(index,entra.nameFunction,entra.function)} 
-            disabled={!entra.enableTab}> 
-            <img src={entra.icon}/>
-            {entra.title}
-          </button>)      
-        }
+            id={(index)}
+            
+            class={this.activeKey === index ? "active" : ""}
+            onClick={() => this.openTab(index,tabButton.nameFunction,tabButton.function)} 
+            disabled={!tabButton.enableTab}>
+            <span> 
+              <nova-icon name={tabButton.icon} />
+              {tabButton.title}
+              <span onClick={() => this.closeTab()} class= "closeButton"> X </span>
+            </span>
+          </button>    
+        )}
       </div>,      
       /*
         se genera el html necesario que hace los botones de las pestañas, se manda a llamar la funcion openTab
         y poner iconos en caso de existir.
       */      
-     this.activeContent && <div id={this.activeContent.title} class="tabcontent">
-        <span onClick={() => this.closeTab()} class="topright">x</span>
-        <h3>{this.activeContent.title}</h3>
-        <p>{this.activeContent.content}</p>          
-      </div>
+     <div id="tabcontent_container" class="tabcontent">
+        { this.datajson && this.datajson.items.map((tabContent, index)=> 
+      <div id={(index)}  class={this.activeKey === index ? "active" : ""} innerHTML={tabContent.content}/>
+        )}
+    </div>
     ]
   }
 }
