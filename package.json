@@ -1,6 +1,6 @@
 {
-  "name": "nova-cascader",
-  "version": "0.0.1",
+  "name": "nova-components",
+  "version": "0.0.2",
   "description": "Stencil Component Starter",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -9,7 +9,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/nova-cascader/nova-cascader.js",
+  "unpkg": "dist/novatab/nova.js",
   "files": [
     "dist/",
     "loader/"
@@ -21,7 +21,15 @@
     "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "devDependencies": {
-    "@stencil/core": "1.0.0-beta.8"
+    "@stencil/core": "^1.0.7",
+    "@stencil/sass": "^1.0.0",
+    "@types/jest": "23.3.14",
+    "@types/puppeteer": "1.12.2",
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "puppeteer": "1.14.0",
+    "stencil-click-outside": "^1.4.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

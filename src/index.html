@@ -1,17 +1,69 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
 
-  <script type="module" src="/build/nova-cascader.esm.js"></script>
-  <script nomodule src="/build/nova-cascader.js"></script>
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script type="module" src="/build/nova.esm.js"></script>
+  <script nomodule src="/build/nova.js"></script>
 </head>
+
 <body>
+  <nova-cascader></nova-cascader>
+  <nova-tabs></nova-tabs>
+  <nova-popover popfocus>Hello</nova-popover>
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+  <p>Hola</p>
 
+  <script>
+    // When cascader is defined
+    customElements.whenDefined("nova-cascader")
+      .then( _ => {
+        var cascaderElement = document.querySelector('nova-cascader');
+            cascaderElement.componentOnReady().then( instance => {
+            fetch('./assets/cascader.json')
+              .then( response => {
+                // Transform it to JSON
+                return response.json();
+              })
+              .then( json => {
+                console.log(instance)
+                // Pass the prop
+                instance.content = json;
+                instance.addCustomTrigger(document.querySelector('p'))
+
+                // Test public api to focus
+                instance.blurCascader();
+                // Test public api that adds a callback when popup is open or close
+                instance.onPopupChange( result => (console.log('popup',result)) );
+                // Test public api that adds a callback when a cascader item is selected
+                instance.onCascaderSelect( result => (console.log('select',result)) );
+
+              })
+              .catch( err => {
+                // If any error ocurred, pass it to the console
+                console.error(err)
+              })
+        })
+      })
+
+    fetch('./assets/tabs.json')
+      .then(function (response) {
+          //transformar a json
+          return response.json();
+      })
+      .then(function (json) {
+          const tabsInfo = document.querySelector("nova-tabs");
+          //mandar json como prop                
+          tabsInfo.setAttribute("datajson",JSON.stringify(json.data));
+      })
+      .catch(function (err) {
+          console.log('error: ' + err);
+      });
+  </script>
 </body>
+
 </html>
