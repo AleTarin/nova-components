@@ -26,6 +26,7 @@ nova-icon{
 
 /* Style the buttons that are used to open the tab content */
 #tab_container.horizontal {
+  margin: 10px 0px;
   height: 24px;
   float: left;
   border-bottom: 1px solid #ccc;
@@ -33,7 +34,7 @@ nova-icon{
 }
 
 #tab_container.vertical {
-  width : 200px;
+  width : 150px;
   float: left;
   border-right: 1px solid #ccc;
   background-color: inherit;
@@ -52,7 +53,7 @@ nova-icon{
 }
 
 #tab_container .vertical {
-  width: 200px;
+  width: inherit;
   display: block;
   background-color: inherit;
   padding: 16px 16px;
@@ -74,44 +75,40 @@ nova-icon{
   font-weight: bold;
   color: #3381ff;
   border-bottom-color: #3381ff;
-  transition: 0.5s;
 }
 
 #tab_container .vertical.active {
   font-weight: bold;
   color: #3381ff;
   border-right-color: #3381ff;
-  transition: 0.5s;
-}
-
-/* Style the tab content */
-#tabcontent_container{
-  width: 70%;
 }
 
 #tabcontent_container .horizontal{
+  width: 100%;
   padding: 24px 12px;
-  margin-right: 50%;
+  padding-right: 40%;
   display: none;
 }
 
 #tabcontent_container .vertical {
-  float: left;
-  padding: 0px 12px;
+
+  padding: 10px 12px;
+  margin-left: 180px;
   border: none;
-  width: 70%;
+  width: 100%;
   height: 300px;
   display: none;
 }
 
 #tabcontent_container .horizontal.active {
-  display: block;
-  animation-name: slidein;
-  animation-duration: 0.5s;
+  display: inline-block;
+  
 }
 
 #tabcontent_container .vertical.active {
   display: block;
+  animation-name: slidein;
+  animation-duration: 0.3s;
 }
 
  
@@ -121,15 +118,15 @@ nova-icon{
     -webkit-animation-name: slidein;
 
     /*for firefox*/
-    -moz-animation-duration: 0.5s;
+    -moz-animation-duration: 0.3s;
     -moz-animation-name: slidein;
 
     /* for opera*/
-    -o-animation-duration: 0.5s;
+    -o-animation-duration: 0.3s;
     -o-animation-name: slidein;
 
     /* Standard syntax*/
-    animation-duration: 0.5s;
+    animation-duration: 0.3s;
     animation-name: slidein;
 }
 

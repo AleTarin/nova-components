@@ -38,6 +38,7 @@ export namespace Components {
       items: any[];
     };
     'funcion': string;
+    'newTabData': { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
     'nombreFuncion': string;
     'onEdit': (callback: Function) => Promise<void>;
     'onTabClick': (callback: Function) => Promise<void>;
@@ -105,6 +106,7 @@ declare namespace LocalJSX {
       items: any[];
     };
     'funcion'?: string;
+    'newTabData'?: { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
     'nombreFuncion'?: string;
     'updater'?: boolean;
   }

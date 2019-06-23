@@ -30,6 +30,14 @@ export class NovaTabs {
   @Prop() updater: boolean = true;
   @Prop() funcion:string;
   @Prop() nombreFuncion:string;
+  
+  @Prop() newTabData = {
+    "title":"New tab",
+    "icon":"plus-square",
+    "enableTab":true,
+    "closableTab":false,
+    "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
+  }
 
   /**
     * @description funcion que se encarga de mostrar el contenido de una pestaña cuando se le da click,
@@ -101,14 +109,10 @@ export class NovaTabs {
         se genera el html necesario que hace los botones de las pestañas, se manda a llamar la funcion openTab
         y poner iconos en caso de existir.
       */
-     
-      <button class="addTab addTab_circulo" onClick={() => this.addTab({
-        "title":"New tab",
-        "icon":"address-book",
-        "enableTab":true,
-        "content":"<p>New Tab</p>"
-      })}> new tab
+      <button style={this.confjson.addTab ? {display:'block'}:{display:'none'}} class="addTab addTab_circulo" onClick={() => this.addTab(this.newTabData)}> 
+        new tab
       </button>,
+      
       
       <div id="tab_container" class={this.tabPosition + " " + this.tabType}>
         { this.datajson && this.datajson.items.map((tabButton, index)=> 
@@ -120,7 +124,8 @@ export class NovaTabs {
             <span> 
               <nova-icon name={tabButton.icon} />
               {tabButton.title}
-              <span onClick={() => this.closeTab(index)} class= "closeTab"> X </span>
+              {tabButton.closableTab ? 
+              <span onClick={() => this.closeTab(index)} class="closeTab"> X </span> : ""}
             </span>
           </button>    
         )}

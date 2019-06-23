@@ -2,18 +2,18 @@
     "data": {
         "items":[{
                 "title":"Tab 1",
-                "icon":"address-book",
+                "icon":"",
                 "enableTab":true,                
                 "closableTab": true,
-                "content":"<p>Content of Tab Pane 1</p>"  
+                "content":"<p>Content of Tab Pane 1</p><p>This is the default active tab.</p>"  
 
         },
         {
                 "title":"Tab 2",
-                "icon":"address-book",
+                "icon":"",
                 "enableTab":true,
                 "closableTab": true,
-                "content":"<p>Content of Tab Pane 2</p>"
+                "content":"<p>Content of Tab Pane 2</p><p>This tab can be closed<p>"
         },
 
         {
@@ -21,26 +21,28 @@
                 "icon":"address-book",
                 "enableTab":true,
                 "closableTab": false,
-                "content":"<p>Content of Tab Pane 3</p>"
-
+                "content":"<p>Content of Tab Pane 3</p><p>This is an icon tab.</p>"
         },
 
         
         {
                 "title":"Tab 4",
-                "icon":"address-book",
+                "icon":"",
                 "enableTab":false,
-                "closableTab": true,
-                "content":"<p>Content of Tab Pane 4</p>"
+                "closableTab": false,
+                "content":"<p>Content of Tab Pane 4</p><p>This is a disabled tab</p>"
         }
 
         ]
     },
+
     "configuration": {
         "defaultActiveKey": 0,
         "tabPosition": "horizontal",
-        "tabType": "line"
+        "tabType": "line",
+        "addTab": true
       },
+
     "styling": {
         
     }

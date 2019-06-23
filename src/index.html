@@ -13,7 +13,7 @@
 
 <body>
   <nova-cascader></nova-cascader>
-  <p><nova-tabs></nova-tabs></p>
+  <nova-tabs></nova-tabs>
   <nova-popover popfocus>Hello</nova-popover>
 
   <script>
@@ -63,9 +63,10 @@
 
                 instance.addTab({
                   "title":"New tab",
-                  "icon":"address-book",
+                  "icon":"plus-square",
                   "enableTab":true,
-                  "content":"<p>New Tab</p>"
+                  "addTab":true,
+                  "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
                 })
                 /*
                 instance.openTab(0);
