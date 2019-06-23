@@ -3,15 +3,16 @@
         "items":[{
                 "title":"Tab 1",
                 "icon":"address-book",
-                "enableTab":true,
-                "defaultOpen": true,
+                "enableTab":true,                
+                "closableTab": true,
                 "content":"<p>Content of Tab Pane 1</p>"  
 
         },
         {
                 "title":"Tab 2",
-                "icon":"apple",
+                "icon":"address-book",
                 "enableTab":true,
+                "closableTab": true,
                 "content":"<p>Content of Tab Pane 2</p>"
         },
 
@@ -19,7 +20,8 @@
                 "title":"Tab 3",
                 "icon":"address-book",
                 "enableTab":true,
-                "content":"<p>Content of Tab Pane 2</p>"
+                "closableTab": false,
+                "content":"<p>Content of Tab Pane 3</p>"
 
         },
 
@@ -28,17 +30,15 @@
                 "title":"Tab 4",
                 "icon":"address-book",
                 "enableTab":false,
-                "content":"<p>Content of Tab Pane 3</p>"
+                "closableTab": true,
+                "content":"<p>Content of Tab Pane 4</p>"
         }
 
         ]
     },
     "configuration": {
-        "position": "top",
-        "closeTab": "enabled",
-        "expandTrigger": "click",
-        "defaultActiveKey": 5,
-        "separator": "//",
-        "placeholder": "States"
+        "defaultActiveKey": 0,
+        "tabPosition": "top",
+        "tabType": "line"
       }
 }

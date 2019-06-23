@@ -6,25 +6,23 @@ nova-icon{
 /* Style the tab */
 
 #tab_container{
-  width: 500px;
+  width: 70%;
+  overflow: visible;
+  border-bottom: 1px solid #dddbdb;
+  margin-right: 240px;
 }
 
 #tabcontent_container{
   width: 700px;
 }
 
-.tab {
-  overflow: hidden;
-  border-bottom: 1px solid #dddbdb;
-  margin-right: 24px;
-}
 
-.tab button + button {
+#tab_container button + button {
   margin-left: 16px;
 }
   
 /* Style the buttons that are used to open the tab content */
-.tab button {
+#tab_container button {
   background-color: inherit;
   float: left;  
   border: none;
@@ -36,12 +34,12 @@ nova-icon{
 }
   
 /* Change background color of buttons on hover */
-.tab button:hover:enabled {
+#tab_container button:hover:enabled {
   color: #3381ff;
 }
 
 /* Create an active/current tablink class */
-.tab .active {
+#tab_container .active {
   color: #3381ff;
   border-bottom-color: #3381ff;
   transition: 0.5s;
@@ -60,37 +58,41 @@ nova-icon{
   animation-duration: 0.5s;
 }
 
-
  
-  .tabcontent {
-     /* for chrome and safari*/
-     transition: 2s;
-     -webkit-animation-name: slidein;
+.tabcontent {
+    /* for chrome and safari*/
+    transition: 2s;
+    -webkit-animation-name: slidein;
 
-     /*for firefox*/
-     -moz-animation-duration: 0.5s;
-     -moz-animation-name: slidein;
+    /*for firefox*/
+    -moz-animation-duration: 0.5s;
+    -moz-animation-name: slidein;
 
-       /* for opera*/
-     -o-animation-duration: 0.5s;
-     -o-animation-name: slidein;
+      /* for opera*/
+    -o-animation-duration: 0.5s;
+    -o-animation-name: slidein;
 
-       /* Standard syntax*/
-     animation-duration: 0.5s;
-     animation-name: slidein;
-  }
+      /* Standard syntax*/
+    animation-duration: 0.5s;
+    animation-name: slidein;
+}
 
 
   /* Style the close button */
-.closeButton {
+.closeTab {
     float: middle;
     cursor: pointer;
     color: #dddbdb;
     padding: 5px;
   }
   
-.closeButton:hover:enabled {
+.closeTab:hover {
   color:#1e1e1e;
+}
+
+.closeTab:hover:disabled {
+  color:#1e1e1e;
+  color: #dddbdb;
 }
 
   @-webkit-keyframes slidein {

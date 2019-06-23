@@ -50,6 +50,7 @@
               .then( json => {
                 //mandar json como prop                
                 instance.datajson = json.data;
+                instance.confjson = json.configuration;
 
                 // public api to add a callback on edit (close or add)
                 instance.onTabClick(function(keyIndex, event){
@@ -62,11 +63,11 @@
 
                 instance.addTab({
                   "title":"New tab",
-                  "icon":"windows",
+                  "icon":"address-book",
                   "enableTab":true,
                   "content":"<p>New Tab</p>"
                 })
-                instance.openTab(2);
+                instance.openTab(0);
                 instance.closeTab(0);
                 
               })
