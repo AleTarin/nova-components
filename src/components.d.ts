@@ -9,15 +9,62 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface NovaCascader {
+    'content': cascader;
+    'expandTrigger': string;
+    'focusCascader': () => Promise<void>;
+    'onCascaderSelect': (callback: Function) => Promise<void>;
+    'onPopupVisibleChange': (callback: Function) => Promise<void>;
+  }
+  interface NovaIcon {
+    /**
+    * Props
+    */
+    'name': string;
+    'options'?: string;
+    'pre'?: string;
+    'size'?: string;
+  }
+  interface NovaPopover {
+    'popclick': boolean;
+    'popfocus': boolean;
+    'pophover': boolean;
+  }
   interface NovaTabs {
-    'datajson': any;
+    'addTab': (tabData: any) => Promise<void>;
+    'closeTab': (index: number) => Promise<void>;
+    'confjson': any;
+    'datajson': {
+      items: any[];
+    };
     'funcion': string;
     'nombreFuncion': string;
+    'onEdit': (callback: Function) => Promise<void>;
+    'onTabClick': (callback: Function) => Promise<void>;
+    'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
   }
 }
 
 declare global {
 
+
+  interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
+  var HTMLNovaCascaderElement: {
+    prototype: HTMLNovaCascaderElement;
+    new (): HTMLNovaCascaderElement;
+  };
+
+  interface HTMLNovaIconElement extends Components.NovaIcon, HTMLStencilElement {}
+  var HTMLNovaIconElement: {
+    prototype: HTMLNovaIconElement;
+    new (): HTMLNovaIconElement;
+  };
+
+  interface HTMLNovaPopoverElement extends Components.NovaPopover, HTMLStencilElement {}
+  var HTMLNovaPopoverElement: {
+    prototype: HTMLNovaPopoverElement;
+    new (): HTMLNovaPopoverElement;
+  };
 
   interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
   var HTMLNovaTabsElement: {
@@ -25,18 +72,45 @@ declare global {
     new (): HTMLNovaTabsElement;
   };
   interface HTMLElementTagNameMap {
+    'nova-cascader': HTMLNovaCascaderElement;
+    'nova-icon': HTMLNovaIconElement;
+    'nova-popover': HTMLNovaPopoverElement;
     'nova-tabs': HTMLNovaTabsElement;
   }
 }
 
 declare namespace LocalJSX {
+  interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
+    'content'?: cascader;
+    'expandTrigger'?: string;
+  }
+  interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
+    /**
+    * Props
+    */
+    'name'?: string;
+    'options'?: string;
+    'pre'?: string;
+    'size'?: string;
+  }
+  interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
+    'popclick'?: boolean;
+    'popfocus'?: boolean;
+    'pophover'?: boolean;
+  }
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    'datajson'?: any;
+    'confjson'?: any;
+    'datajson'?: {
+      items: any[];
+    };
     'funcion'?: string;
     'nombreFuncion'?: string;
   }
 
   interface IntrinsicElements {
+    'nova-cascader': NovaCascader;
+    'nova-icon': NovaIcon;
+    'nova-popover': NovaPopover;
     'nova-tabs': NovaTabs;
   }
 }

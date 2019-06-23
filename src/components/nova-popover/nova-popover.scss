@@ -1,0 +1,29 @@
+/* CSS Guide for popover
+  https://www.w3schools.com/Css/css_tooltip.asp */
+
+/* Popover text */
+.popover__text {
+  visibility: hidden;
+  width: relative;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.popover {
+  /* Show the tooltip text when you mouse over the tooltip container */
+  &:hover > .popover__text--hover{
+    visibility: visible;
+  }
+  &:focus-within > .popover__text--focus{
+    visibility: visible;
+  }
+  &:active > .popover__text--active{
+    visibility: visible;
+  }
+}
