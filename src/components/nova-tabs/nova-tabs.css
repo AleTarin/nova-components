@@ -7,7 +7,7 @@ nova-icon{
 
 #tab_container{
   width: 70%;
-  overflow: visible;
+  overflow: hidden;
   border-bottom: 1px solid #dddbdb;
   margin-right: 240px;
 }
