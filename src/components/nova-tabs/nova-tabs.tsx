@@ -33,8 +33,7 @@ export class NovaTabs {
 
   /**
     * @description funcion que se encarga de mostrar el contenido de una pestaña cuando se le da click,
-    * carga el css y ejecuta el script al hacer click en el boton(en caso de mandar codigo)
-    * @param {string} cityName (nombre de la tab), nombre(nombre de la funcion), funcion(funcion mandada desde el json)
+    * carga el css y ejecuta el script al hacer click en el boton(en caso de mandar codigo) 
     * 
   */
   @Method()
@@ -43,6 +42,7 @@ export class NovaTabs {
     this.onClickCallback && this.onClickCallback(keyIndex, event);
     this.updater = !this.updater
   }
+  
   /** 
     @description funcion que se encarga de cerrar la pestaña elegida, se elimina la pestaña entera asi como
     el contenido de la misma
