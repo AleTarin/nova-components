@@ -27,9 +27,6 @@ export class NovaTabs {
   @State() onEditCallback: any;
   @State() onClickCallback: any;
 
-  @Prop() funcion:string;
-  @Prop() nombreFuncion:string;
-
   /**
     * @description funcion que se encarga de mostrar el contenido de una pestaña cuando se le da click,
     * carga el css y ejecuta el script al hacer click en el boton(en caso de mandar codigo)

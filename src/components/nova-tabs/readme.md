@@ -45,17 +45,20 @@ fetch('./assets/tabs.json')
 {   
     "data": {
         "items":[{
-                "title":"Tab name",
-                "icon":"url icon",
-                "enableTab":true/false,
-                "default":"defaultOpen",
-                "content":"tab content",
-                "function":"function nameFunction(){ code ...}",
-                "nameFunction":"nameFunction()"    
+                "title":"Tab 1",
+                "icon":"address-book",
+                "enableTab":true,                
+                "closableTab": true,
+                "content":"<p>Content of Tab Pane 1</p>"  
 
         }      
 
         ]
+    },
+    "configuration": {
+        "defaultActiveKey": 0,
+        "tabPosition": "top",
+        "tabType": "line"
     }
 }
 
@@ -67,10 +70,8 @@ fetch('./assets/tabs.json')
 
 | Property               | Attribute                | Description | Type     | Default     |
 | ---------------------- | ------------------------ | ----------- | -------- | ----------- |
-| `datajson`             | `datajson`               |             | `any`    | `json`      |
-| `funcion`              | `funcion`                |             | `string` | `undefinded`|
-| `nombreFuncion`        | `nombreFuncion`          |             | `string` | `undefined` |
-| `stylingSourceUrl`     | `styling-source-url`     |             | `string` | `undefined` |
+| `datajson`             | `datajson`               |             | `any[]`  | `json`      |
+| `confjson`             | `confjson`               |             | `any`    | `undefinded`|
 
 ---------------------------------------
 ## Elements
@@ -78,6 +79,17 @@ fetch('./assets/tabs.json')
 | Event           | Description | Type                |
 | --------------- | ----------- | ------------------- |
 | `el`            |             | `HTMLElement`       |
+
+## States
+
+| Property               | Attribute                | Description | Type     | Default     |
+| ---------------------- | ------------------------ | ----------- | -------- | ----------- |
+| `activeKey`            | `activeKey`              |             | `number` | `undefinded`|
+| `tabType`              | `tabType`                |             | `string` | `undefinded`|
+| `tabType`              | `tabType`                |             | `string` | `undefinded`|
+
+
+
 
 ----------------------------------------------
 

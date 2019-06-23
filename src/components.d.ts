@@ -37,8 +37,6 @@ export namespace Components {
     'datajson': {
       items: any[];
     };
-    'funcion': string;
-    'nombreFuncion': string;
     'onEdit': (callback: Function) => Promise<void>;
     'onTabClick': (callback: Function) => Promise<void>;
     'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
@@ -103,8 +101,6 @@ declare namespace LocalJSX {
     'datajson'?: {
       items: any[];
     };
-    'funcion'?: string;
-    'nombreFuncion'?: string;
   }
 
   interface IntrinsicElements {
