@@ -1,0 +1,93 @@
+{
+  "data": {
+    "items": [
+      {
+        "value": "zhejiang",
+        "label": "Zhejiang",
+        "children": [
+          {
+            "value": "hangzhou",
+            "label": "Hangzhou",
+            "disabled": true,
+            "children": [
+              {
+                "value": "xihu",
+                "label": "West Lake"
+              },
+              {
+                "value": "xihe",
+                "label": "East Lake"
+              },
+              {
+                "value": "xiha",
+                "label": "North Lake"
+              }
+            ]
+          },
+          {
+            "value": "hangzhou",
+            "label": "Hangzhou",
+            "children": [
+              {
+                "value": "xe",
+                "label": "South"
+              },
+              {
+                "value": "xa",
+                "label": "East "
+              },
+              {
+                "value": "xi",
+                "label": "North"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "value": "jiangsu",
+        "label": "Jiangsu",
+        "disabled": true,
+        "children": [
+          {
+            "value": "nanjing",
+            "label": "Nanjing",
+            "children": [
+              {
+                "value": "zhonghuamen",
+                "label": "Zhong Hua Men"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "value": "jiang",
+        "label": "Jia",
+        "disabled": "true",
+        "children": [
+          {
+            "value": "jing",
+            "label": "jing",
+            "children": [
+              {
+                "value": "zhongh",
+                "label": "Zhong Men"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "configuration": {
+    "expandTrigger": "click",
+    "defaultValue": ["zhejiang" , "hangzhou", "xihe"] ,
+    "separator": "//",
+    "autofocus": true,
+    "placeholder": "States"
+  },
+  "styling": {
+
+  }
+}
