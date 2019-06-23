@@ -67,12 +67,19 @@ export class NovaTabs {
 
   }
 
+  /*
+    @description funcion que se encarga de editar la tab
+  */
+
   @Method()
   async onEdit(callback: Function){
     // this.onEditCallback(keyIndex, eventName: 'close' | 'add')
     this.onEditCallback = callback;
   }
 
+  /* 
+    funcion que se ebcarga de ejecutar una funcion cuando se da click en la tab
+  */
   @Method()
   async onTabClick(callback: Function){
     // this.onClickCallback(keyIndex, event)
