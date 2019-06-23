@@ -38,7 +38,7 @@
     },
     "configuration": {
         "defaultActiveKey": 0,
-        "tabPosition": "vertical",
+        "tabPosition": "horizontal",
         "tabType": "line"
       },
     "styling": {

@@ -42,7 +42,7 @@ export class NovaTabs {
     this.onClickCallback && this.onClickCallback(keyIndex, event);
     this.updater = !this.updater
   }
-  
+
   /** 
     @description funcion que se encarga de cerrar la pestaña elegida, se elimina la pestaña entera asi como
     el contenido de la misma
@@ -56,6 +56,9 @@ export class NovaTabs {
     
   }
 
+  /** 
+    @description funcion que se encarga de abrir nuevas pestañas.
+  */
   @Method() 
   async addTab(tabData: any) {
     this.datajson.items.push(tabData);
@@ -92,7 +95,7 @@ export class NovaTabs {
         y poner iconos en caso de existir.
       */
      
-      <button onClick={() => this.addTab({
+      <button class="addTab addTab_circulo" onClick={() => this.addTab({
         "title":"New tab",
         "icon":"address-book",
         "enableTab":true,
