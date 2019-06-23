@@ -27,6 +27,7 @@ export class NovaTabs {
   @State() onEditCallback: any;
   @State() onClickCallback: any;
 
+  @Prop() updater: boolean = true;
   @Prop() funcion:string;
   @Prop() nombreFuncion:string;
 
@@ -40,6 +41,7 @@ export class NovaTabs {
   async openTab(keyIndex, event?: UIEvent) {
     this.activeKey = keyIndex;
     this.onClickCallback && this.onClickCallback(keyIndex, event);
+    this.updater = !this.updater
   }
   /** 
     @description funcion que se encarga de cerrar la pestaña elegida, se elimina la pestaña entera asi como
@@ -49,13 +51,16 @@ export class NovaTabs {
   @Method()
   async closeTab(index: number){
     this.datajson.items.splice(index, 1);
-    this.onEditCallback && this.onEditCallback(index, 'close')
+    this.onEditCallback && this.onEditCallback(index, 'close');
+    this.updater = !this.updater
+    
   }
 
   @Method() 
   async addTab(tabData: any) {
     this.datajson.items.push(tabData);
-    this.onEditCallback && this.onEditCallback(this.datajson.items.length, 'add')
+    this.onEditCallback && this.onEditCallback(this.datajson.items.length, 'add');
+    this.updater = !this.updater
 
   }
 
@@ -74,7 +79,7 @@ export class NovaTabs {
   componentDidUpdate(){
     this.tabType = this.confjson.tabType;
     if (this.tabType === "card"){
-      this.tabPosition = "top";
+      this.tabPosition = "horizontal";
     }else{
       this.tabPosition = this.confjson.tabPosition;
     }
@@ -87,10 +92,18 @@ export class NovaTabs {
         y poner iconos en caso de existir.
       */
      
-      <section id="tab_container" class={this.tabPosition}>
+      <button onClick={() => this.addTab({
+        "title":"New tab",
+        "icon":"address-book",
+        "enableTab":true,
+        "content":"<p>New Tab</p>"
+      })}> new tab
+      </button>,
+      
+      <div id="tab_container" class={this.tabPosition + " " + this.tabType}>
         { this.datajson && this.datajson.items.map((tabButton, index)=> 
           <button
-            class={this.activeKey === index ? "active" : ""}
+            class={this.activeKey === index ? this.tabPosition + " " + this.tabType + " active" : this.tabPosition + " " + this.tabType}
             
             onClick={event => this.openTab(index, event)} 
             disabled={!tabButton.enableTab}>
@@ -101,16 +114,17 @@ export class NovaTabs {
             </span>
           </button>    
         )}
-      </section>,      
+      </div>, 
+
       /*
         se genera el html necesario que hace los botones de las pestañas, se manda a llamar la funcion openTab
         y poner iconos en caso de existir.
       */      
-     <section class="tabcontent">
+     <div id="tabcontent_container" class={this.tabPosition + " " + this.tabType}>
         { this.datajson && this.datajson.items.map((tabContent, index)=> 
       <div class={this.activeKey === index ? this.tabPosition + " active" : this.tabPosition} innerHTML={tabContent.content}/>
         )}
-    </section>
+    </div>
     ]
   }
 }

@@ -42,6 +42,7 @@ export namespace Components {
     'onEdit': (callback: Function) => Promise<void>;
     'onTabClick': (callback: Function) => Promise<void>;
     'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
+    'updater': boolean;
   }
 }
 
@@ -105,6 +106,7 @@ declare namespace LocalJSX {
     };
     'funcion'?: string;
     'nombreFuncion'?: string;
+    'updater'?: boolean;
   }
 
   interface IntrinsicElements {

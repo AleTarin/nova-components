@@ -13,7 +13,7 @@
 
 <body>
   <nova-cascader></nova-cascader>
-  <nova-tabs></nova-tabs>
+  <p><nova-tabs></nova-tabs></p>
   <nova-popover popfocus>Hello</nova-popover>
 
   <script>
@@ -50,7 +50,7 @@
               .then( json => {
                 //mandar json como prop                
                 instance.datajson = json.data;
-                instance.confjson = json.configuration;
+                instance.confjson = json.configuration
 
                 // public api to add a callback on edit (close or add)
                 instance.onTabClick(function(keyIndex, event){
@@ -67,8 +67,10 @@
                   "enableTab":true,
                   "content":"<p>New Tab</p>"
                 })
+                /*
                 instance.openTab(0);
                 instance.closeTab(0);
+                */
                 
               })
               .catch( err => {

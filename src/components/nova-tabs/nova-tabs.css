@@ -5,61 +5,99 @@ nova-icon{
 }
 /* Style the tab */
 
-#tab_container{
-  width: 70%;
-  overflow: hidden;
-  border-bottom: 1px solid #dddbdb;
-  margin-right: 240px;
-}
 
-#tabcontent_container{
-  width: 700px;
-}
-
-
-#tab_container button + button {
-  margin-left: 16px;
-}
-  
 /* Style the buttons that are used to open the tab content */
-#tab_container button {
+#tab_container.horizontal {
+  height: 24px;
+  float: left;
+  border-bottom: 1px solid #ccc;
   background-color: inherit;
-  float: left;  
-  border: none;
-  border-bottom: 2px solid transparent;
-  outline-style: hidden;
-  cursor: pointer;
-  padding: 16px 10px 4px 10px;
-  
 }
-  
+
+#tab_container.vertical {
+  width : 200px;
+  float: left;
+  border-right: 1px solid #ccc;
+  background-color: inherit;
+}
+
+
+#tab_container .horizontal {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 16px;
+  margin-left: 10px;
+  border-bottom: 2px solid transparent;
+}
+
+#tab_container .vertical {
+  width: 200px;
+  display: block;
+  background-color: inherit;
+  padding: 16px 16px;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  border-right: 2px solid transparent;
+}
+
 /* Change background color of buttons on hover */
-#tab_container button:hover:enabled {
+#tab_container :hover:enabled {
   color: #3381ff;
 }
 
 /* Create an active/current tablink class */
-#tab_container .active {
+#tab_container .horizontal.active {
+  font-weight: bold;
   color: #3381ff;
   border-bottom-color: #3381ff;
   transition: 0.5s;
 }
 
+#tab_container .vertical.active {
+  font-weight: bold;
+  color: #3381ff;
+  border-right-color: #3381ff;
+  transition: 0.5s;
+}
+
 /* Style the tab content */
-.tabcontent div{
-  padding: 15px;
+#tabcontent_container{
+  width: 70%;
+}
+
+#tabcontent_container .horizontal{
+  padding: 24px 12px;
   margin-right: 50%;
   display: none;
 }
 
-.tabcontent .active {
+#tabcontent_container .vertical {
+  float: left;
+  padding: 0px 12px;
+  border: none;
+  width: 70%;
+  height: 300px;
+  display: none;
+}
+
+#tabcontent_container .horizontal.active {
   display: block;
   animation-name: slidein;
   animation-duration: 0.5s;
 }
 
+#tabcontent_container .vertical.active {
+  display: block;
+}
+
  
-.tabcontent {
+#tabcontent_container {
     /* for chrome and safari*/
     transition: 2s;
     -webkit-animation-name: slidein;
@@ -68,11 +106,11 @@ nova-icon{
     -moz-animation-duration: 0.5s;
     -moz-animation-name: slidein;
 
-      /* for opera*/
+    /* for opera*/
     -o-animation-duration: 0.5s;
     -o-animation-name: slidein;
 
-      /* Standard syntax*/
+    /* Standard syntax*/
     animation-duration: 0.5s;
     animation-name: slidein;
 }
@@ -118,7 +156,7 @@ nova-icon{
         width: 100%;
     }
 }
- @-o-keyframes slidein {
+@-o-keyframes slidein {
     from {
         margin-left: 100%;
         width: 300%;
@@ -129,7 +167,7 @@ nova-icon{
         width: 100%;
     }
 }
-  @keyframes slidein {
+@keyframes slidein {
     from {
         margin-left: 100%;
         width: 300%;
