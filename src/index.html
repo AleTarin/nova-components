@@ -34,14 +34,12 @@
                 // Pass the prop
                 instance.content = json;
                 instance.addCustomTrigger(document.querySelector('p'))
-
                 // Test public api to focus
                 instance.blurCascader();
                 // Test public api that adds a callback when popup is open or close
                 instance.onPopupChange( result => (console.log('popup',result)) );
                 // Test public api that adds a callback when a cascader item is selected
                 instance.onCascaderSelect( result => (console.log('select',result)) );
-
               })
               .catch( err => {
                 // If any error ocurred, pass it to the console
@@ -49,20 +47,45 @@
               })
         })
       })
-
-    fetch('./assets/tabs.json')
-      .then(function (response) {
-          //transformar a json
-          return response.json();
+      customElements.whenDefined("nova-tabs")
+      .then( _ => {
+        var tabsElement = document.querySelector('nova-tabs');
+            tabsElement.componentOnReady().then( instance => {
+            fetch('./assets/tabs.json')
+              .then( response => {
+                // Transform it to JSON
+                return response.json();
+              })
+              .then( json => {
+                //mandar json como prop                
+                instance.datajson = json.data;
+                instance.confjson = json.configuration
+                // public api to add a callback on edit (close or add)
+                instance.onTabClick(function(keyIndex, event){
+                  console.log('onTabClick', keyIndex, event );
+                })
+                instance.onEdit((keyIndex, eventName) => {
+                  console.log('onEdit', keyIndex, eventName );
+                })
+                instance.addTab({
+                  "title":"New tab",
+                  "icon":"plus-square",
+                  "enableTab":true,
+                  "addTab":true,
+                  "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
+                })
+                /*
+                instance.openTab(0);
+                instance.closeTab(0);
+                */
+                
+              })
+              .catch( err => {
+                // If any error ocurred, pass it to the console
+                console.error(err)
+              })
+        })
       })
-      .then(function (json) {
-          const tabsInfo = document.querySelector("nova-tabs");
-          //mandar json como prop                
-          tabsInfo.setAttribute("datajson",JSON.stringify(json.data));
-      })
-      .catch(function (err) {
-          console.log('error: ' + err);
-      });
   </script>
 </body>
 

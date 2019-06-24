@@ -1,48 +1,49 @@
 {   
-    "data": {
-        "items":[{
-                "title":"Merida",
-                "icon":"https://img.icons8.com/material/24/000000/mac-os.png",
-                "enableTab":true,
-                "default":"defaultOpen",
-                "content":"Esta ciudad es la capital del estado de yucatan",
-                "function":"",
-                "nameFunction":"algo()"    
-
+        "data": {
+            "items":[{
+                    "title":"Tab 1",
+                    "icon":"",
+                    "enableTab":true,                
+                    "closableTab": true,
+                    "content":"<p>Content of Tab Pane 1</p><p>This is the default active tab.</p>"  
+    
+            },
+            {
+                    "title":"Tab 2",
+                    "icon":"",
+                    "enableTab":true,
+                    "closableTab": true,
+                    "content":"<p>Content of Tab Pane 2</p><p>This tab can be closed<p>"
+            },
+    
+            {
+                    "title":"Tab 3",
+                    "icon":"address-book",
+                    "enableTab":true,
+                    "closableTab": false,
+                    "content":"<p>Content of Tab Pane 3</p><p>This is an icon tab.</p>"
+            },
+    
+            
+            {
+                    "title":"Tab 4",
+                    "icon":"",
+                    "enableTab":false,
+                    "closableTab": false,
+                    "content":"<p>Content of Tab Pane 4</p><p>This is a disabled tab</p>"
+            }
+    
+            ]
         },
-        {
-                "title":"Monterrey",
-                "icon":"",
-                "enableTab":true,
-                "default":false,
-                "content":"Esta ciudad es la capital del estado de nuevo leon",
-                "function":"",
-                "nameFunction":"" 
-        },
-
-        {
-                "title":"Campeche",
-                "icon":"https://img.icons8.com/material/24/000000/whatsapp.png",
-                "enableTab":true,
-                "default":false,
-                "content":"Esta ciudad es la capital del estado de campeche",
-                "function":"function algo2(){alert('hola soy una funcion de callback, campeche');}",
-                "nameFunction":"algo2()"
-
-        },
-
-        
-        {
-                "title":"Zacatecas",
-                "icon":"",
-                "enableTab":false,
-                "default":false,
-                "content":"Esta ciudad es la capital del estado de zacatecas",
-                "function":"",
-                "nameFunction":"" 
-
+    
+        "configuration": {
+            "defaultActiveKey": 0,
+            "tabPosition": "horizontal",
+            "tabType": "line",
+            "addTab": true
+          },
+    
+        "styling": {
+            
         }
-
-        ]
     }
-}
