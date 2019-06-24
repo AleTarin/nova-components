@@ -3,24 +3,24 @@
             "items":[{
                     "title":"Tab 1",
                     "icon":"",
-                    "enableTab":true,                
-                    "closableTab": true,
+                    "enable":true,                
+                    "closable": true,
                     "content":"<p>Content of Tab Pane 1</p><p>This is the default active tab.</p>"  
     
             },
             {
                     "title":"Tab 2",
                     "icon":"",
-                    "enableTab":true,
-                    "closableTab": true,
+                    "enable":true,
+                    "closable": true,
                     "content":"<p>Content of Tab Pane 2</p><p>This tab can be closed<p>"
             },
     
             {
                     "title":"Tab 3",
                     "icon":"address-book",
-                    "enableTab":true,
-                    "closableTab": false,
+                    "enable":true,
+                    "closable": false,
                     "content":"<p>Content of Tab Pane 3</p><p>This is an icon tab.</p>"
             },
     
@@ -28,8 +28,8 @@
             {
                     "title":"Tab 4",
                     "icon":"",
-                    "enableTab":false,
-                    "closableTab": false,
+                    "enable":false,
+                    "closable": false,
                     "content":"<p>Content of Tab Pane 4</p><p>This is a disabled tab</p>"
             }
     

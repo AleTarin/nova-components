@@ -17,13 +17,11 @@ export class NovaTabs {
     items: any[];};
   @Prop({mutable: true}) confjson: any;
   @Prop() updater: boolean = true;
-  @Prop() funcion:string;
-  @Prop() nombreFuncion:string;
   @Prop() newTabData = {
     "title":"New tab",
     "icon":"plus-square",
-    "enableTab":true,
-    "closableTab":false,
+    "enable":true,
+    "closable":false,
     "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
   }
 
@@ -56,7 +54,7 @@ export class NovaTabs {
   /**
    * closeTab
    * @description Public API method to close a selected tab
-   * @param keyIndex index to identify which tab was clicked
+   * @param index index to identify which tab was clicked
    * @async
    */
   @Method()
@@ -93,8 +91,8 @@ export class NovaTabs {
   }
 
   /**
-   * onEdit
-   * @description Set fired callback when an edit is performed on the component
+   * onTabClick
+   * @description Set fired callback when a click is performed on the tab
    * @param callback callback sended with the Public API
    * @async
    * @callback
@@ -130,11 +128,11 @@ export class NovaTabs {
           <button
             class={this.activeKey === index ? this.tabPosition + " " + this.tabType + " active" : this.tabPosition + " " + this.tabType}
             onClick={event => this.openTab(index, event)} 
-            disabled={!tabButton.enableTab}>
+            disabled={!tabButton.enable}>
             <span> 
               <nova-icon name={tabButton.icon} />
               {tabButton.title}
-              {tabButton.closableTab ? 
+              {tabButton.closable ? 
               <span onClick={() => this.closeTab(index)} class="closeTab"> X </span> : ""}
             </span>
           </button>    

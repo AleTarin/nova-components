@@ -43,24 +43,30 @@ fetch('./assets/tabs.json')
 
 ```json
 {   
-    "data": {
-        "items":[{
-                "title":"Tab 1",
-                "icon":"address-book",
-                "enableTab":true,                
-                "closableTab": true,
-                "content":"<p>Content of Tab Pane 1</p>"  
-
-        }      
-
-        ]
-    },
-    "configuration": {
-        "defaultActiveKey": 0,
-        "tabPosition": "top",
-        "tabType": "line"
+        "data": {
+            "items":[{
+                    "title":"Tab 1",
+                    "icon":"",
+                    "enable":true,                
+                    "closable": true,
+                    "content":"<p>Content of Tab Pane 1</p><p>This is the default active tab.</p>"  
+    
+            }            
+    
+            ]
+        },
+    
+        "configuration": {
+            "defaultActiveKey": 0,
+            "tabPosition": "horizontal",
+            "tabType": "line",
+            "addTab": true
+          },
+    
+        "styling": {
+            
+        }
     }
-}
 
 ```
 -------------------------------------
@@ -73,6 +79,11 @@ fetch('./assets/tabs.json')
 | `datajson`             | `datajson`               |             | `any[]`  | `json`      |
 | `confjson`             | `confjson`               |             | `any`    | `undefinded`|
 | `updater`              | `updater`                |             | `boolean`| `true`      |
+| `newTabData`           | `newTabData`             |             | `any[]`  | `"title":"New tab",
+                                                                                "icon":"plus-square",
+                                                                                "enable":true,
+                                                                                "addTab":true,
+                                                                                "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"`      |
 
 ---------------------------------------
 ## Elements
@@ -85,7 +96,7 @@ fetch('./assets/tabs.json')
 
 | Property               | Attribute                | Description | Type     | Default     |
 | ---------------------- | ------------------------ | ----------- | -------- | ----------- |
-| `activeKey`            | `activeKey`              |             | `number` | `undefinded`|
+| `activeKey`            | `activeKey`              |             | `number` | `0`          |
 | `tabType`              | `tabType`                |             | `string` | `undefinded`|
 | `tabPosition`          | `tabPosition`            |             | `string` | `undefinded`|
 | `onEditCallBack`       | `onEditCallBack`         |             | `any`    | `undefinded`|
@@ -100,14 +111,19 @@ fetch('./assets/tabs.json')
 ## Methods
 
 ```javascript
-
-@Method()
+/**
+   * openTab
+   * @description Public API method to open a Tab and display its content.
+   * @param keyIndex index to identify which tab was clicked
+   * @param event event that triggered the call
+   * @async
+   */
+  @Method()
   async openTab(keyIndex, event?: UIEvent) {
     this.activeKey = keyIndex;
     this.onClickCallback && this.onClickCallback(keyIndex, event);
     this.updater = !this.updater
-}
-
+  }
 ```
 ### Parameters
 
@@ -125,12 +141,17 @@ Type: `void`
 
 ```javascript
 
-@Method()
+/**
+   * closeTab
+   * @description Public API method to close a selected tab
+   * @param index index to identify which tab was clicked
+   * @async
+   */
+  @Method()
   async closeTab(index: number){
     this.datajson.items.splice(index, 1);
     this.onEditCallback && this.onEditCallback(index, 'close');
     this.updater = !this.updater
-    
   }
 
 ```
@@ -148,11 +169,19 @@ Type: `void`
 ---------------------------------------------
 
 ```javascript
- @Method() 
+/**
+   * addTab
+   * @description Public API method to add a new Tab with preconfigured content.
+   * @param tabData struct from where the tab content is read
+   * @async
+   */
+  @Method() 
   async addTab(tabData: any) {
     this.datajson.items.push(tabData);
     this.onEditCallback && this.onEditCallback(this.datajson.items.length, 'add');
     this.updater = !this.updater
+
+  }
 
 ```
 ### Parameters
@@ -169,9 +198,15 @@ Type: `void`
 ---------------------------------------------------
 
 ```javascript
- @Method()
+ /**
+   * onEdit
+   * @description Set fired callback when an edit is performed on the component
+   * @param callback callback sended with the Public API
+   * @async
+   * @callback
+   */
+  @Method()
   async onEdit(callback: Function){
-    // this.onEditCallback(keyIndex, eventName: 'close' | 'add')
     this.onEditCallback = callback;
   }
 
@@ -180,7 +215,7 @@ Type: `void`
 
 | Name        | Type  | Description |
 | ----------- | ----- | ----------- |
-| `callback`  | `function` |        |
+| `callback`  | `Function` |        |
 
 
 ### Return
@@ -190,7 +225,14 @@ Type: `void`
 ------------------------------------------------------
 
 ```javascript
- @Method()
+/**
+   * onTabClick
+   * @description Set fired callback when a click is performed on the tab
+   * @param callback callback sended with the Public API
+   * @async
+   * @callback
+   */
+  @Method()
   async onTabClick(callback: Function){
     // this.onClickCallback(keyIndex, event)
     this.onClickCallback = callback;
@@ -201,7 +243,7 @@ Type: `void`
 
 | Name        | Type  | Description |
 | ----------- | ----- | ----------- |
-| `callback`  | `function` |        |
+| `callback`  | `Function` |        |
 
 
 ### Return
