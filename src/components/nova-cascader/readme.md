@@ -1,6 +1,18 @@
 # nova-cascader
 
-
+| Property  | Attribute | Description | Type | Default |
+| --------- | --------- | ----------- | --- | --- |
+| Content   | --  | Wrapper object for containing all the configurations | cascader | -- |
+| expandTrigger | -- | Check what trigger is going to open the cascader, either click or hover | string | 'click' |
+| name | --------- | Prop used for changing css classes | --- | '' |
+| placeholder | --------- | Prop used for changing css classes | --- | 'Select' |
+| autofocus | --------- | ----------- | --- | false |
+| readonly | --------- | ----------- | --- | false |
+| disabled | --------- | Prop utilized for disabling an option inside the cascader | --- | false |
+| separator | --------- | The character used to separate the selections inside the cascader | --- | '/' |
+| defaultValue | --------- | The default value that appears in the cascader initially | --- | [] |
+| changeOnSelect | --------- | ----------- | --- | true |
+| size | --------- | Changes the height of the input component of the cascader | --- | '' |
 
 <!-- Auto Generated Below -->
 
