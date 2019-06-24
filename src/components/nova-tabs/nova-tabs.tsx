@@ -11,26 +11,14 @@ import { Component, Prop,h,Element,State, Method} from "@stencil/core";
 })
 
 export class NovaTabs {
-  
-  @Prop({mutable: true}) datajson: {
-    items: any[];
-  };
-  @Prop({mutable: true}) confjson: any;
-  @Element() el: HTMLElement;
-  @State() event:any;
-  /** 
-   * States used to manage component properties and Callback functions.
-  */
-  @State() activeKey:number = 0;
-  @State() tabType: string;
-  @State() tabPosition: string;
-  @State() onEditCallback: any;
-  @State() onClickCallback: any;
 
+  //Props
+  @Prop({mutable: true}) datajson: {
+    items: any[];};
+  @Prop({mutable: true}) confjson: any;
   @Prop() updater: boolean = true;
   @Prop() funcion:string;
   @Prop() nombreFuncion:string;
-  
   @Prop() newTabData = {
     "title":"New tab",
     "icon":"plus-square",
@@ -39,11 +27,25 @@ export class NovaTabs {
     "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
   }
 
+  @Element() el: HTMLElement;
+ 
+  // States
+  @State() event:any;
+  @State() activeKey:number = 0;
+  @State() tabType: string;
+  @State() tabPosition: string;
+
+  // Callbacks
+  @State() onEditCallback: any;
+  @State() onClickCallback: any;
+
   /**
-    * @description funcion que se encarga de mostrar el contenido de una pestaña cuando se le da click,
-    * carga el css y ejecuta el script al hacer click en el boton(en caso de mandar codigo) 
-    * 
-  */
+   * openTab
+   * @description Public API method to open a Tab and display its content.
+   * @param keyIndex index to identify which tab was clicked
+   * @param event event that triggered the call
+   * @async
+   */
   @Method()
   async openTab(keyIndex, event?: UIEvent) {
     this.activeKey = keyIndex;
@@ -51,22 +53,25 @@ export class NovaTabs {
     this.updater = !this.updater
   }
 
-  /** 
-    @description funcion que se encarga de cerrar la pestaña elegida, se elimina la pestaña entera asi como
-    el contenido de la misma
-  */
-
+  /**
+   * closeTab
+   * @description Public API method to close a selected tab
+   * @param keyIndex index to identify which tab was clicked
+   * @async
+   */
   @Method()
   async closeTab(index: number){
     this.datajson.items.splice(index, 1);
     this.onEditCallback && this.onEditCallback(index, 'close');
     this.updater = !this.updater
-    
   }
 
-  /** 
-    @description funcion que se encarga de abrir nuevas pestañas.
-  */
+  /**
+   * addTab
+   * @description Public API method to add a new Tab with preconfigured content.
+   * @param tabData struct from where the tab content is read
+   * @async
+   */
   @Method() 
   async addTab(tabData: any) {
     this.datajson.items.push(tabData);
@@ -75,19 +80,25 @@ export class NovaTabs {
 
   }
 
-  /*
-    @description funcion que se encarga de editar la tab
-  */
-
+  /**
+   * onEdit
+   * @description Set fired callback when an edit is performed on the component
+   * @param callback callback sended with the Public API
+   * @async
+   * @callback
+   */
   @Method()
   async onEdit(callback: Function){
-    // this.onEditCallback(keyIndex, eventName: 'close' | 'add')
     this.onEditCallback = callback;
   }
 
-  /* 
-    funcion que se ebcarga de ejecutar una funcion cuando se da click en la tab
-  */
+  /**
+   * onEdit
+   * @description Set fired callback when an edit is performed on the component
+   * @param callback callback sended with the Public API
+   * @async
+   * @callback
+   */
   @Method()
   async onTabClick(callback: Function){
     // this.onClickCallback(keyIndex, event)
@@ -95,6 +106,7 @@ export class NovaTabs {
   }
  
   componentDidUpdate(){
+    //Properties assignments from json configuration
     this.tabType = this.confjson.tabType;
     if (this.tabType === "card"){
       this.tabPosition = "horizontal";
@@ -104,21 +116,19 @@ export class NovaTabs {
   }
 
   render() {
+    //HTML shadow DOM render
     return[  
-      /*
-        se genera el html necesario que hace los botones de las pestañas, se manda a llamar la funcion openTab
-        y poner iconos en caso de existir.
-      */
+      //Button for adding new tabs. If property addTab is false the button is not displayed.
       <button style={this.confjson.addTab ? {display:'block'}:{display:'none'}} class="addTab addTab_circulo" onClick={() => this.addTab(this.newTabData)}> 
         new tab
       </button>,
       
-      
+      //Tab buttons container 
       <div id="tab_container" class={this.tabPosition + " " + this.tabType}>
         { this.datajson && this.datajson.items.map((tabButton, index)=> 
+          //Tab creation from json data
           <button
             class={this.activeKey === index ? this.tabPosition + " " + this.tabType + " active" : this.tabPosition + " " + this.tabType}
-            
             onClick={event => this.openTab(index, event)} 
             disabled={!tabButton.enableTab}>
             <span> 
@@ -131,10 +141,7 @@ export class NovaTabs {
         )}
       </div>, 
 
-      /*
-        se genera el html necesario que hace los botones de las pestañas, se manda a llamar la funcion openTab
-        y poner iconos en caso de existir.
-      */      
+    //Tab panes container
      <div id="tabcontent_container" class={this.tabPosition + " " + this.tabType}>
         { this.datajson && this.datajson.items.map((tabContent, index)=> 
       <div class={this.activeKey === index ? this.tabPosition + " active" : this.tabPosition} innerHTML={tabContent.content}/>

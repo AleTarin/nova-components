@@ -3,7 +3,6 @@
 nova-icon{
   margin-right: 4px;
 }
-/* Style the tab */
 
 .addTab {
   background-color: rgba(61, 61, 61, 0.897); 
@@ -19,12 +18,11 @@ nova-icon{
 }
 
 .addTab_circulo {border-radius: 8px;
- background-color: white;
+  background-color: white;
   color: black;
   border: 2px solid #555555;}
 
 
-/* Style the buttons that are used to open the tab content */
 #tab_container.horizontal {
   margin: 10px 0px;
   height: 24px;
@@ -65,12 +63,10 @@ nova-icon{
   border-right: 2px solid transparent;
 }
 
-/* Change background color of buttons on hover */
 #tab_container :hover:enabled {
   color: #3381ff;
 }
 
-/* Create an active/current tablink class */
 #tab_container .horizontal.active {
   font-weight: bold;
   color: #3381ff;
@@ -91,7 +87,6 @@ nova-icon{
 }
 
 #tabcontent_container .vertical {
-
   padding: 10px 12px;
   margin-left: 180px;
   border: none;
@@ -102,36 +97,30 @@ nova-icon{
 
 #tabcontent_container .horizontal.active {
   display: inline-block;
+  animation-name: slidein;
+  animation-duration: 0.3s;
   
 }
 
 #tabcontent_container .vertical.active {
   display: block;
-  animation-name: slidein;
-  animation-duration: 0.3s;
 }
 
  
 #tabcontent_container {
-    /* for chrome and safari*/
     transition: 2s;
     -webkit-animation-name: slidein;
 
-    /*for firefox*/
     -moz-animation-duration: 0.3s;
     -moz-animation-name: slidein;
 
-    /* for opera*/
     -o-animation-duration: 0.3s;
     -o-animation-name: slidein;
 
-    /* Standard syntax*/
     animation-duration: 0.3s;
     animation-name: slidein;
 }
 
-
-  /* Style the close button */
 .closeTab {
     float: middle;
     cursor: pointer;
@@ -148,16 +137,16 @@ nova-icon{
   color: #dddbdb;
 }
 
-  @-webkit-keyframes slidein {
-    from {
-        margin-left: 100%;
-        width: 300%;
-    }
+@-webkit-keyframes slidein {
+  from {
+      margin-left: 100%;
+      width: 300%;
+  }
 
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
+  to {
+      margin-left: 0%;
+      width: 100%;
+  }
 }
 
 @-moz-keyframes slidein {
