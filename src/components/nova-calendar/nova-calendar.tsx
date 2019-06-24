@@ -1,5 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 @Component({
   tag: 'nova-calendar',
@@ -10,7 +10,7 @@ export class NovaCalendar {
 
   render() {
     // https://momentjs.com/docs/#/displaying/format/
-    let now = moment().format('LLLL');
+    // let now = moment().format('dddd');
     return [
       <slot>
         {/* Aqui van los custom headers */}
