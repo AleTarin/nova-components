@@ -1,152 +1,69 @@
 :host {font-family: Arial;}
 
-nova-icon{
-  margin-right: 4px;
-}
 /* Style the tab */
-
-.addTab {
-  background-color: rgba(61, 61, 61, 0.897); 
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.addTab_circulo {border-radius: 8px;
- background-color: white;
-  color: black;
-  border: 2px solid #555555;}
-
-
-/* Style the buttons that are used to open the tab content */
-#tab_container.horizontal {
-  margin: 10px 0px;
-  height: 24px;
-  float: left;
-  border-bottom: 1px solid #ccc;
-  background-color: inherit;
-}
-
-#tab_container.vertical {
-  width : 150px;
-  float: left;
-  border-right: 1px solid #ccc;
-  background-color: inherit;
-}
-
-
-#tab_container .horizontal {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 4px 16px;
-  margin-left: 10px;
-  border-bottom: 2px solid transparent;
-}
-
-#tab_container .vertical {
-  width: inherit;
-  display: block;
-  background-color: inherit;
-  padding: 16px 16px;
-  margin-top: 10px;
-  border: none;
-  outline: none;
-  text-align: left;
-  cursor: pointer;
-  border-right: 2px solid transparent;
-}
-
-/* Change background color of buttons on hover */
-#tab_container :hover:enabled {
-  color: #3381ff;
-}
-
-/* Create an active/current tablink class */
-#tab_container .horizontal.active {
-  font-weight: bold;
-  color: #3381ff;
-  border-bottom-color: #3381ff;
-}
-
-#tab_container .vertical.active {
-  font-weight: bold;
-  color: #3381ff;
-  border-right-color: #3381ff;
-}
-
-#tabcontent_container .horizontal{
-  width: 100%;
-  padding: 24px 12px;
-  padding-right: 40%;
-  display: none;
-}
-
-#tabcontent_container .vertical {
-
-  padding: 10px 12px;
-  margin-left: 180px;
-  border: none;
-  width: 100%;
-  height: 300px;
-  display: none;
-}
-
-#tabcontent_container .horizontal.active {
-  display: inline-block;
-  
-}
-
-#tabcontent_container .vertical.active {
-  display: block;
-  animation-name: slidein;
-  animation-duration: 0.3s;
-}
-
- 
-#tabcontent_container {
-    /* for chrome and safari*/
-    transition: 2s;
-    -webkit-animation-name: slidein;
-
-    /*for firefox*/
-    -moz-animation-duration: 0.3s;
-    -moz-animation-name: slidein;
-
-    /* for opera*/
-    -o-animation-duration: 0.3s;
-    -o-animation-name: slidein;
-
-    /* Standard syntax*/
-    animation-duration: 0.3s;
-    animation-name: slidein;
-}
-
-
-  /* Style the close button */
-.closeTab {
-    float: middle;
-    cursor: pointer;
-    color: #dddbdb;
-    padding: 5px;
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
   }
   
-.closeTab:hover {
-  color:#1e1e1e;
-}
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
 
-.closeTab:hover:disabled {
-  color:#1e1e1e;
-  color: #dddbdb;
-}
+  .tabcontent {
+     /* for chrome and safari*/
+     -webkit-animation-duration: 0.4s;
+     -webkit-animation-name: slidein;
+
+     /*for firefox*/
+     -moz-animation-duration: 0.4s;
+     -moz-animation-name: slidein;
+
+       /* for opera*/
+     -o-animation-duration: 0.4s;
+     -o-animation-name: slidein;
+
+       /* Standard syntax*/
+     animation-duration: 0.4s;
+     animation-name: slidein;
+  }
+  
+ 
+
+  /* Style the close button */
+.topright {
+    float: right;
+    cursor: pointer;
+    font-size: 28px;
+  }
+  
+  .topright:hover {color: red;}
 
   @-webkit-keyframes slidein {
     from {
@@ -171,7 +88,7 @@ nova-icon{
         width: 100%;
     }
 }
-@-o-keyframes slidein {
+ @-o-keyframes slidein {
     from {
         margin-left: 100%;
         width: 300%;
@@ -182,7 +99,7 @@ nova-icon{
         width: 100%;
     }
 }
-@keyframes slidein {
+  @keyframes slidein {
     from {
         margin-left: 100%;
         width: 300%;
