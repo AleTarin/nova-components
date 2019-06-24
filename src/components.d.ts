@@ -10,11 +10,25 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface NovaCascader {
+    'addCustomTrigger': (el: HTMLElement) => Promise<void>;
+    /**
+    * blurCascader
+    */
+    'blurCascader': () => Promise<void>;
     'content': cascader;
-    'expandTrigger': string;
+    /**
+    * focusCascader
+    */
     'focusCascader': () => Promise<void>;
-    'onCascaderSelect': (callback: Function) => Promise<void>;
-    'onPopupVisibleChange': (callback: Function) => Promise<void>;
+    /**
+    * onCascaderSelect
+    */
+    'onCascaderSelect': (callback: cascaderCallback) => Promise<void>;
+    /**
+    * onPopupChange
+    */
+    'onPopupChange': (callback: cascaderCallback) => Promise<void>;
+    'size': string;
   }
   interface NovaIcon {
     /**
@@ -31,10 +45,19 @@ export namespace Components {
     'pophover': boolean;
   }
   interface NovaTabs {
-    'datajson': string;
+    'addTab': (tabData: any) => Promise<void>;
+    'closeTab': (index: number) => Promise<void>;
+    'confjson': any;
+    'datajson': {
+      items: any[];
+    };
     'funcion': string;
+    'newTabData': { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
     'nombreFuncion': string;
-    'styleVertical': string;
+    'onEdit': (callback: Function) => Promise<void>;
+    'onTabClick': (callback: Function) => Promise<void>;
+    'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
+    'updater': boolean;
   }
 }
 
@@ -75,7 +98,7 @@ declare global {
 declare namespace LocalJSX {
   interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
     'content'?: cascader;
-    'expandTrigger'?: string;
+    'size'?: string;
   }
   interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
     /**
@@ -92,10 +115,14 @@ declare namespace LocalJSX {
     'pophover'?: boolean;
   }
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    'datajson'?: string;
+    'confjson'?: any;
+    'datajson'?: {
+      items: any[];
+    };
     'funcion'?: string;
+    'newTabData'?: { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
     'nombreFuncion'?: string;
-    'styleVertical'?: string;
+    'updater'?: boolean;
   }
 
   interface IntrinsicElements {

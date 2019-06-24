@@ -1,3 +1,8 @@
+.cascader {
+    display: inline-block;
+    position: relative;
+}
+
 .cascader__search {
     position: relative;
     display: inline-flex;
@@ -8,35 +13,33 @@
         box-sizing: border-box;
         padding: .3em .6em;
         font-size: 1.1em;
-        border: 1px solid #dcdcdc;
         width: 300px;
         cursor: pointer;
     }
     nova-icon {
         position: absolute;
         right: 10px;
-        color: rgba(0,0,0,0.25);
         z-index: 1060;
         cursor: pointer;
+        -webkit-transition: all 1s;
+        transition: all 1s;        
         .fa-times-circle {
             display: none;
         }
-        .fa-chevron-down{
+        .fa-chevron-down, .fa-chevron-up{
             display: inline-block;
         }
     }
     &:hover {
-        i.fa-times-circle {
+        .fa-times-circle {
             display: inline-block;
         }
-        i.fa-chevron-down{
+        .fa-chevron-down, .fa-chevron-up{
             display: none;
         }
     }
 
 }
-
-
 
 .cascader__menu {
     display: none;
@@ -48,18 +51,17 @@
     
     border-radius: 4px;
     font-size: 14px;
-
-    -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    color: #314659;
-    background: #fff;
 }
+
+.cascader__menu--top {
+    bottom: 40px;
+}
+
 .cascader__menu--active {
     display: flex;
 }
 
 .cascader__menu__list {
-    border-right: 1px solid #e8e8e8;
     border-radius: 4px;
 
     list-style: none;
@@ -82,21 +84,16 @@
     -webkit-transition: all .3s;
     transition: all .3s;
     
-    &:active, &:hover, &:focus       {
-        background-color: #fafafa;
-    }
-    
+
     nova-icon {
         position: absolute;
         right: 1em;
-        color: rgba(0,0,0,0.25);
     }
 }
 
 .cascader__menu__item--disabled{
     pointer-events: auto;
     cursor: not-allowed;
-    color: rgba(0,0,0,0.25);
     
     &:hover {
         cursor: not-allowed;
