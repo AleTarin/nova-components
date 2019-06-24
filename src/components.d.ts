@@ -9,6 +9,10 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface NovaCalendar {
+    'content': any;
+    'name': string;
+  }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
     /**
@@ -76,6 +80,12 @@ export namespace Components {
   declare global {
 
 
+    interface HTMLNovaCalendarElement extends Components.NovaCalendar, HTMLStencilElement {}
+    var HTMLNovaCalendarElement: {
+      prototype: HTMLNovaCalendarElement;
+      new (): HTMLNovaCalendarElement;
+    };
+
     interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
     var HTMLNovaCascaderElement: {
       prototype: HTMLNovaCascaderElement;
@@ -100,6 +110,7 @@ export namespace Components {
       new (): HTMLNovaTabsElement;
     };
     interface HTMLElementTagNameMap {
+      'nova-calendar': HTMLNovaCalendarElement;
       'nova-cascader': HTMLNovaCascaderElement;
       'nova-icon': HTMLNovaIconElement;
       'nova-popover': HTMLNovaPopoverElement;
@@ -108,6 +119,10 @@ export namespace Components {
   }
 
   declare namespace LocalJSX {
+    interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
+      'content'?: any;
+      'name'?: string;
+    }
     interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
       'content'?: cascader;
       'size'?: string;
@@ -135,6 +150,7 @@ export namespace Components {
       }
 
       interface IntrinsicElements {
+        'nova-calendar': NovaCalendar;
         'nova-cascader': NovaCascader;
         'nova-icon': NovaIcon;
         'nova-popover': NovaPopover;

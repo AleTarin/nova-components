@@ -20,10 +20,33 @@
     <p slot="content"> This is a popover</p>
     <p slot="close"> click here to close </p>
   </nova-popover>
+
+  <nova-calendar></nova-calendar>
   
   <script>
     // When cascader is defined
-    customElements.whenDefined("nova-cascader")
+      customElements.whenDefined("nova-cascader")
+      .then( _ => {
+        var calendarElement = document.querySelector('nova-calendar');
+            calendarElement.componentOnReady().then( instance => {
+            fetch('./assets/calendar.json')
+              .then( response => {
+                // Transform it to JSON
+                return response.json();
+              })
+              .then( json => {
+                console.log(instance)
+                // Pass the prop
+                instance.content = json;
+              })
+              .catch( err => {
+                // If any error ocurred, pass it to the console
+                console.error(err)
+              })
+        })
+      })
+
+      customElements.whenDefined("nova-cascader")
       .then( _ => {
         var cascaderElement = document.querySelector('nova-cascader');
             cascaderElement.componentOnReady().then( instance => {
@@ -50,6 +73,7 @@
               })
         })
       })
+
       customElements.whenDefined("nova-tabs")
       .then( _ => {
         var tabsElement = document.querySelector('nova-tabs');
