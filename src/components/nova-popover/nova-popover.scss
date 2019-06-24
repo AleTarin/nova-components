@@ -5,25 +5,93 @@
 .popover__text {
   visibility: hidden;
   width: relative;
-  background-color: black;
-  color: #fff;
+  background-color: $background;
+  color: $font;
   text-align: center;
-  padding: 5px 0;
+  padding: 5px;
   border-radius: 6px;
-  /* Position the tooltip text - see examples below! */
   position: absolute;
   z-index: 1;
+  min-width: 100%;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+
+  // Text abajo - centered
+  top: 100%;
+  left: 0%;
+
+  // Text abajo - right
+  // top: 100%;
+  // left: 10%;
+
+  // Text abajo - left
+  // top: 100%;
+  // left: -10%;
+
+  // Text arriba - centered
+  // bottom: 100%;
+  // left: 0%;
+
+  // Text arriba - right
+  // bottom: 100%;
+  // left: 10%;
+
+  // Text arriba - left
+  // bottom: 100%;
+  // left: -10%;
+
+  // Text izquierda
+  // right: 100%;
+
+  // Text derecha
+  // Nada, es default
+}
+
+.popover__text::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para abajo
+  // margin-left: -5px;
+  // top: 100%;
+  // left: 50%;
+  // border-color: black transparent transparent transparent;
+
+  // Flechita para arriba
+  margin-left: -5px;
+  bottom: 100%;
+  left: 50%;
+  border-color: transparent transparent $background transparent;
+
+  // Flechita para la izquierda
+  // margin-top: -5px;
+  // top: 50%;
+  // right: 100%;
+  // border-color: transparent black transparent transparent;
+
+  // Flechita para la derecha
+  // margin-top: -5px;
+  // top: 50%;
+  // left: 100%;
+  // border-color: transparent transparent transparent black;
 }
 
 .popover {
-  /* Show the tooltip text when you mouse over the tooltip container */
+  position: relative;
+  display: inline-block;
+  margin-left: 50%;
+  padding: 5px;
+  /* Show the popover text */
   &:hover > .popover__text--hover{
     visibility: visible;
   }
   &:focus-within > .popover__text--focus{
     visibility: visible;
   }
-  &:active > .popover__text--active{
+  .popover__text--active{
     visibility: visible;
   }
 }
