@@ -1,5 +1,5 @@
 import { setMode } from '@stencil/core';
 
 setMode(elm => {
-    return elm.getAttribute('mode') || (elm as any).mode || 'default';
+    return (elm as any).mode || elm.getAttribute('mode') || 'default';
 });
