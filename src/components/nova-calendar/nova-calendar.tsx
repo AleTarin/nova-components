@@ -9,6 +9,15 @@ import moment from 'moment';
 export class NovaCalendar {
   @Prop() name: string;
   @Prop() content: any;
+  @Prop() header: any;
+  @Prop() defaultValue:moment;
+  @Prop() disabledDate:boolean;
+  @Prop() fullscreen:boolean;
+  @Prop() locale:object;
+  @Prop() mode:string="month";
+
+
+  
 
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: any = moment().format('LLLL');
