@@ -1,4 +1,4 @@
-import { Component, Prop, h } from '@stencil/core';
+import { Component, Prop, State, h } from '@stencil/core';
 import moment from 'moment';
 
 @Component({
@@ -10,10 +10,11 @@ export class NovaCalendar {
   @Prop() name: string;
   @Prop() content: any;
 
+  // https://momentjs.com/docs/#/displaying/format/
+  @State() now: any = moment().format('LLLL');
+
   render() {
-    // https://momentjs.com/docs/#/displaying/format/
-    let now = moment().format('LLLL');
-    console.log(this.content, now)
+    console.log(this.content, this.now)
     return [
       <slot>
         {/* Aqui van los custom headers */}
@@ -58,6 +59,13 @@ export class NovaCalendar {
       </div>,
 
       <div class="wrapper">
+        <div class="dia">Su</div>
+        <div class="dia">Mo</div>
+        <div class="dia">Tu</div>
+        <div class="dia">We</div>
+        <div class="dia">Th</div>
+        <div class="dia">Fr</div>
+        <div class="dia">Sa</div>
         {/* El wrapper del calendario */}
         <div class="semana">
           <div class="dia">Ha</div>
@@ -65,6 +73,8 @@ export class NovaCalendar {
           <div class="dia">Ha</div>
           <div class="dia">Ha</div>
           <div class="dia">Ha</div>
+          <div class="dia">Ha</div>
+          <div class="dia">Ha</div>
         </div>
         <div class="semana">
           <div class="dia">He</div>
@@ -72,6 +82,8 @@ export class NovaCalendar {
           <div class="dia">He</div>
           <div class="dia">He</div>
           <div class="dia">He</div>
+          <div class="dia">He</div>
+          <div class="dia">He</div>
         </div>
         <div class="semana">
           <div class="dia">Hi</div>
@@ -79,6 +91,8 @@ export class NovaCalendar {
           <div class="dia">Hi</div>
           <div class="dia">Hi</div>
           <div class="dia">Hi</div>
+          <div class="dia">Hi</div>
+          <div class="dia">Hi</div>
         </div>
         <div class="semana">
           <div class="dia">Ho</div>
@@ -86,8 +100,12 @@ export class NovaCalendar {
           <div class="dia">Ho</div>
           <div class="dia">Ho</div>
           <div class="dia">Ho</div>
+          <div class="dia">Ho</div>
+          <div class="dia">Ho</div>
         </div>
         <div class="semana">
+          <div class="dia">Hu</div>
+          <div class="dia">Hu</div>
           <div class="dia">Hu</div>
           <div class="dia">Hu</div>
           <div class="dia">Hu</div>
