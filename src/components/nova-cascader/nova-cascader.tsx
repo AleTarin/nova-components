@@ -151,7 +151,8 @@ export class NovaCascader {
    * onCascaderSelect
    * @description Clears the data and fires onPopupVisibleChange when clicking outside the component.
    * @event
-   * @requires stencil-click-outside
+   * @requires stencil-click-outside module
+   * @requires ClickOutside
    */
   @ClickOutside()
   ClickOutsideHandler() {
