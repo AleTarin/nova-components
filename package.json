@@ -25,11 +25,14 @@
     "@stencil/sass": "^1.0.0",
     "@types/jest": "23.3.14",
     "@types/puppeteer": "1.12.2",
-    "jest": "23.6.0",
-    "jest-cli": "23.6.0",
+    "jest": "^24.8.0",
+    "jest-cli": "^24.8.0",
     "puppeteer": "1.14.0",
     "stencil-click-outside": "^1.4.2"
   },
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "braces": "^3.0.2",
+    "moment": "^2.24.0"
+  }
 }

@@ -9,6 +9,10 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface NovaCalendar {
+    'content': any;
+    'name': string;
+  }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
     /**
@@ -40,93 +44,127 @@ export namespace Components {
     'size'?: string;
   }
   interface NovaPopover {
-    'popclick': boolean;
-    'popfocus': boolean;
-    'pophover': boolean;
+    'trigger': "hover" | "focus" | "click";
   }
   interface NovaTabs {
-    'datajson': string;
-    'funcion': string;
-    'nombreFuncion': string;
-    'styleVertical': string;
-  }
-}
-
-declare global {
-
-
-  interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
-  var HTMLNovaCascaderElement: {
-    prototype: HTMLNovaCascaderElement;
-    new (): HTMLNovaCascaderElement;
-  };
-
-  interface HTMLNovaIconElement extends Components.NovaIcon, HTMLStencilElement {}
-  var HTMLNovaIconElement: {
-    prototype: HTMLNovaIconElement;
-    new (): HTMLNovaIconElement;
-  };
-
-  interface HTMLNovaPopoverElement extends Components.NovaPopover, HTMLStencilElement {}
-  var HTMLNovaPopoverElement: {
-    prototype: HTMLNovaPopoverElement;
-    new (): HTMLNovaPopoverElement;
-  };
-
-  interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
-  var HTMLNovaTabsElement: {
-    prototype: HTMLNovaTabsElement;
-    new (): HTMLNovaTabsElement;
-  };
-  interface HTMLElementTagNameMap {
-    'nova-cascader': HTMLNovaCascaderElement;
-    'nova-icon': HTMLNovaIconElement;
-    'nova-popover': HTMLNovaPopoverElement;
-    'nova-tabs': HTMLNovaTabsElement;
-  }
-}
-
-declare namespace LocalJSX {
-  interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
-    'content'?: cascader;
-    'size'?: string;
-  }
-  interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
     /**
-    * Props
+    * addTab
     */
-    'name'?: string;
-    'options'?: string;
-    'pre'?: string;
-    'size'?: string;
-  }
-  interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
-    'popclick'?: boolean;
-    'popfocus'?: boolean;
-    'pophover'?: boolean;
-  }
-  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    'datajson'?: string;
-    'funcion'?: string;
-    'nombreFuncion'?: string;
-    'styleVertical'?: string;
+    'addTab': (tabData: any) => Promise<void>;
+    /**
+    * closeTab
+    */
+    'closeTab': (index: number) => Promise<void>;
+    'confjson': any;
+    'datajson': {
+      items: any[];};
+      'funcion': string;
+      'newTabData': { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
+      'nombreFuncion': string;
+      /**
+      * onEdit
+      */
+      'onEdit': (callback: Function) => Promise<void>;
+      /**
+      * onEdit
+      */
+      'onTabClick': (callback: Function) => Promise<void>;
+      /**
+      * openTab
+      */
+      'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
+      'updater': boolean;
+    }
   }
 
-  interface IntrinsicElements {
-    'nova-cascader': NovaCascader;
-    'nova-icon': NovaIcon;
-    'nova-popover': NovaPopover;
-    'nova-tabs': NovaTabs;
+  declare global {
+
+
+    interface HTMLNovaCalendarElement extends Components.NovaCalendar, HTMLStencilElement {}
+    var HTMLNovaCalendarElement: {
+      prototype: HTMLNovaCalendarElement;
+      new (): HTMLNovaCalendarElement;
+    };
+
+    interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
+    var HTMLNovaCascaderElement: {
+      prototype: HTMLNovaCascaderElement;
+      new (): HTMLNovaCascaderElement;
+    };
+
+    interface HTMLNovaIconElement extends Components.NovaIcon, HTMLStencilElement {}
+    var HTMLNovaIconElement: {
+      prototype: HTMLNovaIconElement;
+      new (): HTMLNovaIconElement;
+    };
+
+    interface HTMLNovaPopoverElement extends Components.NovaPopover, HTMLStencilElement {}
+    var HTMLNovaPopoverElement: {
+      prototype: HTMLNovaPopoverElement;
+      new (): HTMLNovaPopoverElement;
+    };
+
+    interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
+    var HTMLNovaTabsElement: {
+      prototype: HTMLNovaTabsElement;
+      new (): HTMLNovaTabsElement;
+    };
+    interface HTMLElementTagNameMap {
+      'nova-calendar': HTMLNovaCalendarElement;
+      'nova-cascader': HTMLNovaCascaderElement;
+      'nova-icon': HTMLNovaIconElement;
+      'nova-popover': HTMLNovaPopoverElement;
+      'nova-tabs': HTMLNovaTabsElement;
+    }
   }
-}
 
-export { LocalJSX as JSX };
+  declare namespace LocalJSX {
+    interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
+      'content'?: any;
+      'name'?: string;
+    }
+    interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
+      'content'?: cascader;
+      'size'?: string;
+    }
+    interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
+      /**
+      * Props
+      */
+      'name'?: string;
+      'options'?: string;
+      'pre'?: string;
+      'size'?: string;
+    }
+    interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
+      'trigger'?: "hover" | "focus" | "click";
+    }
+    interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
+      'confjson'?: any;
+      'datajson'?: {
+        items: any[];};
+        'funcion'?: string;
+        'newTabData'?: { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
+        'nombreFuncion'?: string;
+        'updater'?: boolean;
+      }
+
+      interface IntrinsicElements {
+        'nova-calendar': NovaCalendar;
+        'nova-cascader': NovaCascader;
+        'nova-icon': NovaIcon;
+        'nova-popover': NovaPopover;
+        'nova-tabs': NovaTabs;
+      }
+    }
+
+    export { LocalJSX as JSX };
 
 
-declare module "@stencil/core" {
-  export namespace JSX {
-    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
-  }
-}
+    declare module "@stencil/core" {
+      export namespace JSX {
+        interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+      }
+    }
 
 
