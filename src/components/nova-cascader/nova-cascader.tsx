@@ -1,19 +1,6 @@
 import { Component, h, Prop, State, Element, Method, Watch } from '@stencil/core';
 import { ClickOutside } from "stencil-click-outside";
 
-/**
- * @todo
- * Default value => Verificar que exista el default value
- * Hover => Click para seleccionar el ultimo elemento
- * Change on select => Capabilidad de seleccionar opciones de "enmedio"
- * Size => Done?
- * Custom Trigger => Cambiar el trigger que abre el cascader y el textbox donde se muestran los datos
- * Custom Render =>
- * Load Options Lazily =>
- * Custom Field Names => 
- * Testing => ?
- * */
-
 @Component({
   tag: 'nova-cascader',
   styleUrls: {
@@ -91,6 +78,7 @@ export class NovaCascader {
    * @param list { cascaderItem[] } list of items where the event was fired
    * @param level { number } level of the list of items that fired the event
    * @param item  { cascaderItem } item that fired the event
+   * @param event { 'click' | 'hover' } type of event that was fired
    */
   updateCascader(list: cascaderItem[], level: number, item: cascaderItem, event: 'click' | 'hover') {
     if (!item.disabled) {
