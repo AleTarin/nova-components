@@ -9,7 +9,7 @@ import moment from 'moment';
 export class NovaCalendar {
   @Prop() name: string;
   @Prop() content: any;
-  @Prop() header: string;
+  @Prop() header: any;
   @Prop() defaultValue:moment;
   @Prop() disabledDate:boolean;
   @Prop() fullscreen:boolean;
