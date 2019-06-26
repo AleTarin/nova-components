@@ -140,11 +140,9 @@ export class NovaTabs {
       </div>, 
 
     //Tab panes container
-     <div id="tabcontent_container" class={this.tabPosition + " " + this.tabType}>
-        { this.datajson && this.datajson.items.map((tabContent, index)=> 
-      <div class={this.activeKey === index ? this.tabPosition + " active" : this.tabPosition} innerHTML={tabContent.content}/>
-        )}
-    </div>
+    this.datajson && this.datajson.items.map((tabContent, index)=> 
+      <div class={this.activeKey === index ? this.tabPosition + " tabcontent_container active" : this.tabPosition + " tabcontent_container"} innerHTML={tabContent.content}/>
+        )
     ]
   }
 }
