@@ -1,11 +1,13 @@
-:host {font-family: Arial;}
+:host {
+  font-family: Arial;
+}
 
-nova-icon{
+nova-icon {
   margin-right: 4px;
 }
 
 .addTab {
-  background-color: rgba(61, 61, 61, 0.897); 
+  background-color: rgba(61, 61, 61, 0.897);
   border: none;
   color: white;
   padding: 20px;
@@ -17,11 +19,12 @@ nova-icon{
   cursor: pointer;
 }
 
-.addTab_circulo {border-radius: 8px;
+.addTab_circulo {
+  border-radius: 8px;
   background-color: white;
   color: black;
-  border: 2px solid #555555;}
-
+  border: 2px solid #555555;
+}
 
 #tab_container.horizontal {
   margin: 10px 0px;
@@ -32,12 +35,11 @@ nova-icon{
 }
 
 #tab_container.vertical {
-  width : 150px;
+  width: 150px;
   float: left;
   border-right: 1px solid #ccc;
   background-color: inherit;
 }
-
 
 #tab_container .horizontal {
   background-color: inherit;
@@ -79,7 +81,11 @@ nova-icon{
   border-right-color: #3381ff;
 }
 
+<<<<<<< HEAD
 .tabcontent_container.horizontal{
+=======
+#tabcontent_container .horizontal {
+>>>>>>> 9aef5c64c25a9dbbdfba3cf22159e39cc877b903
   width: 100%;
   padding: 24px 12px;
   padding-right: 40%;
@@ -97,86 +103,97 @@ nova-icon{
 
 .tabcontent_container.horizontal.active {
   display: inline-block;
+<<<<<<< HEAD
+=======
+  animation-name: slidein;
+  animation-duration: 0.3s;
+>>>>>>> 9aef5c64c25a9dbbdfba3cf22159e39cc877b903
 }
 
 .tabcontent_container.vertical.active {
   display: block;
 }
 
+<<<<<<< HEAD
  
 .tabcontent_container {
   
     -webkit-animation-duration: 0.3s;
     -webkit-animation-name: slidein;
+=======
+#tabcontent_container {
+  transition: 2s;
+  -webkit-animation-name: slidein;
+>>>>>>> 9aef5c64c25a9dbbdfba3cf22159e39cc877b903
 
-    -moz-animation-duration: 0.3s;
-    -moz-animation-name: slidein;
+  -moz-animation-duration: 0.3s;
+  -moz-animation-name: slidein;
 
-    -o-animation-duration: 0.3s;
-    -o-animation-name: slidein;
+  -o-animation-duration: 0.3s;
+  -o-animation-name: slidein;
 
-    animation-duration: 0.3s;
-    animation-name: slidein;
+  animation-duration: 0.3s;
+  animation-name: slidein;
 }
 
 .closeTab {
-    float: middle;
-    cursor: pointer;
-    color: #dddbdb;
-    padding: 5px;
-  }
-  
+  float: middle;
+  cursor: pointer;
+  color: #dddbdb;
+  padding: 5px;
+}
+
 .closeTab:hover {
-  color:#1e1e1e;
+  color: #1e1e1e;
 }
 
 .closeTab:hover:disabled {
-  color:#1e1e1e;
+  color: #1e1e1e;
   color: #dddbdb;
 }
 
 @-webkit-keyframes slidein {
   from {
-      margin-left: 100%;
-      width: 300%;
+    margin-left: 100%;
+    width: 300%;
   }
 
   to {
-      margin-left: 0%;
-      width: 100%;
+    margin-left: 0%;
+    width: 100%;
   }
 }
 
 @-moz-keyframes slidein {
-    from {
-        margin-left: 100%;
-        width: 300%;
-    }
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
 
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 @-o-keyframes slidein {
-    from {
-        margin-left: 100%;
-        width: 300%;
-    }
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
 
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 @keyframes slidein {
-    from {
-        margin-left: 100%;
-        width: 300%;
-    }
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
 
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }

@@ -5,31 +5,30 @@ import {Component, Prop,h, Element, State, Method} from "@stencil/core";
  * @author Arturo & Armando
  */
 @Component({
-    tag: 'nova-tabs',
-    styleUrl: 'nova-tabs.css',
-    shadow: true
+  tag: "nova-tabs",
+  styleUrl: "nova-tabs.css",
+  shadow: true
 })
-
 export class NovaTabs {
-
   //Props
-  @Prop({mutable: true}) datajson: {
-    items: any[];};
-  @Prop({mutable: true}) confjson: any;
+  @Prop({ mutable: true }) datajson: {
+    items: any[];
+  };
+  @Prop({ mutable: true }) confjson: any;
   @Prop() updater: boolean = true;
   @Prop() newTabData = {
-    "title":"New tab",
-    "icon":"plus-square",
-    "enable":true,
-    "closable":false,
-    "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
-  }
+    title: "New tab",
+    icon: "plus-square",
+    enable: true,
+    closable: false,
+    content: "<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
+  };
 
   @Element() el: HTMLElement;
- 
+
   // States
-  @State() event:any;
-  @State() activeKey:number = 0;
+  @State() event: any;
+  @State() activeKey: number = 0;
   @State() tabType: string;
   @State() tabPosition: string;
 
@@ -48,7 +47,7 @@ export class NovaTabs {
   async openTab(keyIndex, event?: UIEvent) {
     this.activeKey = keyIndex;
     this.onClickCallback && this.onClickCallback(keyIndex, event);
-    this.updater = !this.updater
+    this.updater = !this.updater;
   }
 
   /**
@@ -70,12 +69,12 @@ export class NovaTabs {
    * @param tabData struct from where the tab content is read
    * @async
    */
-  @Method() 
+  @Method()
   async addTab(tabData: any) {
     this.datajson.items.push(tabData);
-    this.onEditCallback && this.onEditCallback(this.datajson.items.length, 'add');
-    this.updater = !this.updater
-
+    this.onEditCallback &&
+      this.onEditCallback(this.datajson.items.length, "add");
+    this.updater = !this.updater;
   }
 
   /**
@@ -86,7 +85,7 @@ export class NovaTabs {
    * @callback
    */
   @Method()
-  async onEdit(callback: Function){
+  async onEdit(callback: Function) {
     this.onEditCallback = callback;
   }
 
@@ -98,7 +97,7 @@ export class NovaTabs {
    * @callback
    */
   @Method()
-  async onTabClick(callback: Function){
+  async onTabClick(callback: Function) {
     // this.onClickCallback(keyIndex, event)
     this.onClickCallback = callback;
   }
@@ -106,43 +105,63 @@ export class NovaTabs {
   componentDidUpdate(){
     //Properties assignments from configure data
     this.tabType = this.confjson.tabType;
-    if (this.tabType === "card"){
+    if (this.tabType === "card") {
       this.tabPosition = "horizontal";
-    }else{
+    } else {
       this.tabPosition = this.confjson.tabPosition;
     }
   }
 
   render() {
     //HTML shadow DOM render
-    return[  
+    return [
       //Button for adding new tabs. If property addTab is false the button is not displayed.
-      <button style={this.confjson.addTab ? {display:'block'}:{display:'none'}} class="addTab addTab_circulo" onClick={() => this.addTab(this.newTabData)}> 
+      <button
+        style={
+          this.confjson.addTab ? { display: "block" } : { display: "none" }
+        }
+        class="addTab addTab_circulo"
+        onClick={() => this.addTab(this.newTabData)}
+      >
         new tab
       </button>,
-      
-      //Tab buttons container 
+
+      //Tab buttons container
       <div id="tab_container" class={this.tabPosition + " " + this.tabType}>
-        { this.datajson && this.datajson.items.map((tabButton, index)=> 
-          //Tab creation from json data
-          <button
-            class={this.activeKey === index ? this.tabPosition + " " + this.tabType + " active" : this.tabPosition + " " + this.tabType}
-            onClick={event => this.openTab(index, event)} 
-            disabled={!tabButton.enable}>
-            <span> 
-              <nova-icon name={tabButton.icon} />
-              {tabButton.title}
-              {tabButton.closable ? 
-              <span onClick={() => this.closeTab(index)} class="closeTab"> X </span> : ""}
-            </span>
-          </button>    
-        )}
-      </div>, 
+        {this.datajson &&
+          this.datajson.items.map((tabButton, index) => (
+            //Tab creation from json data
+            <button
+              class={
+                this.activeKey === index
+                  ? this.tabPosition + " " + this.tabType + " active"
+                  : this.tabPosition + " " + this.tabType
+              }
+              onClick={event => this.openTab(index, event)}
+              disabled={!tabButton.enable}
+            >
+              <span>
+                <nova-icon name={tabButton.icon} />
+                {tabButton.title}
+                {tabButton.closable ? (
+                  <span onClick={() => this.closeTab(index)} class="closeTab">
+                    {" "}
+                    X{" "}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </span>
+            </button>
+          ))}
+      </div>,
 
     //Tab panes container
     this.datajson && this.datajson.items.map((tabContent, index)=> 
-      <div class={this.activeKey === index ? this.tabPosition + " tabcontent_container active" : this.tabPosition + " tabcontent_container"} innerHTML={tabContent.content}/>
+      <div class={this.activeKey === index ? 
+        this.tabPosition + " tabcontent_container active" : 
+        this.tabPosition + " tabcontent_container"} 
+      innerHTML={tabContent.content}/>
         )
-    ]
-  }
+    ]};
 }

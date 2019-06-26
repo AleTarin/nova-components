@@ -85,13 +85,13 @@
   margin-left: 50%;
   padding: 5px;
   /* Show the popover text */
-  &:hover > .popover__text--hover{
+  &:hover > .popover__text--hover {
     visibility: visible;
   }
-  &:focus-within > .popover__text--focus{
+  &:focus-within > .popover__text--focus {
     visibility: visible;
   }
-  .popover__text--active{
+  .popover__text--active {
     visibility: visible;
   }
 }
