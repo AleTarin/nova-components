@@ -20,29 +20,54 @@ export class NovaCalendar {
   @Prop() calendar : any[] = [];
 
   // https://momentjs.com/docs/#/displaying/format/
-  @State() now: any = moment().format('LLLL');
+  @State() now: any = moment();
 
 
-  getFirstWeekdayOfMonth(){
-    var cDate = Number(moment().startOf('month').format('d'));
-    return cDate;
+  nowPrevMonth(){
+    this.now = moment().subtract(1, 'months')
   }
+  nowNextMonth(){
+    this.now = moment().add(1, 'months')
+  }
+  
 
+  cellContent(cell){
+    var x;
+    var nxt = 1;
+    {if (cell === 98)
+      x = 'prv'
+    else if (cell === 99){
+      x = nxt;
+      nxt++;
+    }
+    else
+      x = cell;
+    }
+    return x;
+  }
   fillCalendar(){
+    console.log(this.now)
     var day = 1;
+    var firstDayOfMonth = this.now.startOf('month').format('d')
+    var lastDayOfPrevMonth = Number(moment(this.now).subtract(1, 'M').endOf("month").format('D'));
+    console.log(lastDayOfPrevMonth);
+    var dayPrevMonth = lastDayOfPrevMonth - firstDayOfMonth +1;
+    var dayNextMonth = 1;
     var arr = [];
+
     for(var i = 0; i < 6; i++){
       for(var j = 0; j < 7; j++){
-        if (i === 0 && j < this.getFirstWeekdayOfMonth()){
-          arr.push(99);
+        if (i === 0 && j < firstDayOfMonth){
+          arr.push(dayPrevMonth);
+          dayPrevMonth++;
         }
-        else if (day > moment().daysInMonth()){
+        else if (day >this.now.daysInMonth()){
           if(j<7){
-            arr.push(99);
+            arr.push(dayNextMonth);
+            dayNextMonth++;
           }
-          else{
+          else
             break;
-          }
         }
         else {
           arr.push(day); 
@@ -55,6 +80,7 @@ export class NovaCalendar {
   }
 
   componentWillLoad(){
+    this.calendar = []
     this.fillCalendar();
   }
   render() {
@@ -114,8 +140,7 @@ export class NovaCalendar {
         {this.calendar.map((row)=>
         <div class = "semana">
           {row.map((cell)=>
-            
-            <div class="dia">{cell}</div>
+            <div class="dia">{this.cellContent(cell)}</div>
             )}
             </div>
             )}
