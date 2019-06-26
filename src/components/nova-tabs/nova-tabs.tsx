@@ -1,4 +1,4 @@
-import { Component, Prop, h, Element, State, Method } from "@stencil/core";
+import {Component, Prop,h, Element, State, Method} from "@stencil/core";
 
 /**
  * JSdocs
@@ -53,14 +53,14 @@ export class NovaTabs {
   /**
    * closeTab
    * @description Public API method to close a selected tab
-   * @param index index to identify which tab was clicked
+   * @param keyIndex index to identify which tab was clicked
    * @async
    */
   @Method()
-  async closeTab(index: number) {
-    this.datajson.items.splice(index, 1);
-    this.onEditCallback && this.onEditCallback(index, "close");
-    this.updater = !this.updater;
+  async closeTab(keyIndex: number){
+    this.datajson.items.splice(keyIndex, 1);
+    this.onEditCallback && this.onEditCallback(keyIndex, 'close');
+    this.updater = !this.updater
   }
 
   /**
@@ -101,9 +101,9 @@ export class NovaTabs {
     // this.onClickCallback(keyIndex, event)
     this.onClickCallback = callback;
   }
-
-  componentDidUpdate() {
-    //Properties assignments from json configuration
+ 
+  componentDidUpdate(){
+    //Properties assignments from configure data
     this.tabType = this.confjson.tabType;
     if (this.tabType === "card") {
       this.tabPosition = "horizontal";
@@ -156,23 +156,12 @@ export class NovaTabs {
           ))}
       </div>,
 
-      //Tab panes container
-      <div
-        id="tabcontent_container"
-        class={this.tabPosition + " " + this.tabType}
-      >
-        {this.datajson &&
-          this.datajson.items.map((tabContent, index) => (
-            <div
-              class={
-                this.activeKey === index
-                  ? this.tabPosition + " active"
-                  : this.tabPosition
-              }
-              innerHTML={tabContent.content}
-            />
-          ))}
-      </div>
-    ];
-  }
+    //Tab panes container
+    this.datajson && this.datajson.items.map((tabContent, index)=> 
+      <div class={this.activeKey === index ? 
+        this.tabPosition + " tabcontent_container active" : 
+        this.tabPosition + " tabcontent_container"} 
+      innerHTML={tabContent.content}/>
+        )
+    ]};
 }

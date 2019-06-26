@@ -38,7 +38,7 @@
     
         "configuration": {
             "defaultActiveKey": 0,
-            "tabPosition": "horizontal",
+            "tabPosition": "vertical",
             "tabType": "line",
             "addTab": true
           },
