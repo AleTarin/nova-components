@@ -58,13 +58,12 @@ export class NovaCalendar {
     this.fillCalendar();
   }
   render() {
-    console.log(this.calendar);
     return [
       <slot>
         {/* Aqui van los custom headers */}
       </slot>,
       
-      <div>
+      <div class="calendar__controls">
         {/* Barra que va arriba del calendario */}
         {/* De los años */}
         <select>
@@ -98,24 +97,29 @@ export class NovaCalendar {
         </select>
 
         {/* Para cambiar meses/años */}
-        <button>M</button>
-        <button>Y</button>
+        <button class="calendar__controls__months">M</button>
+        <button class="calendar__controls__years">Y</button>
       </div>,
-
-      <div class="wrapper">
-        <div class="dia">Su</div>
-        <div class="dia">Mo</div>
-        <div class="dia">Tu</div>
-        <div class="dia">We</div>
-        <div class="dia">Th</div>
-        <div class="dia">Fr</div>
-        <div class="dia">Sa</div>
+      <div class="calendar">
+        <div class="calendar__week calendar__header">
+          <div class="calendar__day">Su</div>
+          <div class="calendar__day">Mo</div>
+          <div class="calendar__day">Tu</div>
+          <div class="calendar__day">We</div>
+          <div class="calendar__day">Th</div>
+          <div class="calendar__day">Fr</div>
+          <div class="calendar__day">Sa</div>
+        </div>
         {/* El wrapper del calendario */}
         {this.calendar.map((row)=>
-        <div class = "semana">
-          {row.map((cell)=>
+        <div class="calendar__week">
+          {row.map( cell =>
+            <div class="calendar__day">
+             <div class="calendar__number">
+              {cell} 
+             </div> 
             
-            <div class="dia">{cell}</div>
+            </div>
             )}
             </div>
             )}

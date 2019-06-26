@@ -10,7 +10,16 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface NovaCalendar {
+    'activeMonth': number;
+    'activeYear': number;
+    'calendar': any[];
     'content': any;
+    'defaultValue': any;
+    'disabledDate': boolean;
+    'fullscreen': boolean;
+    'header': any;
+    'locale': object;
+    'mode': string;
     'name': string;
   }
   interface NovaCascader {
@@ -120,7 +129,16 @@ export namespace Components {
 
   declare namespace LocalJSX {
     interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
+      'activeMonth'?: number;
+      'activeYear'?: number;
+      'calendar'?: any[];
       'content'?: any;
+      'defaultValue'?: any;
+      'disabledDate'?: boolean;
+      'fullscreen'?: boolean;
+      'header'?: any;
+      'locale'?: object;
+      'mode'?: string;
       'name'?: string;
     }
     interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
