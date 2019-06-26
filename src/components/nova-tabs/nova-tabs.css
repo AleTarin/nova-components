@@ -81,11 +81,7 @@ nova-icon {
   border-right-color: #3381ff;
 }
 
-<<<<<<< HEAD
 .tabcontent_container.horizontal{
-=======
-#tabcontent_container .horizontal {
->>>>>>> 9aef5c64c25a9dbbdfba3cf22159e39cc877b903
   width: 100%;
   padding: 24px 12px;
   padding-right: 40%;
@@ -103,28 +99,19 @@ nova-icon {
 
 .tabcontent_container.horizontal.active {
   display: inline-block;
-<<<<<<< HEAD
-=======
   animation-name: slidein;
   animation-duration: 0.3s;
->>>>>>> 9aef5c64c25a9dbbdfba3cf22159e39cc877b903
 }
 
 .tabcontent_container.vertical.active {
   display: block;
 }
 
-<<<<<<< HEAD
  
 .tabcontent_container {
   
     -webkit-animation-duration: 0.3s;
     -webkit-animation-name: slidein;
-=======
-#tabcontent_container {
-  transition: 2s;
-  -webkit-animation-name: slidein;
->>>>>>> 9aef5c64c25a9dbbdfba3cf22159e39cc877b903
 
   -moz-animation-duration: 0.3s;
   -moz-animation-name: slidein;
