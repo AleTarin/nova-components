@@ -1,4 +1,4 @@
-import { Component, Prop,h,Element,State, Method} from "@stencil/core";
+import {Component, Prop,h, Element, State, Method} from "@stencil/core";
 
 /**
  * JSdocs
@@ -54,13 +54,13 @@ export class NovaTabs {
   /**
    * closeTab
    * @description Public API method to close a selected tab
-   * @param index index to identify which tab was clicked
+   * @param keyIndex index to identify which tab was clicked
    * @async
    */
   @Method()
-  async closeTab(index: number){
-    this.datajson.items.splice(index, 1);
-    this.onEditCallback && this.onEditCallback(index, 'close');
+  async closeTab(keyIndex: number){
+    this.datajson.items.splice(keyIndex, 1);
+    this.onEditCallback && this.onEditCallback(keyIndex, 'close');
     this.updater = !this.updater
   }
 
@@ -104,7 +104,7 @@ export class NovaTabs {
   }
  
   componentDidUpdate(){
-    //Properties assignments from json configuration
+    //Properties assignments from configure data
     this.tabType = this.confjson.tabType;
     if (this.tabType === "card"){
       this.tabPosition = "horizontal";
