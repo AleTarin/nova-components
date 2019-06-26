@@ -15,12 +15,50 @@ export class NovaCalendar {
   @Prop() fullscreen:boolean;
   @Prop() locale:object;
   @Prop() mode:string="month";
+  @Prop() activeMonth = Number(moment().format('M'));
+  @Prop() activeYear = Number(moment().format('YYYY'));
+  @Prop() calendar : any[] = [];
 
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: any = moment().format('LLLL');
 
+
+  getFirstWeekdayOfMonth(){
+    var cDate = Number(moment().startOf('month').format('d'));
+    return cDate;
+  }
+
+  fillCalendar(){
+    var day = 1;
+    var arr = [];
+    for(var i = 0; i < 6; i++){
+      for(var j = 0; j < 7; j++){
+        if (i === 0 && j < this.getFirstWeekdayOfMonth()){
+          arr.push(99);
+        }
+        else if (day > moment().daysInMonth()){
+          if(j<7){
+            arr.push(99);
+          }
+          else{
+            break;
+          }
+        }
+        else {
+          arr.push(day); 
+          day++;
+        }
+      }
+      this.calendar.push(arr);
+      arr=[];
+    }
+  }
+
+  componentWillLoad(){
+    this.fillCalendar();
+  }
   render() {
-    console.log(this.content, this.now)
+    console.log(this.calendar);
     return [
       <slot>
         {/* Aqui van los custom headers */}
@@ -73,51 +111,14 @@ export class NovaCalendar {
         <div class="dia">Fr</div>
         <div class="dia">Sa</div>
         {/* El wrapper del calendario */}
-        <div class="semana">
-          <div class="dia">Ha</div>
-          <div class="dia">Ha</div>
-          <div class="dia">Ha</div>
-          <div class="dia">Ha</div>
-          <div class="dia">Ha</div>
-          <div class="dia">Ha</div>
-          <div class="dia">Ha</div>
-        </div>
-        <div class="semana">
-          <div class="dia">He</div>
-          <div class="dia">He</div>
-          <div class="dia">He</div>
-          <div class="dia">He</div>
-          <div class="dia">He</div>
-          <div class="dia">He</div>
-          <div class="dia">He</div>
-        </div>
-        <div class="semana">
-          <div class="dia">Hi</div>
-          <div class="dia">Hi</div>
-          <div class="dia">Hi</div>
-          <div class="dia">Hi</div>
-          <div class="dia">Hi</div>
-          <div class="dia">Hi</div>
-          <div class="dia">Hi</div>
-        </div>
-        <div class="semana">
-          <div class="dia">Ho</div>
-          <div class="dia">Ho</div>
-          <div class="dia">Ho</div>
-          <div class="dia">Ho</div>
-          <div class="dia">Ho</div>
-          <div class="dia">Ho</div>
-          <div class="dia">Ho</div>
-        </div>
-        <div class="semana">
-          <div class="dia">Hu</div>
-          <div class="dia">Hu</div>
-          <div class="dia">Hu</div>
-          <div class="dia">Hu</div>
-          <div class="dia">Hu</div>
-          <div class="dia">Hu</div>
-          <div class="dia">Hu</div>
-        </div>
+        {this.calendar.map((row)=>
+        <div class = "semana">
+          {row.map((cell)=>
+            
+            <div class="dia">{cell}</div>
+            )}
+            </div>
+            )}
       </div>
     ]
   }
