@@ -19,16 +19,29 @@ export class NovaCalendar {
   @Prop() activeYear = Number(moment().format('YYYY'));
   @Prop() calendar : any[] = [];
 
+  @Prop() card: boolean = true;
+
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: any = moment();
 
   @Element() public host: HTMLElement;
 
   nowPrevMonth(){
-    this.now = moment().subtract(1, 'months')
+    this.now = moment(this.now).subtract(1, 'months')
+    this.fillCalendar();
   }
   nowNextMonth(){
-    this.now = moment().add(1, 'months')
+    this.now = moment(this.now).add(1, 'months')
+    this.fillCalendar();
+  }
+
+  nowSetYear(event){
+    this.now = moment(this.now).year(event.target.value);
+    this.fillCalendar();
+  }
+  nowSetMonth(event){
+    this.now = moment(this.now).month(event.target.value);
+    this.fillCalendar();
   }
 
   cellContent(cell){
@@ -47,6 +60,10 @@ export class NovaCalendar {
   }
 
   fillCalendar(){
+    
+    console.log("Date: " + this.now.format("YYYY MM DD"))
+
+    this.calendar = [];
     var day = 1;
     var firstDayOfMonth = this.now.startOf('month').format('d')
     var lastDayOfPrevMonth = Number(moment(this.now).subtract(1, 'M').endOf("month").format('D'));
@@ -76,6 +93,7 @@ export class NovaCalendar {
       this.calendar.push(arr);
       arr=[];
     }
+    
   }
 
   // Function that changes the HTML Class to those days that are not in the selected month
@@ -107,55 +125,54 @@ export class NovaCalendar {
   }
 
   componentWillLoad(){
-    this.calendar = []
     this.fillCalendar()
     this.shadowDaysNotAvailable()
   }
 
   render() {
     return [
-      <slot>
-        {/* Aqui van los custom headers */}
-      </slot>,
-      
-      <div class="calendar__controls">
-        {/* Barra que va arriba del calendario */}
-        {/* De los años */}
-        <select>
-          <option>2009</option>
-          <option>2010</option>
-          <option>2011</option>
-          <option>2012</option>
-          <option>2013</option>
-          <option>2014</option>
-          <option>2015</option>
-          <option>2016</option>
-          <option>2017</option>
-          <option>2018</option>
-          <option>2019</option>
-          <option>2020</option>
-        </select>
-        {/* De los meses */}
-        <select>
-          <option>January</option>
-          <option>February</option>
-          <option>March</option>
-          <option>April</option>
-          <option>May</option>
-          <option>June</option>
-          <option>July</option>
-          <option>August</option>
-          <option>September</option>
-          <option>October</option>
-          <option>November</option>
-          <option>December</option>
-        </select>
+      <section class={this.card ? 'calendar--card' : ''}>
+        <slot>
+          {/* Aqui van los custom headers */}
+        </slot>
+        <div class="calendar__controls">
+          {/* Barra que va arriba del calendario */}
+          {/* De los años */}
+          <select onChange={this.nowSetYear.bind(this)}>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+          </select>
+          {/* De los meses */}
+          <select onChange={this.nowSetMonth.bind(this)}>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+          </select>
 
-        {/* Para cambiar meses/años */}
-        <button class="calendar__controls__months">M</button>
-        <button class="calendar__controls__years">Y</button>
-      </div>,
-      <div class="calendar">
+          {/* Para cambiar meses/años */}
+          <button onClick={() => this.nowPrevMonth()} class="calendar__controls__months">M</button>
+          <button onClick={() => this.nowNextMonth()} class="calendar__controls__years">Y</button>
+        </div>
+        <div class="calendar">
         <div class="calendar__week calendar__header">
           <div class="calendar__day">Su</div>
           <div class="calendar__day">Mo</div>
@@ -179,6 +196,7 @@ export class NovaCalendar {
             </div>
             )}
       </div>
+      </section>
     ]
   }
 }
