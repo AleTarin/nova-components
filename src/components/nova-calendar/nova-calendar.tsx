@@ -19,6 +19,8 @@ export class NovaCalendar {
   @Prop() activeYear = Number(moment().format('YYYY'));
   @Prop() calendar : any[] = [];
 
+  @Prop() card: boolean = true;
+
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: any = moment();
 
@@ -85,48 +87,48 @@ export class NovaCalendar {
   }
   render() {
     return [
-      <slot>
-        {/* Aqui van los custom headers */}
-      </slot>,
-      
-      <div class="calendar__controls">
-        {/* Barra que va arriba del calendario */}
-        {/* De los años */}
-        <select>
-          <option>2009</option>
-          <option>2010</option>
-          <option>2011</option>
-          <option>2012</option>
-          <option>2013</option>
-          <option>2014</option>
-          <option>2015</option>
-          <option>2016</option>
-          <option>2017</option>
-          <option>2018</option>
-          <option>2019</option>
-          <option>2020</option>
-        </select>
-        {/* De los meses */}
-        <select>
-          <option>January</option>
-          <option>February</option>
-          <option>March</option>
-          <option>April</option>
-          <option>May</option>
-          <option>June</option>
-          <option>July</option>
-          <option>August</option>
-          <option>September</option>
-          <option>October</option>
-          <option>November</option>
-          <option>December</option>
-        </select>
+      <section class={this.card ? 'calendar--card' : ''}>
+        <slot>
+          {/* Aqui van los custom headers */}
+        </slot>
+        <div class="calendar__controls">
+          {/* Barra que va arriba del calendario */}
+          {/* De los años */}
+          <select>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+            <option>2019</option>
+            <option>2020</option>
+          </select>
+          {/* De los meses */}
+          <select>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+          </select>
 
-        {/* Para cambiar meses/años */}
-        <button class="calendar__controls__months">M</button>
-        <button class="calendar__controls__years">Y</button>
-      </div>,
-      <div class="calendar">
+          {/* Para cambiar meses/años */}
+          <button class="calendar__controls__months">M</button>
+          <button class="calendar__controls__years">Y</button>
+        </div>
+        <div class="calendar">
         <div class="calendar__week calendar__header">
           <div class="calendar__day">Su</div>
           <div class="calendar__day">Mo</div>
@@ -150,6 +152,7 @@ export class NovaCalendar {
             </div>
             )}
       </div>
+      </section>
     ]
   }
 }

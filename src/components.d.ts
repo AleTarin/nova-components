@@ -13,6 +13,7 @@ export namespace Components {
     'activeMonth': number;
     'activeYear': number;
     'calendar': any[];
+    'card': boolean;
     'content': any;
     'defaultValue': any;
     'disabledDate': boolean;
@@ -132,6 +133,7 @@ export namespace Components {
       'activeMonth'?: number;
       'activeYear'?: number;
       'calendar'?: any[];
+      'card'?: boolean;
       'content'?: any;
       'defaultValue'?: any;
       'disabledDate'?: boolean;
