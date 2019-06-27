@@ -26,10 +26,21 @@ export class NovaCalendar {
 
 
   nowPrevMonth(){
-    this.now = moment().subtract(1, 'months')
+    this.now = moment(this.now).subtract(1, 'months')
+    this.fillCalendar();
   }
   nowNextMonth(){
-    this.now = moment().add(1, 'months')
+    this.now = moment(this.now).add(1, 'months')
+    this.fillCalendar();
+  }
+
+  nowSetYear(event){
+    this.now = moment(this.now).year(event.target.value);
+    this.fillCalendar();
+  }
+  nowSetMonth(event){
+    this.now = moment(this.now).month(event.target.value);
+    this.fillCalendar();
   }
   
 
@@ -48,11 +59,13 @@ export class NovaCalendar {
     return x;
   }
   fillCalendar(){
-    console.log(this.now)
+    
+    console.log("Date: " + this.now.format("YYYY MM DD"))
+
+    this.calendar = [];
     var day = 1;
     var firstDayOfMonth = this.now.startOf('month').format('d')
     var lastDayOfPrevMonth = Number(moment(this.now).subtract(1, 'M').endOf("month").format('D'));
-    console.log(lastDayOfPrevMonth);
     var dayPrevMonth = lastDayOfPrevMonth - firstDayOfMonth +1;
     var dayNextMonth = 1;
     var arr = [];
@@ -79,12 +92,14 @@ export class NovaCalendar {
       this.calendar.push(arr);
       arr=[];
     }
+    
   }
 
+
   componentWillLoad(){
-    this.calendar = []
     this.fillCalendar();
   }
+
   render() {
     return [
       <section class={this.card ? 'calendar--card' : ''}>
@@ -94,7 +109,7 @@ export class NovaCalendar {
         <div class="calendar__controls">
           {/* Barra que va arriba del calendario */}
           {/* De los años */}
-          <select>
+          <select onChange={this.nowSetYear.bind(this)}>
             <option>2009</option>
             <option>2010</option>
             <option>2011</option>
@@ -109,7 +124,7 @@ export class NovaCalendar {
             <option>2020</option>
           </select>
           {/* De los meses */}
-          <select>
+          <select onChange={this.nowSetMonth.bind(this)}>
             <option>January</option>
             <option>February</option>
             <option>March</option>
@@ -125,8 +140,8 @@ export class NovaCalendar {
           </select>
 
           {/* Para cambiar meses/años */}
-          <button class="calendar__controls__months">M</button>
-          <button class="calendar__controls__years">Y</button>
+          <button onClick={() => this.nowPrevMonth()} class="calendar__controls__months">M</button>
+          <button onClick={() => this.nowNextMonth()} class="calendar__controls__years">Y</button>
         </div>
         <div class="calendar">
         <div class="calendar__week calendar__header">
