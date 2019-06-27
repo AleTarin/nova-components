@@ -35,7 +35,6 @@
                 return response.json();
               })
               .then( json => {
-                console.log(instance)
                 // Pass the prop
                 instance.content = json;
               })
@@ -56,7 +55,6 @@
                 return response.json();
               })
               .then( json => {
-                console.log(instance)
                 // Pass the prop
                 instance.content = json;
                 instance.addCustomTrigger(document.querySelector('p'))
