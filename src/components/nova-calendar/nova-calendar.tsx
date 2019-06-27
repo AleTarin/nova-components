@@ -19,7 +19,7 @@ export class NovaCalendar {
   @Prop() activeYear = Number(moment().format('YYYY'));
   @Prop() calendar : any[] = [];
 
-  @Prop() card: boolean = true;
+  @Prop() card: boolean = false;
 
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: any = moment();
@@ -103,7 +103,7 @@ export class NovaCalendar {
     var listOfDays = this.host.shadowRoot.querySelectorAll('div.calendar__week')
     var firstWeek = listOfDays[1]
     var lastWeek = listOfDays[listOfDays.length - 1]
-
+    
     // Loop through the week to get each day
     firstWeek.childNodes.forEach(day => {
       // If the day is bigger than the start of the month, it is because it belongs to the earlier month
@@ -126,6 +126,9 @@ export class NovaCalendar {
 
   componentWillLoad(){
     this.fillCalendar()
+  }
+
+  componentDidRender() {
     this.shadowDaysNotAvailable()
   }
 
