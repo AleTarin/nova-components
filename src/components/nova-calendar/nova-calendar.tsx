@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, Prop, State, Element, h } from '@stencil/core';
 import moment from 'moment';
 
 @Component({
@@ -22,6 +22,7 @@ export class NovaCalendar {
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: any = moment();
 
+  @Element() public host: HTMLElement;
 
   nowPrevMonth(){
     this.now = moment().subtract(1, 'months')
@@ -29,7 +30,6 @@ export class NovaCalendar {
   nowNextMonth(){
     this.now = moment().add(1, 'months')
   }
-  
 
   cellContent(cell){
     var x;
@@ -45,12 +45,11 @@ export class NovaCalendar {
     }
     return x;
   }
+
   fillCalendar(){
-    console.log(this.now)
     var day = 1;
     var firstDayOfMonth = this.now.startOf('month').format('d')
     var lastDayOfPrevMonth = Number(moment(this.now).subtract(1, 'M').endOf("month").format('D'));
-    console.log(lastDayOfPrevMonth);
     var dayPrevMonth = lastDayOfPrevMonth - firstDayOfMonth +1;
     var dayNextMonth = 1;
     var arr = [];
@@ -79,10 +78,40 @@ export class NovaCalendar {
     }
   }
 
+  // Function that changes the HTML Class to those days that are not in the selected month
+  shadowDaysNotAvailable() {
+    var firstDayOfMonth = Number(this.now.startOf('month').format('d'))
+    var lastDayOfMonth = Number(this.now.endOf('month').format('DD'))
+    var listOfDays = this.host.shadowRoot.querySelectorAll('div.calendar__week')
+    var firstWeek = listOfDays[1]
+    var lastWeek = listOfDays[listOfDays.length - 1]
+
+    // Loop through the week to get each day
+    firstWeek.childNodes.forEach(day => {
+      // If the day is bigger than the start of the month, it is because it belongs to the earlier month
+      if (Number(day.textContent) > firstDayOfMonth) {
+        var inactiveDay = day.childNodes[0].firstChild
+        inactiveDay.parentElement.className = 'calendar__number__inactive'   
+      }
+    })
+
+    // Loop through the week to get each day
+    lastWeek.childNodes.forEach(day => {
+      // If the day is smaller than the end of the month, it belongs to the next month
+      if (Number(day.textContent) < lastDayOfMonth) {
+        var inactiveDay = day.childNodes[0].firstChild
+        inactiveDay.parentElement.className = 'calendar__number__inactive'
+      }
+    })
+    
+  }
+
   componentWillLoad(){
     this.calendar = []
-    this.fillCalendar();
+    this.fillCalendar()
+    this.shadowDaysNotAvailable()
   }
+
   render() {
     return [
       <slot>
@@ -142,7 +171,7 @@ export class NovaCalendar {
           {row.map( cell =>
             <div class="calendar__day">
              <div class="calendar__number">
-             {this.cellContent(cell)}
+              {this.cellContent(cell)}
              </div> 
             
             </div>

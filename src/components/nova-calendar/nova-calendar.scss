@@ -25,6 +25,15 @@
         justify-content: flex-end;
     }
 
+    .calendar__number__inactive {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: flex-end;
+        background-color: lightgrey;
+        opacity: 80%;
+    }
+
     &:hover {
         background: rgba(#1890ff, .2);
     }
