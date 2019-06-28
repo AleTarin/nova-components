@@ -172,8 +172,8 @@ export class NovaCalendar {
           </select>
 
           {/* Para cambiar meses/años */}
-          <button onClick={() => this.nowPrevMonth()} class="calendar__controls__months">M</button>
-          <button onClick={() => this.nowNextMonth()} class="calendar__controls__years">Y</button>
+          <button onClick={() => this.nowPrevMonth()} class="calendar__controls__months">Month</button>
+          <button onClick={() => this.nowNextMonth()} class="calendar__controls__years">Year</button>
         </div>
         <div class="calendar">
         <div class="calendar__week calendar__header">
@@ -193,11 +193,10 @@ export class NovaCalendar {
              <div class="calendar__number">
               {this.cellContent(cell)}
              </div> 
-            
             </div>
-            )}
-            </div>
-            )}
+          )}
+        </div>
+        )}
       </div>
       </section>
     ]
