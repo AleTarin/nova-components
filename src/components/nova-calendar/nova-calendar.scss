@@ -16,6 +16,11 @@
     font-size: 16px;
     width: 100%;
     display: flex;
+
+    &.inactive {
+        opacity: .25;
+        cursor: pointer;
+    }
     
     .calendar__number {
         display: flex;
@@ -24,7 +29,7 @@
         justify-content: flex-end;
     }
 
-    .calendar__number__inactive {
+    .calendar__number--inactive {
         display: flex;
         width: 100%;
         height: 1rem;

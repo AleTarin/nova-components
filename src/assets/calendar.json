@@ -2,7 +2,6 @@
   "data": {
     "items": {
       "2019": {
-        "months": {
           "september": {
             "event": "GENERAL EVENT FOR THE MONTH VIEW",
             "10": [
@@ -16,10 +15,8 @@
               { "type": "error"  , "content": "This is error   event." }
             ]
           }
-        }
       },
       "2000": {
-        "months": {
           "october": {
             "event": "GENERAL EVENT FOR THE MONTH VIEW",
             "18": [
@@ -39,7 +36,7 @@
               { "type": "success", "content": "It's christmas." }
             ]
           }
-        }
+        
       }
     }
   },
