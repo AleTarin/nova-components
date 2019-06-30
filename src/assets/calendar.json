@@ -2,38 +2,38 @@
   "data": {
     "items": {
       "2019": {
-          "september": {
+          "9": {
             "event": "GENERAL EVENT FOR THE MONTH VIEW",
             "10": [
-              { "type": "warning", "content": "This is warning event." },
-              { "type": "success", "content": "This is success event." },
-              { "type": "error"  , "content": "This is error   event." }
+              { "type": "exclamation-circle" , "color": "yellow",   "content": "This is warning event." },
+              { "type": "algolia"            , "color": "green" ,   "content": "This is success event." },
+              { "type": "angle-double-right" , "color": "red"   ,   "content": "This is error   event." }
             ],
             "22": [
-              { "type": "warning", "content": "This is warning event." },
-              { "type": "success", "content": "This is success event." },
-              { "type": "error"  , "content": "This is error   event." }
+              { "type": "exclamation"        , "color": "yellow"  , "content": "This is warning event." },
+              { "type": "algolia"          , "color": "green"   , "content": "This is success event." },
+              { "type": "exclamation-circle" ,  "color": "red"    , "content": "This is error   event." }
             ]
           }
       },
       "2000": {
-          "october": {
+          "10": {
             "event": "GENERAL EVENT FOR THE MONTH VIEW",
             "18": [
-              { "type": "success", "content": "This is success event." }
+              { "type": "exclamation-circle", "color": "green" , "content": "This is success event." }
             ],
             "31": [
-              { "type": "error"  , "content": "This is halloween." }
+              { "type": "exclamation" , "color": "purple" , "content": "This is halloween." }
             ]
           },
-          "december": {
+          "12": {
             "event": "GENERAL EVENT FOR THE MONTH VIEW",
             "12": [
-              { "type": "success", "content": "This is success event." }
+              { "type": "exclamation", "color": "black", "content": "This is success event." }
             ],
             "31": [
-              { "type": "warning", "content": "Buy a gift." },
-              { "type": "success", "content": "It's christmas." }
+              { "type": "exclamation", "color": "green", "content": "Buy a gift." },
+              { "type": "exclamation", "color": "red", "content": "It's christmas." }
             ]
           }
         

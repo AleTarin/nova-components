@@ -20,8 +20,8 @@ export namespace Components {
     'fullscreen': boolean;
     'header': any;
     'locale': object;
-    'mode': string;
     'name': string;
+    'type': string;
   }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
@@ -45,6 +45,7 @@ export namespace Components {
     'size': string;
   }
   interface NovaIcon {
+    'color'?: string;
     /**
     * Props
     */
@@ -140,14 +141,15 @@ export namespace Components {
       'fullscreen'?: boolean;
       'header'?: any;
       'locale'?: object;
-      'mode'?: string;
       'name'?: string;
+      'type'?: string;
     }
     interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
       'content'?: cascader;
       'size'?: string;
     }
     interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
+      'color'?: string;
       /**
       * Props
       */
