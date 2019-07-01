@@ -1,7 +1,7 @@
 /* CSS Guide for popover
   https://www.w3schools.com/Css/css_tooltip.asp */
 
-/* Popover text */
+/* Generic popover text */
 .popover__text {
   visibility: hidden;
   width: relative;
@@ -18,8 +18,8 @@
   box-shadow: 0 2px 8px $shadow;
 
   // Text abajo - centered
-  top: 100%;
-  left: 0%;
+  // top: 100%;
+  // left: 0%;
 
   // Text abajo - right
   // top: 100%;
@@ -48,6 +48,247 @@
   // Nada, es default
 }
 
+.popover__text__topleft {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text arriba - left
+  bottom: 100%;
+  left: 0;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__top {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text arriba - centered
+  bottom: 100%;
+  left: 0%;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__topright {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text arriba - right
+  bottom: 100%;
+  right: 0;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__botleft {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text abajo - centered
+  top: 100%;
+  left: 0;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__bot {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text abajo - centered
+  top: 100%;
+  left: 0%;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__botright {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text abajo - centered
+  top: 100%;
+  right: 0;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__lefttop {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text izquierda
+  right: 100%;
+  top: 0;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__left {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text izquierda
+  right: 100%;
+  top: -210%;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__leftbot {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text izquierda
+  right: 100%;
+  top: -420%;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__righttop {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text derecha
+  left: 100%;
+  top: 0;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__right {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text derecha
+  left: 100%;
+  top: -210%;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+
+.popover__text__rightbot {
+  visibility: hidden;
+  width: relative;
+  background-color: $background;
+  color: $font;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100%;
+
+  // Text derecha
+  left: 100%;
+  top: -420%;
+
+  -webkit-box-shadow: 0 2px 8px $shadow;
+  box-shadow: 0 2px 8px $shadow;
+}
+/*
+// Generic after que maneja la flechita
 .popover__text::after {
   content: " ";
   position: absolute;
@@ -58,7 +299,7 @@
   // margin-left: -5px;
   // top: 100%;
   // left: 50%;
-  // border-color: black transparent transparent transparent;
+  // border-color: $background transparent transparent transparent;
 
   // Flechita para arriba
   margin-left: -5px;
@@ -70,19 +311,175 @@
   // margin-top: -5px;
   // top: 50%;
   // right: 100%;
-  // border-color: transparent black transparent transparent;
+  // border-color: transparent $background transparent transparent;
 
   // Flechita para la derecha
   // margin-top: -5px;
   // top: 50%;
   // left: 100%;
-  // border-color: transparent transparent transparent black;
+  // border-color: transparent transparent transparent $background;
+}*/
+
+.popover__text__topleft::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para abajo
+  margin-left: -5px;
+  top: 100%;
+  left: 20%;
+  border-color: $background transparent transparent transparent;
+}
+
+.popover__text__top::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para abajo
+  margin-left: -5px;
+  top: 100%;
+  left: 50%;
+  border-color: $background transparent transparent transparent;
+}
+
+.popover__text__topright::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para abajo
+  margin-left: -5px;
+  top: 100%;
+  left: 80%;
+  border-color: $background transparent transparent transparent;
+}
+
+.popover__text__botleft::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para arriba
+  margin-left: -5px;
+  bottom: 100%;
+  left: 20%;
+  border-color: transparent transparent $background transparent;
+}
+
+.popover__text__bot::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para arriba
+  margin-left: -5px;
+  bottom: 100%;
+  left: 50%;
+  border-color: transparent transparent $background transparent;
+}
+
+.popover__text__botright::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para arriba
+  margin-left: -5px;
+  bottom: 100%;
+  left: 80%;
+  border-color: transparent transparent $background transparent;
+}
+
+.popover__text__lefttop::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para la derecha
+  margin-top: -5px;
+  top: 10%;
+  left: 100%;
+  border-color: transparent transparent transparent $background;
+}
+
+.popover__text__left::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para la derecha
+  margin-top: -5px;
+  top: 50%;
+  left: 100%;
+  border-color: transparent transparent transparent $background;
+}
+
+.popover__text__leftbot::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para la derecha
+  margin-top: -5px;
+  top: 90%;
+  left: 100%;
+  border-color: transparent transparent transparent $background;
+}
+
+.popover__text__righttop::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para la izquierda
+  margin-top: -5px;
+  top: 10%;
+  right: 100%;
+  border-color: transparent $background transparent transparent;
+}
+
+.popover__text__right::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para la izquierda
+  margin-top: -5px;
+  top: 50%;
+  right: 100%;
+  border-color: transparent $background transparent transparent;
+}
+
+.popover__text__rightbot::after {
+  content: " ";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+
+  // Flechita para la izquierda
+  margin-top: -5px;
+  top: 90%;
+  right: 100%;
+  border-color: transparent $background transparent transparent;
 }
 
 .popover {
   position: relative;
   display: inline-block;
-  margin-left: 50%;
+  // margin-left: 50%;
   padding: 5px;
   /* Show the popover text */
   &:hover > .popover__text--hover {

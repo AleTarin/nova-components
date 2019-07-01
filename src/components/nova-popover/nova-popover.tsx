@@ -10,6 +10,10 @@ import { Component, Prop, State, h } from "@stencil/core";
 })
 export class Popover {
   @Prop() trigger: "hover" | "focus" | "click" = "click";
+  @Prop() location: "topleft" | "top" | "topright" |
+                    "botleft" | "bot" | "botright" |
+                    "lefttop" | "left" | "leftbot" |
+                    "righttop" | "right" | "rightbot";
 
   @State() popoverActive = false;
 
@@ -23,7 +27,7 @@ export class Popover {
           <slot name="trigger" />
         </a>
         <div
-          class={`popover__text popover__text--${this.trigger} ${
+          class={`popover__text popover__text__${this.location} popover__text--${this.trigger} ${
             this.popoverActive ? "popover__text--active" : ""
           }`}
         >
