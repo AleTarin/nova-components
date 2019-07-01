@@ -40,6 +40,10 @@ export namespace Components {
     'size'?: string;
   }
   interface NovaPopover {
+    'location': "topleft" | "top" | "topright" |
+    "botleft" | "bot" | "botright" |
+    "lefttop" | "left" | "leftbot" |
+    "righttop" | "right" | "rightbot";
     'trigger': "hover" | "focus" | "click";
   }
   interface NovaTabs {
@@ -50,101 +54,107 @@ export namespace Components {
     /**
     * closeTab
     */
-    'closeTab': (index: number) => Promise<void>;
+    'closeTab': (keyIndex: number) => Promise<void>;
     'confjson': any;
     'datajson': {
-      items: any[];};
-      'newTabData': { "title": string; "icon": string; "enable": boolean; "closable": boolean; "content": string; };
-      /**
-      * onEdit
-      */
-      'onEdit': (callback: Function) => Promise<void>;
-      /**
-      * onTabClick
-      */
-      'onTabClick': (callback: Function) => Promise<void>;
-      /**
-      * openTab
-      */
-      'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
-      'updater': boolean;
-    }
+      items: any[];
+    };
+    'newTabData': { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
+    /**
+    * onEdit
+    */
+    'onEdit': (callback: Function) => Promise<void>;
+    /**
+    * onTabClick
+    */
+    'onTabClick': (callback: Function) => Promise<void>;
+    /**
+    * openTab
+    */
+    'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
+    'updater': boolean;
+  }
+}
+
+declare global {
+
+
+  interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
+  var HTMLNovaCascaderElement: {
+    prototype: HTMLNovaCascaderElement;
+    new (): HTMLNovaCascaderElement;
+  };
+
+  interface HTMLNovaIconElement extends Components.NovaIcon, HTMLStencilElement {}
+  var HTMLNovaIconElement: {
+    prototype: HTMLNovaIconElement;
+    new (): HTMLNovaIconElement;
+  };
+
+  interface HTMLNovaPopoverElement extends Components.NovaPopover, HTMLStencilElement {}
+  var HTMLNovaPopoverElement: {
+    prototype: HTMLNovaPopoverElement;
+    new (): HTMLNovaPopoverElement;
+  };
+
+  interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
+  var HTMLNovaTabsElement: {
+    prototype: HTMLNovaTabsElement;
+    new (): HTMLNovaTabsElement;
+  };
+  interface HTMLElementTagNameMap {
+    'nova-cascader': HTMLNovaCascaderElement;
+    'nova-icon': HTMLNovaIconElement;
+    'nova-popover': HTMLNovaPopoverElement;
+    'nova-tabs': HTMLNovaTabsElement;
+  }
+}
+
+declare namespace LocalJSX {
+  interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
+    'content'?: cascader;
+    'size'?: string;
+  }
+  interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
+    /**
+    * Props
+    */
+    'name'?: string;
+    'options'?: string;
+    'pre'?: string;
+    'size'?: string;
+  }
+  interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
+    'location'?: "topleft" | "top" | "topright" |
+    "botleft" | "bot" | "botright" |
+    "lefttop" | "left" | "leftbot" |
+    "righttop" | "right" | "rightbot";
+    'trigger'?: "hover" | "focus" | "click";
+  }
+  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
+    'confjson'?: any;
+    'datajson'?: {
+      items: any[];
+    };
+    'newTabData'?: { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
+    'updater'?: boolean;
   }
 
-  declare global {
-
-
-    interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
-    var HTMLNovaCascaderElement: {
-      prototype: HTMLNovaCascaderElement;
-      new (): HTMLNovaCascaderElement;
-    };
-
-    interface HTMLNovaIconElement extends Components.NovaIcon, HTMLStencilElement {}
-    var HTMLNovaIconElement: {
-      prototype: HTMLNovaIconElement;
-      new (): HTMLNovaIconElement;
-    };
-
-    interface HTMLNovaPopoverElement extends Components.NovaPopover, HTMLStencilElement {}
-    var HTMLNovaPopoverElement: {
-      prototype: HTMLNovaPopoverElement;
-      new (): HTMLNovaPopoverElement;
-    };
-
-    interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
-    var HTMLNovaTabsElement: {
-      prototype: HTMLNovaTabsElement;
-      new (): HTMLNovaTabsElement;
-    };
-    interface HTMLElementTagNameMap {
-      'nova-cascader': HTMLNovaCascaderElement;
-      'nova-icon': HTMLNovaIconElement;
-      'nova-popover': HTMLNovaPopoverElement;
-      'nova-tabs': HTMLNovaTabsElement;
-    }
+  interface IntrinsicElements {
+    'nova-cascader': NovaCascader;
+    'nova-icon': NovaIcon;
+    'nova-popover': NovaPopover;
+    'nova-tabs': NovaTabs;
   }
+}
 
-  declare namespace LocalJSX {
-    interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
-      'content'?: cascader;
-      'size'?: string;
-    }
-    interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
-      /**
-      * Props
-      */
-      'name'?: string;
-      'options'?: string;
-      'pre'?: string;
-      'size'?: string;
-    }
-    interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
-      'trigger'?: "hover" | "focus" | "click";
-    }
-    interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-      'confjson'?: any;
-      'datajson'?: {
-        items: any[];};
-        'newTabData'?: { "title": string; "icon": string; "enable": boolean; "closable": boolean; "content": string; };
-        'updater'?: boolean;
-      }
-
-      interface IntrinsicElements {
-        'nova-cascader': NovaCascader;
-        'nova-icon': NovaIcon;
-        'nova-popover': NovaPopover;
-        'nova-tabs': NovaTabs;
-      }
-    }
-
-    export { LocalJSX as JSX };
+export { LocalJSX as JSX };
 
 
-    declare module "@stencil/core" {
-      export namespace JSX {
-        interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
-      }
-    }
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
 
 
