@@ -14,13 +14,13 @@
 <body>
   <nova-cascader></nova-cascader>
   <nova-tabs></nova-tabs>
-  <nova-popover trigger="click">
+  <nova-popover trigger="click" location="rightbot">
     <button slot="trigger">Click me !</button>
     <p slot="title"> Hi ! </p>
     <p slot="content"> This is a popover</p>
     <p slot="close"> click here to close </p>
   </nova-popover>
-  
+
   <script>
     // When cascader is defined
     customElements.whenDefined("nova-cascader")
@@ -60,7 +60,7 @@
                 return response.json();
               })
               .then( json => {
-                //mandar json como prop                
+                //mandar json como prop
                 instance.datajson = json.data;
                 instance.confjson = json.configuration
                 // public api to add a callback on edit (close or add)
@@ -73,7 +73,7 @@
                 instance.addTab({
                   "title":"New tab",
                   "icon":"plus-square",
-                  "enableTab":true,
+                  "enable":true,
                   "addTab":true,
                   "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
                 })
@@ -81,7 +81,7 @@
                 instance.openTab(0);
                 instance.closeTab(0);
                 */
-                
+
               })
               .catch( err => {
                 // If any error ocurred, pass it to the console

@@ -1,34 +1,36 @@
 @import "./nova-cascader.common.scss";
 
 .cascader__search {
-    input {
-        border: 1px solid #dcdcdc;
-    }
-    nova-icon {
-        color: rgba(0,0,0,0.25);
-    }
+  input {
+    border: 1px solid #dcdcdc;
+  }
+  nova-icon {
+    color: rgba(0, 0, 0, 0.25);
+  }
 }
 
 .cascader__menu {
-    -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    color: #314659;
-    background: #fff;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: #314659;
+  background: #fff;
 }
 .cascader__menu__list {
-    border-right: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
 }
 
 .cascader__menu__item {
-    &:active, &:hover, &:focus {
-        background-color: #fafafa;
-    }
-    
-    nova-icon {
-        color: rgba(0,0,0,0.25);
-    }
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: #fafafa;
+  }
+
+  nova-icon {
+    color: rgba(0, 0, 0, 0.25);
+  }
 }
 
-.cascader__menu__item--disabled{
-    color: rgba(0,0,0,0.25);
+.cascader__menu__item--disabled {
+  color: rgba(0, 0, 0, 0.25);
 }

@@ -40,20 +40,37 @@ export namespace Components {
     'size'?: string;
   }
   interface NovaPopover {
+    'location': "topleft" | "top" | "topright" |
+    "botleft" | "bot" | "botright" |
+    "lefttop" | "left" | "leftbot" |
+    "righttop" | "right" | "rightbot";
     'trigger': "hover" | "focus" | "click";
   }
   interface NovaTabs {
+    /**
+    * addTab
+    */
     'addTab': (tabData: any) => Promise<void>;
-    'closeTab': (index: number) => Promise<void>;
+    /**
+    * closeTab
+    */
+    'closeTab': (keyIndex: number) => Promise<void>;
     'confjson': any;
     'datajson': {
       items: any[];
     };
-    'funcion': string;
-    'newTabData': { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
-    'nombreFuncion': string;
+    'newTabData': { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
+    /**
+    * onEdit
+    */
     'onEdit': (callback: Function) => Promise<void>;
+    /**
+    * onTabClick
+    */
     'onTabClick': (callback: Function) => Promise<void>;
+    /**
+    * openTab
+    */
     'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
     'updater': boolean;
   }
@@ -108,6 +125,10 @@ declare namespace LocalJSX {
     'size'?: string;
   }
   interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
+    'location'?: "topleft" | "top" | "topright" |
+    "botleft" | "bot" | "botright" |
+    "lefttop" | "left" | "leftbot" |
+    "righttop" | "right" | "rightbot";
     'trigger'?: "hover" | "focus" | "click";
   }
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
@@ -115,9 +136,7 @@ declare namespace LocalJSX {
     'datajson'?: {
       items: any[];
     };
-    'funcion'?: string;
-    'newTabData'?: { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
-    'nombreFuncion'?: string;
+    'newTabData'?: { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
     'updater'?: boolean;
   }
 
