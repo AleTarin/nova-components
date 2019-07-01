@@ -1,4 +1,4 @@
-import { Component, Prop, State, Element, h, Watch } from '@stencil/core';
+import { Component, Prop, State, Element, h, Watch, Method } from '@stencil/core';
 import { range } from '../../utils/utils';
 import moment from 'moment';
 
@@ -22,10 +22,9 @@ export class NovaCalendar {
   
   // Props changeable by methods
   @Prop({mutable: true}) value: any = moment(); //moment
-  @Prop({mutable: true}) type: string = "month";
+  @Prop({mutable: true}) type: "month" | "year" = "month";
   @Prop({mutable: true}) card: boolean = false;
-  @Prop({mutable: true}) years: number[];
-
+  @Prop({mutable: true}) validRange: [any, any];
   // Locale - update by @method
 
   // Callbacks
@@ -38,6 +37,7 @@ export class NovaCalendar {
   @State() eventsByYear: {};
   @State() eventsByMonth: {};
 
+  @State() years: number[];
   @State() months: string[];
   @State() days: string[];
 
@@ -45,10 +45,16 @@ export class NovaCalendar {
   @State() activeMonth = Number(moment().format('M'));
   @State() activeYear = Number(moment().format('YYYY'));
   
-
   @Element() public host: HTMLElement;
 
-  nowChangeMonth(month){
+
+  @Method()
+  async setLocale(lang: string, definition: object ){
+    moment.locale(lang, definition);
+  }
+
+  @Method()
+  async nowChangeMonth(month){
     // Check special cases
     if(this.activeMonth === 1 && month === 12){
       this.now = moment(this.now).subtract(1, 'months');
@@ -68,6 +74,7 @@ export class NovaCalendar {
     this.activeYear = Number(this.now.format('Y'));
     this.fillCalendar();
   }
+
   nowNextMonth(){
     this.now = moment(this.now).add(1, 'months')
     this.fillCalendar();
@@ -99,11 +106,9 @@ export class NovaCalendar {
     }
   }
 
-  componentWillLoad(){
-    this.months = moment.monthsShort();
-    this.days = moment.weekdaysShort(true);
-    this.years = range(this.activeYear-10, this.activeYear+10);
-    this.fillCalendar();
+  componentWillLoad() {
+    this.validRange = [this.value.clone().subtract(10, 'years'), this.value.clone().add(10, 'years')];
+    this.setData();
   }
 
   @Watch('content')
@@ -127,6 +132,11 @@ export class NovaCalendar {
     return( this.eventsByMonth && this.eventsByMonth[day]) || [];
   }
 
+  @Method()
+  async setType(type: "month" | "year"){
+    this.type = type;
+  }
+
   getCellClass({month, day}) {
     if (this.activeMonth != month)
       return 'inactive';
@@ -136,6 +146,13 @@ export class NovaCalendar {
         return 'selected';
     }
     return '';
+  }
+
+  setData() {
+    this.months = moment.monthsShort();
+    this.days = moment.weekdaysShort(true);
+    this.years = range(Number(this.validRange[0].format('Y')),Number(this.validRange[1].format('Y')));
+    this.fillCalendar();
   }
 
   render() {
@@ -155,8 +172,8 @@ export class NovaCalendar {
 
           {/* Para cambiar meses/años */}
           <div class="calendar__controls__switch">
-            <button class="calendar__controls__months">Month</button>
-            <button class="calendar__controls__years">Year</button>
+            <button class={`calendar__controls__months ${this.type === "month" ? 'selected' : ''}`} onClick={ _ => this.setType('month')}>Month</button>
+            <button class={`calendar__controls__years  ${this.type === "year"  ? 'selected' : ''}`} onClick={ _ => this.setType('year') }>Year</button>
           </div>
         </div>
         <div class="calendar">

@@ -16,9 +16,12 @@ export namespace Components {
     'content': any;
     'disabledDate': boolean;
     'name': string;
-    'type': string;
+    'nowChangeMonth': (month: any) => Promise<void>;
+    'setLocale': (lang: string, definition: object) => Promise<void>;
+    'setType': (type: "month" | "year") => Promise<void>;
+    'type': "month" | "year";
+    'validRange': [any, any];
     'value': any;
-    'years': number[];
   }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
@@ -134,9 +137,9 @@ export namespace Components {
       'content'?: any;
       'disabledDate'?: boolean;
       'name'?: string;
-      'type'?: string;
+      'type'?: "month" | "year";
+      'validRange'?: [any, any];
       'value'?: any;
-      'years'?: number[];
     }
     interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
       'content'?: cascader;
