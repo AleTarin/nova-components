@@ -10,18 +10,15 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface NovaCalendar {
-    'activeMonth': number;
-    'activeYear': number;
-    'calendar': any[];
+    '_onChange': (_date: any) => void;
+    '_onSelect': (_date: any) => void;
     'card': boolean;
     'content': any;
-    'defaultValue': any;
     'disabledDate': boolean;
-    'fullscreen': boolean;
-    'header': any;
-    'locale': object;
     'name': string;
     'type': string;
+    'value': any;
+    'years': number[];
   }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
@@ -131,18 +128,15 @@ export namespace Components {
 
   declare namespace LocalJSX {
     interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
-      'activeMonth'?: number;
-      'activeYear'?: number;
-      'calendar'?: any[];
+      '_onChange'?: (_date: any) => void;
+      '_onSelect'?: (_date: any) => void;
       'card'?: boolean;
       'content'?: any;
-      'defaultValue'?: any;
       'disabledDate'?: boolean;
-      'fullscreen'?: boolean;
-      'header'?: any;
-      'locale'?: object;
       'name'?: string;
       'type'?: string;
+      'value'?: any;
+      'years'?: number[];
     }
     interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
       'content'?: cascader;

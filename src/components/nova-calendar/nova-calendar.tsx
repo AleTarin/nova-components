@@ -12,27 +12,38 @@ export class NovaCalendar {
   @Prop() content: any = {
     data: {
       items: {}
+    },
+    configuration: {
+      fullscreen: false
     }
   };
-  @Prop() header: any;
-  @Prop() defaultValue: any = moment(); //moment
+
   @Prop() disabledDate:boolean;
-  @Prop() fullscreen:boolean;
-  @Prop() locale:object;
-
+  
+  // Props changeable by methods
+  @Prop({mutable: true}) value: any = moment(); //moment
   @Prop({mutable: true}) type: string = "month";
-  @Prop() activeMonth = Number(moment().format('M'));
-  @Prop() activeYear = Number(moment().format('YYYY'));
-  @Prop() calendar : any[] = [];
-  @Prop() card: boolean = false;
+  @Prop({mutable: true}) card: boolean = false;
+  @Prop({mutable: true}) years: number[];
 
-  // https://momentjs.com/docs/#/displaying/format/
+  // Locale - update by @method
+
+  // Callbacks
+  @Prop({mutable: true}) _onSelect = function(_date: any){};
+  @Prop({mutable: true}) _onChange = function(_date: any){};
+  
   @State() now: any = moment();
+  @State() calendar : any[] = [];
+
   @State() eventsByYear: {};
   @State() eventsByMonth: {};
+
   @State() months: string[];
-  @State() years: number[]
   @State() days: string[];
+
+  // https://momentjs.com/docs/#/displaying/format/
+  @State() activeMonth = Number(moment().format('M'));
+  @State() activeYear = Number(moment().format('YYYY'));
   
 
   @Element() public host: HTMLElement;
@@ -90,11 +101,8 @@ export class NovaCalendar {
 
   componentWillLoad(){
     this.months = moment.monthsShort();
-    this.days = moment.weekdaysShort();
+    this.days = moment.weekdaysShort(true);
     this.years = range(this.activeYear-10, this.activeYear+10);
-  }
-
-  componentDidLoad() {
     this.fillCalendar();
   }
 
@@ -116,15 +124,15 @@ export class NovaCalendar {
   }
 
   getEventsByDay(day){
-    return this.eventsByMonth[day] || [];
+    return( this.eventsByMonth && this.eventsByMonth[day]) || [];
   }
 
   getCellClass({month, day}) {
     if (this.activeMonth != month)
       return 'inactive';
     else {
-      let date = moment(`${this.activeYear}-${month}-${day}`).format("YYYY/MM/DD");
-      if (date === this.defaultValue.format("YYYY/MM/DD"))
+      let date = moment( new Date(`${this.activeYear}-${month}-${day}`)).format("YYYY/MM/DD");
+      if (date === this.value.format("YYYY/MM/DD"))
         return 'selected';
     }
     return '';
@@ -133,9 +141,7 @@ export class NovaCalendar {
   render() {
     return [
       <section class={this.card ? 'calendar--card' : ''}>
-        <slot>
-          {/* Aqui van los custom headers */}
-        </slot>
+        <slot name="header"></slot>
         <div class="calendar__controls">
           {/* Barra que va arriba del calendario */}
           {/* De los años */}
@@ -165,9 +171,7 @@ export class NovaCalendar {
               class={`calendar__day ${this.getCellClass(cell)}`}
               tabIndex={0}
               onClick={ _ => this.nowChangeMonth(cell.month)}>
-             <div class="calendar__number">
-               {cell.day}
-             </div>
+             <span class="calendar__number">{cell.day}</span>
              <ul class="calendar__events">
                {this.getEventsByDay(cell.day).map(
                  event => 
