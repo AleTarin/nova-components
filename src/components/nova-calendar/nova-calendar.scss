@@ -171,8 +171,9 @@ section:not(.calendar--card){
         .calendar__number {
             margin-bottom: 1em;
         }
-        &.active {
+        &:focus {
             background: rgba(#1890ff, .2);
+            outline: none;
         }
 
         &.selected {

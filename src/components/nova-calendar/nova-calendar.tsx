@@ -15,10 +15,11 @@ export class NovaCalendar {
     }
   };
   @Prop() header: any;
-  @Prop() defaultValue: any; //moment
+  @Prop() defaultValue: any = moment(); //moment
   @Prop() disabledDate:boolean;
   @Prop() fullscreen:boolean;
   @Prop() locale:object;
+
   @Prop({mutable: true}) type: string = "month";
   @Prop() activeMonth = Number(moment().format('M'));
   @Prop() activeYear = Number(moment().format('YYYY'));
@@ -32,6 +33,7 @@ export class NovaCalendar {
   @State() months: string[];
   @State() years: number[]
   @State() days: string[];
+  
 
   @Element() public host: HTMLElement;
 
@@ -105,6 +107,7 @@ export class NovaCalendar {
   @Watch('activeYear')
   getEventsByYear(){
     this.eventsByYear = this.content.data.items[this.activeYear] || {};
+    this.getEventsByMonth();
   }
 
   @Watch('activeMonth')
@@ -114,6 +117,17 @@ export class NovaCalendar {
 
   getEventsByDay(day){
     return this.eventsByMonth[day] || [];
+  }
+
+  getCellClass({month, day}) {
+    if (this.activeMonth != month)
+      return 'inactive';
+    else {
+      let date = moment(`${this.activeYear}-${month}-${day}`).format("YYYY/MM/DD");
+      if (date === this.defaultValue.format("YYYY/MM/DD"))
+        return 'selected';
+    }
+    return '';
   }
 
   render() {
@@ -148,7 +162,8 @@ export class NovaCalendar {
         <div class="calendar__week">
           {row.map( cell =>
             <div 
-              class={`calendar__day ${this.activeMonth != cell.month ?  'inactive': ''}`}
+              class={`calendar__day ${this.getCellClass(cell)}`}
+              tabIndex={0}
               onClick={ _ => this.nowChangeMonth(cell.month)}>
              <div class="calendar__number">
                {cell.day}
