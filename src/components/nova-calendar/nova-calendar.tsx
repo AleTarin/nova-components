@@ -39,8 +39,8 @@ export class NovaCalendar {
   // Locale - update by @method
 
   // Callbacks
-  @Prop({ mutable: true }) _onSelect: Function = function(_date: Moment) {};
-  @Prop({ mutable: true }) _onChange: Function = function(_date: Moment) {};
+  @Prop({ mutable: true }) _onSelect: Function = function (_date: Moment) { };
+  @Prop({ mutable: true }) _onChange: Function = function (_date: Moment) { };
 
   @State() calendar: any[] = [];
   @State() monthCalendar: any[] = [];
@@ -225,6 +225,8 @@ export class NovaCalendar {
   }
 
   render() {
+    // https://momentjs.com/docs/#/displaying/format/
+    // let now = moment().format('dddd');
     return [
       <button onClick={() => this.fullscreen()}>pantalla completa</button>,
       <section class={this.card ? "calendar--card" : ""}>
@@ -254,7 +256,7 @@ export class NovaCalendar {
             <button
               class={`calendar__controls__months ${
                 this.type === "month" ? "active" : ""
-              }`}
+                }`}
               onClick={_ => this.toggleType("month")}
             >
               Month
@@ -262,7 +264,7 @@ export class NovaCalendar {
             <button
               class={`calendar__controls__years ${
                 this.type === "year" ? "active" : ""
-              }`}
+                }`}
               onClick={_ => this.toggleType("year")}
             >
               Year
@@ -310,7 +312,7 @@ export class NovaCalendar {
                       this.value.format("YYYY/MM") === cell.format("YYYY/MM")
                         ? "selected"
                         : ""
-                    }`}
+                      }`}
                     tabIndex={0}
                   >
                     <div class="calendar__number">{cell.format("MMM")}</div>
@@ -323,8 +325,8 @@ export class NovaCalendar {
             ))}
           </div>
         ) : (
-          ""
-        )}
+              ""
+            )}
       </section>
     ];
   }
