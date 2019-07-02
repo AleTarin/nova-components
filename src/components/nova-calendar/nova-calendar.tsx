@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { Component, Prop, h } from '@stencil/core';
-// import * as moment from 'moment';
-=======
 import {
   Component,
   Prop,
@@ -13,7 +9,6 @@ import {
 } from "@stencil/core";
 import { range } from "../../utils/utils";
 import moment, { Moment } from "moment";
->>>>>>> d45d8a8bf5403ace73d78e264b3b83759fc44a79
 
 @Component({
   tag: "nova-calendar",
@@ -44,8 +39,8 @@ export class NovaCalendar {
   // Locale - update by @method
 
   // Callbacks
-  @Prop({ mutable: true }) _onSelect: Function = function(_date: Moment) {};
-  @Prop({ mutable: true }) _onChange: Function = function(_date: Moment) {};
+  @Prop({ mutable: true }) _onSelect: Function = function (_date: Moment) { };
+  @Prop({ mutable: true }) _onChange: Function = function (_date: Moment) { };
 
   @State() calendar: any[] = [];
   @State() monthCalendar: any[] = [];
@@ -230,11 +225,6 @@ export class NovaCalendar {
   }
 
   render() {
-<<<<<<< HEAD
-    // https://momentjs.com/docs/#/displaying/format/
-    // let now = moment().format('dddd');
-=======
->>>>>>> d45d8a8bf5403ace73d78e264b3b83759fc44a79
     return [
       <button onClick={() => this.fullscreen()}>pantalla completa</button>,
       <section class={this.card ? "calendar--card" : ""}>
@@ -264,7 +254,7 @@ export class NovaCalendar {
             <button
               class={`calendar__controls__months ${
                 this.type === "month" ? "active" : ""
-              }`}
+                }`}
               onClick={_ => this.toggleType("month")}
             >
               Month
@@ -272,7 +262,7 @@ export class NovaCalendar {
             <button
               class={`calendar__controls__years ${
                 this.type === "year" ? "active" : ""
-              }`}
+                }`}
               onClick={_ => this.toggleType("year")}
             >
               Year
@@ -320,7 +310,7 @@ export class NovaCalendar {
                       this.value.format("YYYY/MM") === cell.format("YYYY/MM")
                         ? "selected"
                         : ""
-                    }`}
+                      }`}
                     tabIndex={0}
                   >
                     <div class="calendar__number">{cell.format("MMM")}</div>
@@ -333,8 +323,8 @@ export class NovaCalendar {
             ))}
           </div>
         ) : (
-          ""
-        )}
+              ""
+            )}
       </section>
     ];
   }

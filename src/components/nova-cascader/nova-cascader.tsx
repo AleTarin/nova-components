@@ -10,11 +10,28 @@ import {
 import { ClickOutside } from "stencil-click-outside";
 
 /**
+ * @author Alejandro Tarin, Alejandro Roiz
+ */
+
+/**
  * @todo
- * Default value => Verificar que exista el default value
- * Hover => Click para seleccionar el ultimo elemento
- * Change on select => Capabilidad de seleccionar opciones de "enmedio"
- * */
+ * Limpiar JSON:
+ *    No dejar datos repetidos
+ * Accessibilidad: 
+ *    Agregar navegacion por teclado
+ *    Si nuestro search no encuentra nada, llenar el accessibility-paragraph con un texto para que un screen reader lo pueda leer
+ *    El texto que va en accessibility-paragraph ponerlo dentro del confJSON para que sea mas facil de mantener
+ * Documentacion:
+ *    Explicar dentro del README mas externo (del proyecto) como se manejaría un tema nuevo
+ * Search:
+ *    No se porque en el demo con Alysson no funcionaba, buscabamos Xihe y no pasaba nada
+ *    Seleccionabamos Xihe y solo mostraba eso, no todo la seleccion
+ *    Poner un empty state (practicamente es el Accessibility-paragraph)
+ * HTML:
+ *    Agregar un ID a cada una de las listas para que sea mas facil seleccionar la lista con css envez de hacer queryselector de ul/li
+ * CSS-Animations (SOLO SI QUEDA TIEMPO):
+ *    animations.css -> agregar el sass que tiene ya animaciones "out of the box"
+ */
 
 @Component({
   tag: "nova-cascader",
@@ -171,10 +188,7 @@ export class NovaCascader {
    * onCascaderSelect
    * @description Clears the data and fires onPopupVisibleChange when clicking outside the component.
    * @event
-<<<<<<< HEAD
    * @requires stencil-click-outside module
-=======
->>>>>>> origin
    * @requires ClickOutside
    */
   @ClickOutside()
@@ -255,7 +269,7 @@ export class NovaCascader {
         <div
           class={`cascader__menu ${
             this.isActive ? "cascader__menu--active" : ""
-          }`}
+            }`}
         >
           {this.data.map((list: cascaderItem[], level: number) => (
             <ul class="cascader__menu__list">
@@ -263,7 +277,7 @@ export class NovaCascader {
                 <li
                   class={`cascader__menu__item ${
                     item.disabled ? "cascader__menu__item--disabled" : ""
-                  }`}
+                    }`}
                   onMouseEnter={_ =>
                     this.updateCascader(list, level, item, "hover")
                   }
@@ -276,6 +290,7 @@ export class NovaCascader {
             </ul>
           ))}
         </div>
+        <p class="accessibility-paragraph"></p>
       </section>
     ];
   }
