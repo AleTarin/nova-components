@@ -25,7 +25,6 @@ export class NovaCalendar {
     }
   };
   @Prop() disabledDate: boolean;
-
   @Prop() activeMonth: number = Number(moment().format("M"));
   @Prop() activeYear: number = Number(moment().format("YYYY"));
   @Prop() yearMonthSwitch: boolean = true;
@@ -89,8 +88,6 @@ export class NovaCalendar {
     this.now = moment(this.now).month(this.activeMonth - 1);
     this.fillCalendar();
   }
-
-
 
   fillCalendar() {
     this.calendar = [];

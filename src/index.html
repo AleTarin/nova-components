@@ -22,7 +22,13 @@
     <p slot="close"> click here to close </p>
   </nova-popover>
 
-  <nova-calendar></nova-calendar>
+  <nova-calendar>
+    <slot name="header">
+      <h1>
+        Calendario
+      </h1> 
+    </slot>
+  </nova-calendar>
 
   <script>
     // When cascader is defined
@@ -38,6 +44,13 @@
             .then(json => {
               // Pass the prop
               instance.content = json;
+              instance.toggleType('year');
+              let selected;
+              instance.onSelectValue( moment => {
+                console.log('onSelect',moment);
+                instance.changeValue(moment);
+              } );
+              instance.onChangeValue( moment => console.log('onChange',moment) );
               instance.confjsonFull = json.configuration.fullscreen;
             })
             .catch(err => {
