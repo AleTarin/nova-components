@@ -18,7 +18,6 @@ export namespace Components {
     'activeYear': number;
     'card': boolean;
     'changeLocale': (lang: string, localeSpec: object) => Promise<void>;
-    'changeType': (newType: "month" | "year") => Promise<void>;
     'changeValue': (newValue: any) => Promise<void>;
     'confjsonFull': boolean;
     'content': any;
@@ -27,6 +26,7 @@ export namespace Components {
     'name': string;
     'onChangeValue': (Callback: Function) => Promise<void>;
     'onSelectValue': (Callback: Function) => Promise<void>;
+    'toggleType': (type: "month" | "year") => Promise<void>;
     'type': "month" | "year";
     'validRange': [Moment, Moment];
     'value': Moment;

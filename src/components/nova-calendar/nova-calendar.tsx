@@ -12,7 +12,9 @@ import moment, { Moment } from "moment";
 
 @Component({
   tag: "nova-calendar",
-  styleUrl: "nova-calendar.scss",
+  styleUrls: {
+    default: "nova-calendar.scss"
+  },
   shadow: true
 })
 export class NovaCalendar {
@@ -87,9 +89,7 @@ export class NovaCalendar {
     this.fillCalendar();
   }
 
-  toggleType(type: "month" | "year") {
-    this.type = type;
-  }
+
 
   fillCalendar() {
     this.calendar = [];
@@ -212,8 +212,8 @@ export class NovaCalendar {
   }
 
   @Method()
-  async changeType(newType: "month" | "year") {
-    this.type = newType;
+  async toggleType(type: "month" | "year") {
+    this.type = type;
   }
 
   @Method()
