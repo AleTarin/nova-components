@@ -228,12 +228,13 @@ export class NovaCalendar {
     // https://momentjs.com/docs/#/displaying/format/
     // let now = moment().format('dddd');
     return [
-      <button onClick={() => this.fullscreen()}>pantalla completa</button>,
+      
       <section class={this.card ? "calendar--card" : ""}>
         <slot>{/* Aqui van los custom headers */}</slot>
         <div class="calendar__controls">
           {/* Barra que va arriba del calendario */}
           {/* De los años */}
+          <nova-icon class="btn_full" name="fas fa-expand fa-2x" onClick={() => this.fullscreen()}></nova-icon>
           <select onChange={this.nowSetYear.bind(this)}>
             {this.years.map(year => (
               <option selected={this.activeYear == year}>{year}</option>

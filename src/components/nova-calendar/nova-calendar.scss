@@ -214,6 +214,18 @@ section:not(.calendar--card){
     }
 }
 
+.btn_full {
+    &:hover {
+        color: #1890ff;
+    }
+    
+    color:  #83838391;   
+
+    
+    
+
+}
+
 :fullscreen {
     background-color: white;
   }
