@@ -90,12 +90,13 @@
 
             &.calendar__controls__months {
                 border-radius: 5px 0 0 5px;
+                
             }
             &.calendar__controls__years {
                 border-radius: 0 5px 5px 0;
             }
 
-            & .active {
+            &.active {
                 border-color: #1890ff;
                 color: #1890ff;
             }
@@ -111,6 +112,8 @@
     .calendar__controls {
         padding: 11px 16px 0 0;
         border-bottom: 1px solid #d4d4d4;
+
+
 
         select, button {
             padding: 5px;

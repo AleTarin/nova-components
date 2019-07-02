@@ -24,18 +24,21 @@ export class NovaCalendar {
   @Prop() activeMonth = Number(moment().format('M'));
   @Prop() activeYear = Number(moment().format('YYYY'));
   @Prop() calendar : any[] = [];
+  @Prop() monthCalendar : any[] = [];
   @Prop() card: boolean = false;
+  @Prop() yearMonthSwitch: boolean = true;
 
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: any = moment();
   @State() eventsByYear: {};
   @State() eventsByMonth: {};
+  @State() generalEvents: {};
   @State() months: string[];
   @State() years: number[]
   @State() days: string[];
   
 
-  @Element() public host: HTMLElement;
+  @Element() public host: HTMLElement; 
 
   nowChangeMonth(month){
     // Check special cases
@@ -74,19 +77,41 @@ export class NovaCalendar {
     this.fillCalendar();
   }
 
+  toggleYearMonth(trigger){
+    if (trigger === "year")
+      this.yearMonthSwitch = false;
+
+    else if (trigger === "month")
+      this.yearMonthSwitch = true;
+  }
+
   fillCalendar() {
     this.calendar = [];
+    this.monthCalendar = [];
+
     const startDay = this.now.clone().startOf('month').startOf('week');
     const endDay = this.now.clone().endOf('month').endOf('week');
     let date = startDay.clone().subtract(1, 'day');
-    
+
+    const startMonth = this.now.clone().startOf('year');
+    const endMonth = this.now.clone().endOf('year');
+    let dateMonth = startMonth.clone().subtract(1, 'month');
+
     while (date.isBefore(endDay, 'day')) {
         this.calendar.push(Array(7).fill(0).map(() => {
               const d = date.add(1, 'day').clone();
               return {day: d.format('D'), month: Number(d.format('M'))}
             }))
     }
+
+    while (dateMonth.isBefore(endMonth, 'month')){ 
+      this.monthCalendar.push(Array(4).fill(0).map(() => {
+        const d = dateMonth.add(1, 'month').clone();
+        return d;
+        }))
+    }
   }
+  
 
   componentWillLoad(){
     this.months = moment.monthsShort();
@@ -119,12 +144,18 @@ export class NovaCalendar {
     return this.eventsByMonth[day] || [];
   }
 
+  getGeneralEventByMonth(month){
+    this.eventsByMonth = this.eventsByYear[month] || {};
+    return this.eventsByMonth["event"];
+
+  }
+
   getCellClass({month, day}) {
     if (this.activeMonth != month)
       return 'inactive';
     else {
-      let date = moment(`${this.activeYear}-${month}-${day}`).format("YYYY/MM/DD");
-      if (date === this.defaultValue.format("YYYY/MM/DD"))
+      let date = moment(`${this.activeYear}-${month}-${day}`).format("YYYY MM DD");
+      if (date === this.defaultValue.format("YYYY MM DD"))
         return 'selected';
     }
     return '';
@@ -149,39 +180,68 @@ export class NovaCalendar {
 
           {/* Para cambiar meses/años */}
           <div class="calendar__controls__switch">
-            <button class="calendar__controls__months">Month</button>
-            <button class="calendar__controls__years">Year</button>
+            <button 
+              class={`calendar__controls__months ${this.yearMonthSwitch ? "active" : "lol"}`}
+              onClick={ _ => this.toggleYearMonth("month")}>
+                Month
+            </button>
+            <button 
+              class={`calendar__controls__years ${!this.yearMonthSwitch ? "active" : ""}`}
+              onClick={ _ => this.toggleYearMonth("year")}>
+                Year
+            </button>
           </div>
         </div>
-        <div class="calendar">
-          <div class="calendar__week calendar__header">
-            { this.days.map( dayName => <div class="calendar__day">{dayName}</div> )}
-          </div>
-        {/* El wrapper del calendario */}
-        {this.calendar.map( row =>
-        <div class="calendar__week">
-          {row.map( cell =>
-            <div 
-              class={`calendar__day ${this.getCellClass(cell)}`}
-              tabIndex={0}
-              onClick={ _ => this.nowChangeMonth(cell.month)}>
-             <div class="calendar__number">
-               {cell.day}
-             </div>
-             <ul class="calendar__events">
-               {this.getEventsByDay(cell.day).map(
-                 event => 
-                 <li>
-                  <nova-icon name={event.type} color={event.color} />
-                  {event.content}
-                 </li>
-               )}
-             </ul>
+        
+        {this.yearMonthSwitch ? 
+          <div class="calendar">
+            <div class="calendar__week calendar__header">
+              { this.days.map( dayName => <div class="calendar__day">{dayName}</div> )}
             </div>
+          {/* El wrapper del calendario */}
+          {this.calendar.map( row =>
+          <div class="calendar__week">
+            {row.map( cell =>
+              <div
+                class={`calendar__day ${this.getCellClass(cell)}`}
+                tabIndex={0}
+                onClick={ _ => this.nowChangeMonth(cell.month)}>
+              <div class="calendar__number">
+                {cell.day}
+              </div>
+              <ul class="calendar__events">
+                {this.getEventsByDay(cell.day).map(
+                  event => 
+                  <li>
+                    <nova-icon name={event.type} color={event.color} />
+                    {event.content}
+                  </li>
+                )}
+              </ul>
+              </div>
+            )}
+          </div>
           )}
         </div>
-        )}
-      </div>
+      : 
+          <div class="calendar">
+            {this.monthCalendar.map( row =>
+            <div class="calendar__week">
+              {row.map( cell =>
+                <div 
+                  class={`calendar__day ${this.defaultValue.format("YYYY-MM") === cell.format("YYYY-MM") ? "selected" : ""}`}
+                  tabIndex={0}>
+                <div class="calendar__number">
+                  {cell.format('MMM')}
+                </div>
+                <p class="calendar__events">
+                  {this.getGeneralEventByMonth(cell.format('M'))}
+                  </p>
+                </div>
+              )}
+            </div>
+            )}
+          </div>}
       </section>
     ]
   }
