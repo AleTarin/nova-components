@@ -1,11 +1,26 @@
-import { Component, h, Prop, State, Element, Method, Watch } from '@stencil/core';
+import {
+  Component,
+  h,
+  Prop,
+  State,
+  Element,
+  Method,
+  Watch
+} from "@stencil/core";
 import { ClickOutside } from "stencil-click-outside";
 
+/**
+ * @todo
+ * Default value => Verificar que exista el default value
+ * Hover => Click para seleccionar el ultimo elemento
+ * Change on select => Capabilidad de seleccionar opciones de "enmedio"
+ * */
+
 @Component({
-  tag: 'nova-cascader',
+  tag: "nova-cascader",
   styleUrls: {
-    default: 'nova-cascader.default.scss',
-    dark: 'nova-cascader.dark.scss'
+    default: "nova-cascader.default.scss",
+    dark: "nova-cascader.dark.scss"
   },
   shadow: true
 })
@@ -15,13 +30,13 @@ export class NovaCascader {
       items: []
     },
     configuration: {
-      expandTrigger: 'click',
-      name: '',
-      placeholder: 'Select',
+      expandTrigger: "click",
+      name: "",
+      placeholder: "Select",
       autofocus: false,
       readonly: false,
       disabled: false,
-      separator: ' / ',
+      separator: " / ",
       defaultValue: [],
       changeOnSelect: true
     }
@@ -48,22 +63,22 @@ export class NovaCascader {
    */
   componentDidLoad() {
     if (this.size) {
-      const element = this.host.shadowRoot.querySelector('input');
+      const element = this.host.shadowRoot.querySelector("input");
       element.style.minHeight = this.size;
     }
-    this.content && this.setComponentData()
+    this.content && this.setComponentData();
   }
 
   /**
    * setComponentData
-   * 
+   *
    * @description Set component's initial data and configuration
    * @listens prop:content
    */
-  @Watch('content')
+  @Watch("content")
   setComponentData() {
-    this.data = [this.content.data.items]
-    this.path = [null]
+    this.data = [this.content.data.items];
+    this.path = [null];
 
     const defaultValue = this.content.configuration.defaultValue;
     if (defaultValue.length) {
@@ -78,21 +93,26 @@ export class NovaCascader {
    * @param list { cascaderItem[] } list of items where the event was fired
    * @param level { number } level of the list of items that fired the event
    * @param item  { cascaderItem } item that fired the event
-   * @param event { 'click' | 'hover' } type of event that was fired
    */
-  updateCascader(list: cascaderItem[], level: number, item: cascaderItem, event: 'click' | 'hover') {
+  updateCascader(
+    list: cascaderItem[],
+    level: number,
+    item: cascaderItem,
+    event: "click" | "hover"
+  ) {
     if (!item.disabled) {
       const { expandTrigger } = this.content.configuration;
-      if (  expandTrigger === event || expandTrigger === 'hover') {
-        let next = list.find((element: cascaderItem) => element.value === item.value) ;
+      if (expandTrigger === event || expandTrigger === "hover") {
+        let next = list.find(
+          (element: cascaderItem) => element.value === item.value
+        );
         this.path = [...this.path.slice(0, level + 1), item.value];
         if (next.children) {
           this.data = [...this.data.slice(0, level + 1), next.children];
-        } 
-        if (event === 'click') {
+        }
+        if (event === "click") {
           this.setSearch();
-          if(!next.children)
-            this.toggleCascader()
+          if (!next.children) this.toggleCascader();
         }
       }
     }
@@ -105,7 +125,7 @@ export class NovaCascader {
    */
   @Method()
   async focusCascader() {
-    this.host.shadowRoot.querySelector('input').focus();
+    this.host.shadowRoot.querySelector("input").focus();
   }
 
   /**
@@ -115,7 +135,7 @@ export class NovaCascader {
    */
   @Method()
   async blurCascader() {
-    this.host.shadowRoot.querySelector('input').blur();
+    this.host.shadowRoot.querySelector("input").blur();
   }
 
   /**
@@ -142,7 +162,7 @@ export class NovaCascader {
   }
 
   @Method()
-  async addCustomTrigger( el: HTMLElement ){
+  async addCustomTrigger(el: HTMLElement) {
     this.customTrigger = el;
   }
   // Ends Public API methods
@@ -151,15 +171,18 @@ export class NovaCascader {
    * onCascaderSelect
    * @description Clears the data and fires onPopupVisibleChange when clicking outside the component.
    * @event
+<<<<<<< HEAD
    * @requires stencil-click-outside module
+=======
+>>>>>>> origin
    * @requires ClickOutside
    */
   @ClickOutside()
   ClickOutsideHandler() {
-    this.data = [this.content.data.items]
+    this.data = [this.content.data.items];
     this.path = [null];
     this.isActive = false;
-    this.onPopupVisibleChange && this.onPopupVisibleChange(this.result)
+    this.onPopupVisibleChange && this.onPopupVisibleChange(this.result);
   }
 
   // Search methods
@@ -169,7 +192,7 @@ export class NovaCascader {
    */
   toggleCascader() {
     this.isActive = !this.isActive;
-    this.onSelect && this.onPopupVisibleChange(this.result)
+    this.onSelect && this.onPopupVisibleChange(this.result);
   }
 
   /**
@@ -177,11 +200,11 @@ export class NovaCascader {
    * @description clears the search result
    */
   clearSearch() {
-    this.result = '';
+    this.result = "";
   }
 
   /**
-   * setSearch 
+   * setSearch
    * @description combine the search path with the separator and fires onSelect callback
    * @todo add prop to just use last item and verify search
    */
@@ -189,14 +212,16 @@ export class NovaCascader {
     if (this.content.configuration.changeOnSelect) {
       this.result = this.path[this.path.length - 1];
     } else {
-      this.result = this.path.slice(1).join(this.content.configuration.separator);
+      this.result = this.path
+        .slice(1)
+        .join(this.content.configuration.separator);
     }
     this.onSelect && this.onSelect(this.result);
   }
 
   /**
    * disable Event
-   * @param event 
+   * @param event
    * @event
    */
   disableEvent(event: UIEvent) {
@@ -205,7 +230,9 @@ export class NovaCascader {
   }
 
   render() {
-    const { configuration: { name, placeholder, readonly, autofocus } } = this.content;
+    const {
+      configuration: { name, placeholder, readonly, autofocus }
+    } = this.content;
     return [
       // Search bar
       <section class="cascader">
@@ -216,27 +243,39 @@ export class NovaCascader {
             name={name}
             value={this.result}
             onClick={_ => this.toggleCascader()}
-            placeholder={placeholder} />
+            placeholder={placeholder}
+          />
           <nova-icon name="times-circle" onClick={_ => this.clearSearch()} />
-          <nova-icon name={`${this.isActive ? "chevron-up" : "chevron-down"}`} />
+          <nova-icon
+            name={`${this.isActive ? "chevron-up" : "chevron-down"}`}
+          />
         </span>
 
         {/* Cascader options */}
-        <div class={`cascader__menu ${this.isActive ? 'cascader__menu--active' : ''}`}>
-          {this.data.map((list: cascaderItem[], level: number) =>
+        <div
+          class={`cascader__menu ${
+            this.isActive ? "cascader__menu--active" : ""
+          }`}
+        >
+          {this.data.map((list: cascaderItem[], level: number) => (
             <ul class="cascader__menu__list">
-              {list.map((item: cascaderItem) =>
+              {list.map((item: cascaderItem) => (
                 <li
-                  class={`cascader__menu__item ${item.disabled ? 'cascader__menu__item--disabled' : ''}`}
-                  onMouseEnter={ _ => this.updateCascader(list, level, item, 'hover')}
-                  onClick={      _ => this.updateCascader(list, level, item, 'click')}>
+                  class={`cascader__menu__item ${
+                    item.disabled ? "cascader__menu__item--disabled" : ""
+                  }`}
+                  onMouseEnter={_ =>
+                    this.updateCascader(list, level, item, "hover")
+                  }
+                  onClick={_ => this.updateCascader(list, level, item, "click")}
+                >
                   {item.label}
                   {item.children && <nova-icon name="chevron-right" />}
-                </li>)
-              }
-            </ul>)}
+                </li>
+              ))}
+            </ul>
+          ))}
         </div>
-
       </section>
     ];
   }

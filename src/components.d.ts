@@ -10,18 +10,20 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface NovaCalendar {
-    '_onChange': (_date: any) => void;
-    '_onSelect': (_date: any) => void;
+    'activeMonth': number;
+    'activeYear': number;
+    'calendar': any[];
     'card': boolean;
     'content': any;
+    'defaultValue': any;
     'disabledDate': boolean;
+    'fullscreen': boolean;
+    'header': any;
+    'locale': object;
+    'monthCalendar': any[];
     'name': string;
-    'nowChangeMonth': (month: any) => Promise<void>;
-    'setLocale': (lang: string, definition: object) => Promise<void>;
-    'setType': (type: "month" | "year") => Promise<void>;
-    'type': "month" | "year";
-    'validRange': [any, any];
-    'value': any;
+    'type': string;
+    'yearMonthSwitch': boolean;
   }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
@@ -55,6 +57,10 @@ export namespace Components {
     'size'?: string;
   }
   interface NovaPopover {
+    'location': "topleft" | "top" | "topright" |
+    "botleft" | "bot" | "botright" |
+    "lefttop" | "left" | "leftbot" |
+    "righttop" | "right" | "rightbot";
     'trigger': "hover" | "focus" | "click";
   }
   interface NovaTabs {
@@ -65,125 +71,132 @@ export namespace Components {
     /**
     * closeTab
     */
-    'closeTab': (index: number) => Promise<void>;
+    'closeTab': (keyIndex: number) => Promise<void>;
     'confjson': any;
     'datajson': {
-      items: any[];};
-      'funcion': string;
-      'newTabData': { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
-      'nombreFuncion': string;
-      /**
-      * onEdit
-      */
-      'onEdit': (callback: Function) => Promise<void>;
-      /**
-      * onEdit
-      */
-      'onTabClick': (callback: Function) => Promise<void>;
-      /**
-      * openTab
-      */
-      'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
-      'updater': boolean;
-    }
+      items: any[];
+    };
+    'newTabData': { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
+    /**
+    * onEdit
+    */
+    'onEdit': (callback: Function) => Promise<void>;
+    /**
+    * onTabClick
+    */
+    'onTabClick': (callback: Function) => Promise<void>;
+    /**
+    * openTab
+    */
+    'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
+    'updater': boolean;
+  }
+}
+
+declare global {
+
+
+  interface HTMLNovaCalendarElement extends Components.NovaCalendar, HTMLStencilElement {}
+  var HTMLNovaCalendarElement: {
+    prototype: HTMLNovaCalendarElement;
+    new (): HTMLNovaCalendarElement;
+  };
+
+  interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
+  var HTMLNovaCascaderElement: {
+    prototype: HTMLNovaCascaderElement;
+    new (): HTMLNovaCascaderElement;
+  };
+
+  interface HTMLNovaIconElement extends Components.NovaIcon, HTMLStencilElement {}
+  var HTMLNovaIconElement: {
+    prototype: HTMLNovaIconElement;
+    new (): HTMLNovaIconElement;
+  };
+
+  interface HTMLNovaPopoverElement extends Components.NovaPopover, HTMLStencilElement {}
+  var HTMLNovaPopoverElement: {
+    prototype: HTMLNovaPopoverElement;
+    new (): HTMLNovaPopoverElement;
+  };
+
+  interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
+  var HTMLNovaTabsElement: {
+    prototype: HTMLNovaTabsElement;
+    new (): HTMLNovaTabsElement;
+  };
+  interface HTMLElementTagNameMap {
+    'nova-calendar': HTMLNovaCalendarElement;
+    'nova-cascader': HTMLNovaCascaderElement;
+    'nova-icon': HTMLNovaIconElement;
+    'nova-popover': HTMLNovaPopoverElement;
+    'nova-tabs': HTMLNovaTabsElement;
+  }
+}
+
+declare namespace LocalJSX {
+  interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
+    'activeMonth'?: number;
+    'activeYear'?: number;
+    'calendar'?: any[];
+    'card'?: boolean;
+    'content'?: any;
+    'defaultValue'?: any;
+    'disabledDate'?: boolean;
+    'fullscreen'?: boolean;
+    'header'?: any;
+    'locale'?: object;
+    'monthCalendar'?: any[];
+    'name'?: string;
+    'type'?: string;
+    'yearMonthSwitch'?: boolean;
+  }
+  interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
+    'content'?: cascader;
+    'size'?: string;
+  }
+  interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
+    'color'?: string;
+    /**
+    * Props
+    */
+    'name'?: string;
+    'options'?: string;
+    'pre'?: string;
+    'size'?: string;
+  }
+  interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
+    'location'?: "topleft" | "top" | "topright" |
+    "botleft" | "bot" | "botright" |
+    "lefttop" | "left" | "leftbot" |
+    "righttop" | "right" | "rightbot";
+    'trigger'?: "hover" | "focus" | "click";
+  }
+  interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
+    'confjson'?: any;
+    'datajson'?: {
+      items: any[];
+    };
+    'newTabData'?: { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
+    'updater'?: boolean;
   }
 
-  declare global {
-
-
-    interface HTMLNovaCalendarElement extends Components.NovaCalendar, HTMLStencilElement {}
-    var HTMLNovaCalendarElement: {
-      prototype: HTMLNovaCalendarElement;
-      new (): HTMLNovaCalendarElement;
-    };
-
-    interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
-    var HTMLNovaCascaderElement: {
-      prototype: HTMLNovaCascaderElement;
-      new (): HTMLNovaCascaderElement;
-    };
-
-    interface HTMLNovaIconElement extends Components.NovaIcon, HTMLStencilElement {}
-    var HTMLNovaIconElement: {
-      prototype: HTMLNovaIconElement;
-      new (): HTMLNovaIconElement;
-    };
-
-    interface HTMLNovaPopoverElement extends Components.NovaPopover, HTMLStencilElement {}
-    var HTMLNovaPopoverElement: {
-      prototype: HTMLNovaPopoverElement;
-      new (): HTMLNovaPopoverElement;
-    };
-
-    interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
-    var HTMLNovaTabsElement: {
-      prototype: HTMLNovaTabsElement;
-      new (): HTMLNovaTabsElement;
-    };
-    interface HTMLElementTagNameMap {
-      'nova-calendar': HTMLNovaCalendarElement;
-      'nova-cascader': HTMLNovaCascaderElement;
-      'nova-icon': HTMLNovaIconElement;
-      'nova-popover': HTMLNovaPopoverElement;
-      'nova-tabs': HTMLNovaTabsElement;
-    }
+  interface IntrinsicElements {
+    'nova-calendar': NovaCalendar;
+    'nova-cascader': NovaCascader;
+    'nova-icon': NovaIcon;
+    'nova-popover': NovaPopover;
+    'nova-tabs': NovaTabs;
   }
+}
 
-  declare namespace LocalJSX {
-    interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
-      '_onChange'?: (_date: any) => void;
-      '_onSelect'?: (_date: any) => void;
-      'card'?: boolean;
-      'content'?: any;
-      'disabledDate'?: boolean;
-      'name'?: string;
-      'type'?: "month" | "year";
-      'validRange'?: [any, any];
-      'value'?: any;
-    }
-    interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
-      'content'?: cascader;
-      'size'?: string;
-    }
-    interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
-      'color'?: string;
-      /**
-      * Props
-      */
-      'name'?: string;
-      'options'?: string;
-      'pre'?: string;
-      'size'?: string;
-    }
-    interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
-      'trigger'?: "hover" | "focus" | "click";
-    }
-    interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-      'confjson'?: any;
-      'datajson'?: {
-        items: any[];};
-        'funcion'?: string;
-        'newTabData'?: { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
-        'nombreFuncion'?: string;
-        'updater'?: boolean;
-      }
-
-      interface IntrinsicElements {
-        'nova-calendar': NovaCalendar;
-        'nova-cascader': NovaCascader;
-        'nova-icon': NovaIcon;
-        'nova-popover': NovaPopover;
-        'nova-tabs': NovaTabs;
-      }
-    }
-
-    export { LocalJSX as JSX };
+export { LocalJSX as JSX };
 
 
-    declare module "@stencil/core" {
-      export namespace JSX {
-        interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
-      }
-    }
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
 
 

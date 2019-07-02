@@ -155,7 +155,7 @@ export class NovaCalendar {
       return 'inactive';
     else {
       let date = moment(`${this.activeYear}-${month}-${day}`).format("YYYY MM DD");
-      if (date === this.defaultValue.format("YYYY MM DD"))
+      if (date === this.defaultValue.format("YYYY/MM/DD"))
         return 'selected';
     }
     return '';
@@ -229,7 +229,7 @@ export class NovaCalendar {
             <div class="calendar__week">
               {row.map( cell =>
                 <div 
-                  class={`calendar__day ${this.defaultValue.format("YYYY-MM") === cell.format("YYYY-MM") ? "selected" : ""}`}
+                  class={`calendar__day ${this.defaultValue.format("YYYY/MM") === cell.format("YYYY-MM") ? "selected" : ""}`}
                   tabIndex={0}>
                 <div class="calendar__number">
                   {cell.format('MMM')}
