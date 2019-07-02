@@ -6,21 +6,29 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  Moment,
+} from 'moment';
 
 export namespace Components {
   interface NovaCalendar {
-    '_onChange': (_date: any) => void;
-    '_onSelect': (_date: any) => void;
+    '_onChange': Function;
+    '_onSelect': Function;
     'activeMonth': number;
     'activeYear': number;
     'card': boolean;
+    'changeLocale': (lang: string, localeSpec: object) => Promise<void>;
+    'changeType': (newType: "month" | "year") => Promise<void>;
+    'changeValue': (newValue: any) => Promise<void>;
     'content': any;
     'disabledDate': boolean;
+    'fullscreen': () => Promise<void>;
     'name': string;
+    'onChangeValue': (Callback: Function) => Promise<void>;
+    'onSelectValue': (Callback: Function) => Promise<void>;
     'type': "month" | "year";
-    'validRange': [any, any];
-    'value': any;
+    'validRange': [Moment, Moment];
+    'value': Moment;
     'yearMonthSwitch': boolean;
   }
   interface NovaCascader {
@@ -134,8 +142,8 @@ declare global {
 
 declare namespace LocalJSX {
   interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
-    '_onChange'?: (_date: any) => void;
-    '_onSelect'?: (_date: any) => void;
+    '_onChange'?: Function;
+    '_onSelect'?: Function;
     'activeMonth'?: number;
     'activeYear'?: number;
     'card'?: boolean;
@@ -143,8 +151,8 @@ declare namespace LocalJSX {
     'disabledDate'?: boolean;
     'name'?: string;
     'type'?: "month" | "year";
-    'validRange'?: [any, any];
-    'value'?: any;
+    'validRange'?: [Moment, Moment];
+    'value'?: Moment;
     'yearMonthSwitch'?: boolean;
   }
   interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
