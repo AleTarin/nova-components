@@ -14,7 +14,7 @@ export class NovaCalendar {
       items: {}
     },
     configuration: {
-      fullscreen: false
+      fullscreen: true
     }
   };
 
@@ -26,6 +26,8 @@ export class NovaCalendar {
   @Prop({mutable: true}) card: boolean = false;
   @Prop({mutable: true}) validRange: [any, any];
   // Locale - update by @method
+
+ 
 
   // Callbacks
   @Prop({mutable: true}) _onSelect = function(_date: any){};
@@ -106,10 +108,17 @@ export class NovaCalendar {
     }
   }
 
+  fullscreen()
+  {       
+    this.host.requestFullscreen();  
+  }
+
   componentWillLoad() {
     this.validRange = [this.value.clone().subtract(10, 'years'), this.value.clone().add(10, 'years')];
     this.setData();
+  
   }
+
 
   @Watch('content')
   watchContent(){
@@ -157,6 +166,8 @@ export class NovaCalendar {
 
   render() {
     return [
+      //console.log(this.content.configuration.fullscreen[0]),
+      <button onClick={()=> this.fullscreen()}>pantalla completa</button>,
       <section class={this.card ? 'calendar--card' : ''}>
         <slot name="header"></slot>
         <div class="calendar__controls">
