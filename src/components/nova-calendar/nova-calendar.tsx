@@ -29,13 +29,14 @@ export class NovaCalendar {
   @Prop() activeMonth: number = Number(moment().format("M"));
   @Prop() activeYear: number = Number(moment().format("YYYY"));
   @Prop() yearMonthSwitch: boolean = true;
-  @Prop() confjsonFull:boolean;
+  
 
   // Props changeable by methods
   @Prop({ mutable: true }) value: Moment = moment(); //moment
   @Prop({ mutable: true }) type: "month" | "year" = "month";
   @Prop({ mutable: true }) card: boolean = false;
   @Prop({ mutable: true }) validRange: [Moment, Moment];
+  @Prop({ mutable: true }) confjsonFull:boolean;
   // Locale - update by @method
 
   // Callbacks
