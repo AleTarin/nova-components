@@ -12,6 +12,9 @@ import {
 
 export namespace Components {
   interface NovaCalendar {
+<<<<<<< HEAD
+    'name': string;
+=======
     '_onChange': Function;
     '_onSelect': Function;
     'activeMonth': number;
@@ -30,6 +33,7 @@ export namespace Components {
     'validRange': [Moment, Moment];
     'value': Moment;
     'yearMonthSwitch': boolean;
+>>>>>>> d45d8a8bf5403ace73d78e264b3b83759fc44a79
   }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
@@ -97,6 +101,22 @@ export namespace Components {
     'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
     'updater': boolean;
   }
+<<<<<<< HEAD
+
+  declare global {
+
+
+    interface HTMLNovaCalendarElement extends Components.NovaCalendar, HTMLStencilElement {}
+    var HTMLNovaCalendarElement: {
+      prototype: HTMLNovaCalendarElement;
+      new (): HTMLNovaCalendarElement;
+    };
+
+    interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
+    var HTMLNovaCascaderElement: {
+      prototype: HTMLNovaCascaderElement;
+      new (): HTMLNovaCascaderElement;
+=======
 }
 
 declare global {
@@ -180,6 +200,7 @@ declare namespace LocalJSX {
     'confjson'?: any;
     'datajson'?: {
       items: any[];
+>>>>>>> d45d8a8bf5403ace73d78e264b3b83759fc44a79
     };
     'newTabData'?: { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
     'updater'?: boolean;
@@ -196,11 +217,75 @@ declare namespace LocalJSX {
 
 export { LocalJSX as JSX };
 
+<<<<<<< HEAD
+    interface HTMLNovaTabsElement extends Components.NovaTabs, HTMLStencilElement {}
+    var HTMLNovaTabsElement: {
+      prototype: HTMLNovaTabsElement;
+      new (): HTMLNovaTabsElement;
+    };
+    interface HTMLElementTagNameMap {
+      'nova-calendar': HTMLNovaCalendarElement;
+      'nova-cascader': HTMLNovaCascaderElement;
+      'nova-icon': HTMLNovaIconElement;
+      'nova-popover': HTMLNovaPopoverElement;
+      'nova-tabs': HTMLNovaTabsElement;
+    }
+  }
+
+  declare namespace LocalJSX {
+    interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
+      'name'?: string;
+    }
+    interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
+      'content'?: cascader;
+      'size'?: string;
+    }
+    interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
+      /**
+      * Props
+      */
+      'name'?: string;
+      'options'?: string;
+      'pre'?: string;
+      'size'?: string;
+    }
+    interface NovaPopover extends JSXBase.HTMLAttributes<HTMLNovaPopoverElement> {
+      'trigger'?: "hover" | "focus" | "click";
+    }
+    interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
+      'confjson'?: any;
+      'datajson'?: {
+        items: any[];};
+        'funcion'?: string;
+        'newTabData'?: { "title": string; "icon": string; "enableTab": boolean; "closableTab": boolean; "content": string; };
+        'nombreFuncion'?: string;
+        'updater'?: boolean;
+      }
+
+      interface IntrinsicElements {
+        'nova-calendar': NovaCalendar;
+        'nova-cascader': NovaCascader;
+        'nova-icon': NovaIcon;
+        'nova-popover': NovaPopover;
+        'nova-tabs': NovaTabs;
+      }
+    }
+
+    export { LocalJSX as JSX };
+
+
+    declare module "@stencil/core" {
+      export namespace JSX {
+        interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+      }
+    }
+=======
 
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
   }
 }
+>>>>>>> d45d8a8bf5403ace73d78e264b3b83759fc44a79
 
 
