@@ -89,8 +89,8 @@ export class NovaCalendar {
     this.fillCalendar();
   }
 
-  toggleYearMonth(trigger){
-      this.yearMonthSwitch = trigger === "month";
+  toggleType(type){
+      this.type = type;
   }
 
   fillCalendar() {
@@ -198,19 +198,19 @@ export class NovaCalendar {
           {/* Para cambiar meses/años */}
           <div class="calendar__controls__switch">
             <button 
-              class={`calendar__controls__months ${this.yearMonthSwitch ? "active" : ""}`}
-              onClick={ _ => this.toggleYearMonth("month")}>
+              class={`calendar__controls__months ${this.type === "month" ? "active" : ""}`}
+              onClick={ _ => this.toggleType("month")}>
                 Month
             </button>
             <button 
-              class={`calendar__controls__years ${!this.yearMonthSwitch ? "active" : ""}`}
-              onClick={ _ => this.toggleYearMonth("year")}>
+              class={`calendar__controls__years ${this.type === "year" ? "active" : ""}`}
+              onClick={ _ => this.toggleType("year")}>
                 Year
             </button>
           </div>
         </div>
         
-        {this.yearMonthSwitch ? 
+        {this.type === "month" ? 
           <div class="calendar">
             <div class="calendar__week calendar__header">
               { this.days.map( dayName => <div class="calendar__day">{dayName}</div> )}
@@ -240,7 +240,7 @@ export class NovaCalendar {
           </div>
           )}
         </div>
-      : 
+      : this.type == "year"?
           <div class="calendar">
             {this.monthCalendar.map( row =>
             <div class="calendar__week">
@@ -258,7 +258,8 @@ export class NovaCalendar {
               )}
             </div>
             )}
-          </div>}
+          </div>
+          :""}
       </section>
     ]
   }
