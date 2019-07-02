@@ -82,10 +82,10 @@ nova-icon {
 }
 
 .tabcontent_container.horizontal{
-  width: 100%;
   padding: 24px 12px;
-  padding-right: 40%;
   display: none;
+  width: 90%;
+  height: 300px;
 }
 
 .tabcontent_container.vertical {
@@ -99,8 +99,6 @@ nova-icon {
 
 .tabcontent_container.horizontal.active {
   display: inline-block;
-  animation-name: slidein;
-  animation-duration: 0.3s;
 }
 
 .tabcontent_container.vertical.active {
@@ -110,8 +108,8 @@ nova-icon {
  
 .tabcontent_container {
   
-    -webkit-animation-duration: 0.3s;
-    -webkit-animation-name: slidein;
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-name: slidein;
 
   -moz-animation-duration: 0.3s;
   -moz-animation-name: slidein;
