@@ -20,9 +20,6 @@ export class NovaCalendar {
   @Prop() content: any = {
     data: {
       items: {}
-    },
-    configuration: {
-      fullscreen: true
     }
   };
   @Prop() disabledDate: boolean;
@@ -30,6 +27,7 @@ export class NovaCalendar {
   @Prop() activeMonth: number = Number(moment().format("M"));
   @Prop() activeYear: number = Number(moment().format("YYYY"));
   @Prop() yearMonthSwitch: boolean = true;
+  @Prop() confjsonFull:boolean;
 
   // Props changeable by methods
   @Prop({ mutable: true }) value: Moment = moment(); //moment
@@ -234,7 +232,9 @@ export class NovaCalendar {
         <div class="calendar__controls">
           {/* Barra que va arriba del calendario */}
           {/* De los años */}
-          <nova-icon class="btn_full" name="fas fa-expand fa-2x" onClick={() => this.fullscreen()}></nova-icon>
+          { this.confjsonFull
+          ? <nova-icon class="btn_full" name="fas fa-expand fa-2x" onClick={() => this.fullscreen()}></nova-icon> : ""}
+                  
           <select onChange={this.nowSetYear.bind(this)}>
             {this.years.map(year => (
               <option selected={this.activeYear == year}>{year}</option>

@@ -41,7 +41,8 @@
     }
   },
   "configuration": {
-    "locale": "en"
+    "locale": "en",
+    "fullscreen": true
   },
   "styling": {}
 }
