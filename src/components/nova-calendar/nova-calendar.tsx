@@ -272,7 +272,7 @@ export class NovaCalendar {
           </div>
         </div>
 
-        {this.type === "month" ? (
+        {this.type === "month" ? 
           <div class="calendar">
             <div class="calendar__week calendar__header">
               {this.days.map(dayName => (
@@ -302,7 +302,7 @@ export class NovaCalendar {
               </div>
             ))}
           </div>
-        ) : this.type == "year" ? (
+         :
           <div class="calendar">
             {this.monthCalendar.map(row => (
               <div class="calendar__week">
@@ -324,9 +324,7 @@ export class NovaCalendar {
               </div>
             ))}
           </div>
-        ) : (
-              ""
-            )}
+        }
       </section>
     ];
   }
