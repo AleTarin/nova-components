@@ -31,7 +31,6 @@ export class NovaCalendar {
 
   @Prop() activeMonth: number = Number(moment().format("M"));
   @Prop() activeYear: number = Number(moment().format("YYYY"));
-  @Prop() yearMonthSwitch: boolean = true;
 
   // Props changeable by methods
   @Prop({ mutable: true }) value: Moment = moment(); //moment
