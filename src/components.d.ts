@@ -10,19 +10,17 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface NovaCalendar {
+    '_onChange': (_date: any) => void;
+    '_onSelect': (_date: any) => void;
     'activeMonth': number;
     'activeYear': number;
-    'calendar': any[];
     'card': boolean;
     'content': any;
-    'defaultValue': any;
     'disabledDate': boolean;
-    'fullscreen': boolean;
-    'header': any;
-    'locale': object;
-    'monthCalendar': any[];
     'name': string;
-    'type': string;
+    'type': "month" | "year";
+    'validRange': [any, any];
+    'value': any;
     'yearMonthSwitch': boolean;
   }
   interface NovaCascader {
@@ -136,19 +134,17 @@ declare global {
 
 declare namespace LocalJSX {
   interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
+    '_onChange'?: (_date: any) => void;
+    '_onSelect'?: (_date: any) => void;
     'activeMonth'?: number;
     'activeYear'?: number;
-    'calendar'?: any[];
     'card'?: boolean;
     'content'?: any;
-    'defaultValue'?: any;
     'disabledDate'?: boolean;
-    'fullscreen'?: boolean;
-    'header'?: any;
-    'locale'?: object;
-    'monthCalendar'?: any[];
     'name'?: string;
-    'type'?: string;
+    'type'?: "month" | "year";
+    'validRange'?: [any, any];
+    'value'?: any;
     'yearMonthSwitch'?: boolean;
   }
   interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {

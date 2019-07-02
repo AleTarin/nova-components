@@ -12,21 +12,33 @@ export class NovaCalendar {
   @Prop() content: any = {
     data: {
       items: {}
+    },
+    configuration: {
+      fullscreen: true
     }
   };
-  @Prop() header: any;
-  @Prop() defaultValue: any = moment(); //moment
   @Prop() disabledDate:boolean;
-  @Prop() fullscreen:boolean;
-  @Prop() locale:object;
 
-  @Prop({mutable: true}) type: string = "month";
   @Prop() activeMonth = Number(moment().format('M'));
   @Prop() activeYear = Number(moment().format('YYYY'));
-  @Prop() calendar : any[] = [];
-  @Prop() monthCalendar : any[] = [];
-  @Prop() card: boolean = false;
+
   @Prop() yearMonthSwitch: boolean = true;
+  
+  // Props changeable by methods
+  @Prop({mutable: true}) value: any = moment(); //moment
+  @Prop({mutable: true}) type: "month" | "year" = "month";
+  @Prop({mutable: true}) card: boolean = false;
+  @Prop({mutable: true}) validRange: [any, any];
+  // Locale - update by @method
+
+ 
+
+  // Callbacks
+  @Prop({mutable: true}) _onSelect = function(_date: any){};
+  @Prop({mutable: true}) _onChange = function(_date: any){};
+  
+  @State() calendar : any[] = [];
+  @State() monthCalendar : any[] = [];
 
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: any = moment();
@@ -113,7 +125,7 @@ export class NovaCalendar {
   }
   
 
-  componentWillLoad(){
+  setData(){
     this.months = moment.monthsShort();
     this.days = moment.weekdaysShort();
     this.years = range(this.activeYear-10, this.activeYear+10);
@@ -121,6 +133,11 @@ export class NovaCalendar {
 
   componentDidLoad() {
     this.fillCalendar();
+  }
+
+  componentWillLoad() {
+    this.validRange = [this.value.clone().subtract(10, 'years'), this.value.clone().add(10, 'years')];
+    this.setData();
   }
 
   @Watch('content')
@@ -155,14 +172,19 @@ export class NovaCalendar {
       return 'inactive';
     else {
       let date = moment(`${this.activeYear}-${month}-${day}`).format("YYYY/MM/DD");
-      if (date === this.defaultValue.format("YYYY/MM/DD"))
+      if (date === this.value.format("YYYY/MM/DD"))
         return 'selected';
     }
     return '';
   }
 
+  fullscreen(){       
+    this.host.requestFullscreen();  
+  }
+
   render() {
     return [
+      <button onClick={()=> this.fullscreen()}>pantalla completa</button>,
       <section class={this.card ? 'calendar--card' : ''}>
         <slot>
           {/* Aqui van los custom headers */}
@@ -229,7 +251,7 @@ export class NovaCalendar {
             <div class="calendar__week">
               {row.map( cell =>
                 <div 
-                  class={`calendar__day ${this.defaultValue.format("YYYY/MM") === cell.format("YYYY/MM") ? "selected" : ""}`}
+                  class={`calendar__day ${this.value.format("YYYY/MM") === cell.format("YYYY/MM") ? "selected" : ""}`}
                   tabIndex={0}>
                 <div class="calendar__number">
                   {cell.format('MMM')}
