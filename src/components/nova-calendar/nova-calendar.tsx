@@ -181,7 +181,7 @@ export class NovaCalendar {
           {/* Para cambiar meses/años */}
           <div class="calendar__controls__switch">
             <button 
-              class={`calendar__controls__months ${this.yearMonthSwitch ? "active" : "lol"}`}
+              class={`calendar__controls__months ${this.yearMonthSwitch ? "active" : ""}`}
               onClick={ _ => this.toggleYearMonth("month")}>
                 Month
             </button>

@@ -119,7 +119,7 @@ export class NovaTabs {
     //HTML shadow DOM render
     return[  
       //Button for adding new tabs. If property addTab is false the button is not displayed.
-      <button style={this.confjson.addTab ? {display:'block'}:{display:'none'}} class="addTab addTab_circulo" onClick={() => this.addTab(this.newTabData)}> 
+      <button style={this.confjson && this.confjson.addTab ? {display:'block'}:{display:'none'}} class="addTab addTab_circulo" onClick={() => this.addTab(this.newTabData)}> 
         new tab
       </button>,
       
