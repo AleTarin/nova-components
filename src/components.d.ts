@@ -19,6 +19,7 @@ export namespace Components {
     'card': boolean;
     'changeLocale': (lang: string, localeSpec: object) => Promise<void>;
     'changeValue': (newValue: any) => Promise<void>;
+    'confjsonFull': boolean;
     'content': any;
     'disabledDate': boolean;
     'fullscreen': () => Promise<void>;
@@ -146,6 +147,7 @@ declare namespace LocalJSX {
     'activeMonth'?: number;
     'activeYear'?: number;
     'card'?: boolean;
+    'confjsonFull'?: boolean;
     'content'?: any;
     'disabledDate'?: boolean;
     'name'?: string;

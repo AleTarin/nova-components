@@ -51,6 +51,7 @@
                 instance.changeValue(moment);
               } );
               instance.onChangeValue( moment => console.log('onChange',moment) );
+              instance.confjsonFull = json.configuration.fullscreen;
             })
             .catch(err => {
               // If any error ocurred, pass it to the console
