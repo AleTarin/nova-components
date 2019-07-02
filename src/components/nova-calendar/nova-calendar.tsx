@@ -90,11 +90,7 @@ export class NovaCalendar {
   }
 
   toggleYearMonth(trigger){
-    if (trigger === "year")
-      this.yearMonthSwitch = false;
-
-    else if (trigger === "month")
-      this.yearMonthSwitch = true;
+      this.yearMonthSwitch = trigger === "month";
   }
 
   fillCalendar() {
@@ -123,7 +119,6 @@ export class NovaCalendar {
         }))
     }
   }
-  
 
   setData(){
     this.months = moment.monthsShort();
@@ -158,7 +153,7 @@ export class NovaCalendar {
   }
 
   getEventsByDay(day){
-    return this.eventsByMonth[day] || [];
+    return (this.eventsByMonth && this.eventsByMonth[day]) || [];
   }
 
   getGeneralEventByMonth(month){
@@ -171,7 +166,7 @@ export class NovaCalendar {
     if (this.activeMonth != month)
       return 'inactive';
     else {
-      let date = moment(`${this.activeYear}-${month}-${day}`).format("YYYY/MM/DD");
+      let date = moment(new Date(`${this.activeYear}-${month}-${day}`)).format("YYYY/MM/DD");
       if (date === this.value.format("YYYY/MM/DD"))
         return 'selected';
     }
