@@ -15,12 +15,13 @@
 <body>
   <nova-cascader></nova-cascader>
   <nova-tabs></nova-tabs>
-  <nova-popover trigger="click">
+  <nova-popover trigger="click" location="right">
     <button slot="trigger">Click me !</button>
     <p slot="title"> Hi ! </p>
     <p slot="content"> This is a popover</p>
     <p slot="close"> click here to close </p>
   </nova-popover>
+<<<<<<< HEAD
   <nova-calendar></nova-calendar>
 
   <script>
@@ -54,6 +55,62 @@
       })
     customElements.whenDefined("nova-tabs")
       .then(_ => {
+=======
+
+  <nova-calendar></nova-calendar>
+  
+  <script>
+    // When cascader is defined
+      customElements.whenDefined("nova-calendar")
+      .then( _ => {
+        var calendarElement = document.querySelector('nova-calendar');
+            calendarElement.componentOnReady().then( instance => {
+            fetch('./assets/calendar.json')
+              .then( response => {
+                // Transform it to JSON
+                return response.json();
+              })
+              .then( json => {
+                // Pass the prop
+                instance.content = json;
+              })
+              .catch( err => {
+                // If any error ocurred, pass it to the console
+                console.error(err)
+              })
+        })
+      })
+
+      customElements.whenDefined("nova-cascader")
+      .then( _ => {
+        var cascaderElement = document.querySelector('nova-cascader');
+            cascaderElement.componentOnReady().then( instance => {
+            fetch('./assets/cascader.json')
+              .then( response => {
+                // Transform it to JSON
+                return response.json();
+              })
+              .then( json => {
+                // Pass the prop
+                instance.content = json;
+                instance.addCustomTrigger(document.querySelector('p'))
+                // Test public api to focus
+                instance.blurCascader();
+                // Test public api that adds a callback when popup is open or close
+                instance.onPopupChange( result => (console.log('popup',result)) );
+                // Test public api that adds a callback when a cascader item is selected
+                instance.onCascaderSelect( result => (console.log('select',result)) );
+              })
+              .catch( err => {
+                // If any error ocurred, pass it to the console
+                console.error(err)
+              })
+        })
+      })
+
+      customElements.whenDefined("nova-tabs")
+      .then( _ => {
+>>>>>>> d45d8a8bf5403ace73d78e264b3b83759fc44a79
         var tabsElement = document.querySelector('nova-tabs');
         tabsElement.componentOnReady().then(instance => {
           fetch('./assets/tabs.json')
@@ -69,8 +126,34 @@
               instance.onTabClick(function (keyIndex, event) {
                 console.log('onTabClick', keyIndex, event);
               })
+<<<<<<< HEAD
               instance.onEdit((keyIndex, eventName) => {
                 console.log('onEdit', keyIndex, eventName);
+=======
+              .then( json => {
+                //mandar json como prop
+                instance.datajson = json.data;
+                instance.confjson = json.configuration
+                // public api to add a callback on edit (close or add)
+                instance.onTabClick(function(keyIndex, event){
+                  console.log('onTabClick', keyIndex, event );
+                })
+                instance.onEdit((keyIndex, eventName) => {
+                  console.log('onEdit', keyIndex, eventName );
+                })
+                instance.addTab({
+                  "title":"New tab",
+                  "icon":"plus-square",
+                  "enable":true,
+                  "addTab":true,
+                  "content":"<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
+                })
+                /*
+                instance.openTab(0);
+                instance.closeTab(0);
+                */
+
+>>>>>>> d45d8a8bf5403ace73d78e264b3b83759fc44a79
               })
               instance.addTab({
                 "title": "New tab",

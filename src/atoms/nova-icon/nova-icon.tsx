@@ -2,11 +2,10 @@ import { Component, Prop, h } from "@stencil/core";
 
 @Component({
   tag: "nova-icon",
-  styleUrls:  ["../../assets/all.css","nova-icon.scss"],
+  styleUrls: ["../../assets/all.css", "nova-icon.scss"],
   shadow: false
 })
 export class NovaIcon {
-
   /**
    * Props
    */
@@ -14,8 +13,9 @@ export class NovaIcon {
   @Prop() size?: string = "";
   @Prop() pre?: string = "fas";
   @Prop() options?: string = "";
+  @Prop() color?: string =  "inherit";
 
   render() {
-    return <i class={`${this.pre} fa-${this.name} ${this.options}`} />
+    return <i style={{color: this.color}}class={`${this.pre} fa-${this.name} ${this.options}`} />;
   }
 }
