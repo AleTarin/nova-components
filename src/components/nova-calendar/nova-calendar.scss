@@ -142,6 +142,9 @@ $borderColor: #d4d4d4;
         &:hover {
             background: none;
         }
+        &:focus {
+            outline: none;
+        }
         .calendar__number {
             justify-content: center;
             align-items: center;
@@ -157,13 +160,18 @@ $borderColor: #d4d4d4;
                 background: rgba(#1890ff, .3);
             }
 
-            &.selected {
-                border: 1px solid #1890ff;
-            }
 
-            &.active {
+        }
+        &.selected {
+            .calendar__number {
                 background:#1890ff;
                 color: white;
+            }
+        }
+        &:focus {
+            .calendar__number {
+                outline: none;
+                border: 1px solid #1890ff;
             }
         }
     }
