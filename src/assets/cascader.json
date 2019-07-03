@@ -25,37 +25,37 @@
             ]
           },
           {
-            "value": "hangzhou",
-            "label": "Hangzhou",
+            "value": "USA",
+            "label": "America",
             "children": [
               {
-                "value": "xe",
-                "label": "South"
+                "value": "TX",
+                "label": "Texas"
               },
               {
-                "value": "xa",
-                "label": "East "
+                "value": "WS",
+                "label": "Washington "
               },
               {
-                "value": "xi",
-                "label": "North"
+                "value": "NY",
+                "label": "New York"
               }
             ]
           }
         ]
       },
       {
-        "value": "jiangsu",
-        "label": "Jiangsu",
+        "value": "MX",
+        "label": "Mexico",
         "disabled": true,
         "children": [
           {
-            "value": "nanjing",
-            "label": "Nanjing",
+            "value": "NL",
+            "label": "Nuevo Leon",
             "children": [
               {
-                "value": "zhonghuamen",
-                "label": "Zhong Hua Men"
+                "value": "Mty",
+                "label": "monterrey"
               }
             ]
           }
@@ -64,15 +64,15 @@
       {
         "value": "jiang",
         "label": "Jia",
-        "disabled": "true",
+        "disabled": true,
         "children": [
           {
             "value": "jing",
-            "label": "jing",
+            "label": "jang",
             "children": [
               {
-                "value": "zhongh",
-                "label": "Zhong Men"
+                "value": "Man",
+                "label": "Men"
               }
             ]
           }
@@ -88,8 +88,8 @@
     "name": "nova-cascader",
     "autofocus": true,
     "readonly": false,
-    "changeOnSelect": true
-
+    "changeOnSelect": false,
+    "ariaParagraph": "Accessibility related"
   },
   "styling": {
     "theme": "dark"
