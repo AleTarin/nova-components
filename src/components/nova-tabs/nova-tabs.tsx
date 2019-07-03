@@ -8,7 +8,7 @@ import {Component, Prop,h, Element, State, Method} from "@stencil/core";
   tag: "nova-tabs",
   styleUrls: {
 
-    default: "nova-tabs.default.scss",
+    default: "nova-tabstemp.scss",
     dark: "nova-tabs.dark.scss"
 
   },
