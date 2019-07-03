@@ -1,6 +1,6 @@
 :host {
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
-  background-color: white;
+  font-family: $letra;
+  color: $color_letra;
 }
 
 nova-icon {
@@ -8,52 +8,183 @@ nova-icon {
 }
 
 .addTab {
-  margin: 2em;
-  padding: 10px 15px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  border: 1px solid #d4d4d4;
-  border-radius: 5px;
-  background: white;
-  font-size: 16px;
-  color: #5a5a5a;
-}
-
-
-.tab_container {
-  width: 80%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  display: block;
-  white-space: nowrap;
-}
-
-.tab_button {
-  padding:0em 1.5em;
-  margin: 0 -2em;
-  border-bottom: 1px solid black;
+  background-color: rgba(61, 61, 61, 0.897);
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
-  margin-left: 2em;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
-.tab_button .closeTab{
-  margin-left: 0.8em;
+.addTab_circulo {
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
 }
 
-.tab_button.active{
-  border-bottom: 2px solid blue;
+#tab_container.horizontal {
+  margin: 10px 0px;
+  height: 24px;
+  float: left;
+  border-bottom: 1px solid #ccc;
+  background-color: inherit;
 }
 
-.tab_pane {
-  display:none;
+#tab_container.vertical {
+  width: 150px;
+  float: left;
+  border-right: 1px solid #ccc;
+  background-color: inherit;
 }
-.tab_pane.active{
-  padding-left: 2em;
+
+#tab_container .horizontal {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 16px;
+  margin-left: 10px;
+  border-bottom: 2px solid transparent;
+}
+
+#tab_container .vertical {
+  width: inherit;
   display: block;
-  position: absolute;
+  background-color: inherit;
+  padding: 16px 16px;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  border-right: 2px solid transparent;
 }
 
-.deadspace{
-  height: 200px;
+#tab_container :hover:enabled {
+  color: $color_tab_activo;
+}
+
+#tab_container .horizontal.active {
+  font-weight: bold;
+  color: $color_tab_activo;
+  border-bottom-color: $color_tab_activo;
+  background-color: $tab_activa;
+  
+}
+
+#tab_container .vertical.active {
+  font-weight: bold;
+  color: $color_tab_activo;
+  border-right-color: $color_tab_activo;
+  background-color: $tab_activa;
+}
+
+.tabcontent_container.horizontal{
+  padding: 24px 12px;
+  background-color: $color_fondo;
+  display: none;
+  width: 90%;
+  height: 300px;
+}
+
+.tabcontent_container.vertical {
+  padding: 10px 12px;
+  background-color: $color_fondo;
+  margin-left: 180px;
+  border: none;
+  width: 70%;
+  height: 300px;
+  display: none;
+}
+
+.tabcontent_container.horizontal.active {
+  display: inline-block;
+}
+
+.tabcontent_container.vertical.active {
+  display: block;
+}
+
+ 
+.tabcontent_container {
+  
+  -webkit-animation-duration: 0.3s;
+  -webkit-animation-name: slidein;
+
+  -moz-animation-duration: 0.3s;
+  -moz-animation-name: slidein;
+
+  -o-animation-duration: 0.3s;
+  -o-animation-name: slidein;
+
+  animation-duration: 0.3s;
+  animation-name: slidein;
+}
+
+.closeTab {
+  float: middle;
+  cursor: pointer;
+  color: #dddbdb;
+  padding: 5px;
+}
+
+.closeTab:hover {
+  color: #1e1e1e;
+}
+
+.closeTab:hover:disabled {
+  color: #1e1e1e;
+  color: #dddbdb;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@-moz-keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@-o-keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }

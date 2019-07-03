@@ -6,7 +6,12 @@ import {Component, Prop,h, Element, State, Method} from "@stencil/core";
  */
 @Component({
   tag: "nova-tabs",
-  styleUrl: "nova-tabs.scss",
+  styleUrls: {
+
+    default: "nova-tabs.default.scss",
+    dark: "nova-tabs.dark.scss"
+
+  },
   shadow: true
 })
 export class NovaTabs {

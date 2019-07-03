@@ -1,8 +1,12 @@
+$primary: #1890ff;
+$secondary: white;
+$fontColor: #5a5a5a;
+$borderColor: #d4d4d4;
+
 :host {
     font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
-    background-color: white;
+    background-color: $secondary;
 }
-
 
 .calendar {
     margin: 10px 0;
@@ -31,11 +35,11 @@
     }
 
     &:hover, .active {
-        background: rgba(#1890ff, .2);
+        background: rgba($primary, .2);
     }
 
     &:active {
-        background: rgba(#1890ff, .3);
+        background: rgba($primary, .3);
     }
 }
 
@@ -57,8 +61,8 @@
         height: 100%;
         padding: 10px 12px;
         font-size: 16px;
-        color: #555;
-        border: 1px solid #ccc;
+        color: $fontColor;
+        border: 1px solid $borderColor;
         border-radius: 4px;
         cursor: pointer;
         
@@ -98,8 +102,8 @@
             }
 
             &.active {
-                border-color: #1890ff;
-                color: #1890ff;
+                border-color: $primary;
+                color: $primary;
             }
         }
         
@@ -138,6 +142,9 @@
         &:hover {
             background: none;
         }
+        &:focus {
+            outline: none;
+        }
         .calendar__number {
             justify-content: center;
             align-items: center;
@@ -153,13 +160,18 @@
                 background: rgba(#1890ff, .3);
             }
 
-            &.selected {
-                border: 1px solid #1890ff;
-            }
 
-            &.active {
+        }
+        &.selected {
+            .calendar__number {
                 background:#1890ff;
                 color: white;
+            }
+        }
+        &:focus {
+            .calendar__number {
+                outline: none;
+                border: 1px solid #1890ff;
             }
         }
     }
@@ -170,12 +182,14 @@ section:not(.calendar--card){
         height: 120px;
         border-top: 3px solid rgba($color: #000000, $alpha: .2);
         width: 100%;
+        padding: 0 1em;
         flex-direction: column;
         justify-content: flex-start;
         .calendar__number {
             margin-bottom: 1em;
         }
         &:focus {
+            color: #1890ff;
             background: rgba(#1890ff, .2);
             outline: none;
         }
@@ -188,7 +202,6 @@ section:not(.calendar--card){
             overflow-y: auto;
             list-style: none;
             margin: 0;
-            padding-left: 1em;
             max-width: 100%;
             max-height: 100%;
         }
@@ -212,6 +225,18 @@ section:not(.calendar--card){
         display: flex;
         justify-content: space-between;
     }
+}
+
+.btn_full {
+    &:hover {
+        color: #1890ff;
+    }
+    
+    color:  #83838391;   
+
+    
+    
+
 }
 
 :fullscreen {
