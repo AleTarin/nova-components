@@ -10,6 +10,10 @@ import {
 import { range } from "../../utils/utils";
 import moment, { Moment } from "moment";
 
+/**
+ * @author Alejandro Tarin, Armando Aguiar, Arturo Rojas, Javier Saldivar, Alejandro Roiz
+ */
+
 @Component({
   tag: "nova-calendar",
   styleUrls: {
@@ -17,6 +21,7 @@ import moment, { Moment } from "moment";
   },
   shadow: true
 })
+
 export class NovaCalendar {
   @Prop() name: string;
   @Prop() content: any = {
@@ -42,9 +47,9 @@ export class NovaCalendar {
   @Prop({ mutable: true }) _onSelect: Function = function (_date: Moment) { };
   @Prop({ mutable: true }) _onChange: Function = function (_date: Moment) { };
 
+  // States
   @State() calendar: any[] = [];
   @State() monthCalendar: any[] = [];
-
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: Moment = moment();
   @State() eventsByYear: {};
@@ -54,8 +59,14 @@ export class NovaCalendar {
   @State() years: number[];
   @State() days: string[];
 
+  // The Calendar Element itself
   @Element() public host: HTMLElement;
 
+  /**
+   * nowChangeMonth
+   * @description Recieves an object with the month and day and changes to that date
+   * @param {month, day} object with month and day we want to change to
+   */
   nowChangeMonth({ month, day }) {
     // Check special cases
     if (this.activeMonth === 1 && month === 12) {
@@ -77,18 +88,32 @@ export class NovaCalendar {
     this.fillCalendar();
   }
 
+  /**
+   * nowSetYear
+   * @description recieves the event and fills the calendar (used in year mode)
+   * @param event 
+   */
   nowSetYear(event) {
     this.activeYear = event.target.value;
     this.now = moment(this.now).year(this.activeYear);
     this.fillCalendar();
   }
 
+  /**
+   * nowSetMonth
+   * @description recieves the event and fills the calendar (used in month mode)
+   * @param event 
+   */
   nowSetMonth(event) {
     this.activeMonth = Number(event.target.value);
     this.now = moment(this.now).month(this.activeMonth - 1);
     this.fillCalendar();
   }
 
+  /**
+   * fillCalendar
+   * @description used to fill an array with the valid dates from the month being hovered
+   */
   fillCalendar() {
     this.calendar = [];
     this.monthCalendar = [];
@@ -130,6 +155,10 @@ export class NovaCalendar {
     }
   }
 
+  /**
+   * setData
+   * @description sets the months days and years used to fill the selects in the calendar
+   */
   setData() {
     this.months = moment.monthsShort();
     this.days = moment.weekdaysShort();
@@ -139,10 +168,19 @@ export class NovaCalendar {
     );
   }
 
+  // Life cycle methods
+  /**
+   * componentDidLoad
+   * @description fill the calendar once the component is loaded to the browser
+   */
   componentDidLoad() {
     this.fillCalendar();
   }
 
+  /**
+   * componentWillLoad
+   * @description when the component will Load select the valid ranges for the years to be displayed in the calendar
+   */
   componentWillLoad() {
     this.validRange = [
       this.value.clone().subtract(10, "years"),
@@ -151,32 +189,62 @@ export class NovaCalendar {
     this.setData();
   }
 
+  /**
+   * watchContent
+   * @description once the content is changed get the events we need
+   * @listens prop:content
+   */
   @Watch("content")
   watchContent() {
     this.getEventsByYear();
     this.getEventsByMonth();
   }
 
+  /**
+   * getEventsByYear
+   * @description fill the events by year with the data from the confJSON, or an empty object
+   * @listens prop:activeYear
+   */
   @Watch("activeYear")
   getEventsByYear() {
     this.eventsByYear = this.content.data.items[this.activeYear] || {};
     this.getEventsByMonth();
   }
 
+  /**
+   * getEventsByMonth
+   * @description fill the events by month with the data from the confJSON, or an empty object
+   * @listens prop:activeMonth
+   */
   @Watch("activeMonth")
   getEventsByMonth() {
     this.eventsByMonth = this.eventsByYear[this.activeMonth] || {};
   }
 
+  /**
+   * getEventsByDay
+   * @description return the events in the date selected
+   * @param day string with the day to check
+   */
   getEventsByDay(day) {
     return (this.eventsByMonth && this.eventsByMonth[day]) || [];
   }
 
+  /**
+   * getGeneralEventByMonth
+   * @description return the events in the month selected
+   * @param month string with the month to check
+   */
   getGeneralEventByMonth(month) {
     this.eventsByMonth = this.eventsByYear[month] || {};
     return this.eventsByMonth["event"];
   }
 
+  /**
+   * getCellClass
+   * @description change class of the cell selected depending on its state
+   * @param {month, day} object with month and day we want to check
+   */
   getCellClass({ month, day }) {
     if (this.activeMonth != month) return "inactive";
     else {
@@ -188,32 +256,71 @@ export class NovaCalendar {
     return "";
   }
 
+  /**
+   * fullScreen
+   * @description Public API method to enter fullscreen
+   * @async
+   */
   @Method()
   async fullscreen() {
     this.host.requestFullscreen();
   }
 
+  /**
+   * onChangeValue
+   * @description Sets the callback that is fired when the value of the calendar changes
+   * @param callback callback sended with the Public API
+   * @async
+   * @callback
+   */
   @Method()
   async onChangeValue(Callback: Function) {
     this._onChange = Callback;
   }
 
+  /**
+   * onSelectValue
+   * @description Sets the callback that is fired when the item is selected
+   * @param callback callback sended with the Public API
+   * @async
+   * @callback
+   */
   @Method()
   async onSelectValue(Callback: Function) {
     this._onSelect = Callback;
   }
 
+  /**
+   * changeValue
+   * @description Sets the callback that is fired when any value is changed
+   * @param newValue any value to change
+   * @async
+   */
   @Method()
   async changeValue(newValue: any) {
     this.value = newValue;
     this._onChange(this.value);
   }
 
+  /**
+   * toggleType
+   * @description Sets the callback that is fired when the toggle type in the calendar changes
+   * @param type the type of calendar we are viewing by month or year
+   * @async
+   */
   @Method()
   async toggleType(type: "month" | "year") {
     this.type = type;
   }
 
+  /**
+   * changeLocale
+   * @description Sets the callback that is fired when the locale is changed
+   * @param lang string that represents the language
+   * @param localeSpec object that holds the specs of the locale
+   * @async
+   * @callback
+   */
   @Method()
   async changeLocale(lang: string, localeSpec: object) {
     moment.defineLocale(lang, localeSpec);
