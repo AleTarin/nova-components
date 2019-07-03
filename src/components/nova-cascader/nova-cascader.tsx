@@ -8,6 +8,9 @@ import {
   Watch
 } from "@stencil/core";
 import { ClickOutside } from "stencil-click-outside";
+/**
+ * @author Alejandro Tarin, Alejandro Roiz
+ */
 
 /**
  * @author Alejandro Tarin, Alejandro Roiz
@@ -15,20 +18,8 @@ import { ClickOutside } from "stencil-click-outside";
 
 /**
  * @todo
- * Limpiar JSON:
- *    No dejar datos repetidos
- * Accessibilidad: 
- *    Agregar navegacion por teclado
- *    Si nuestro search no encuentra nada, llenar el accessibility-paragraph con un texto para que un screen reader lo pueda leer
- *    El texto que va en accessibility-paragraph ponerlo dentro del confJSON para que sea mas facil de mantener
  * Documentacion:
  *    Explicar dentro del README mas externo (del proyecto) como se manejaría un tema nuevo
- * Search:
- *    No se porque en el demo con Alysson no funcionaba, buscabamos Xihe y no pasaba nada
- *    Seleccionabamos Xihe y solo mostraba eso, no todo la seleccion
- *    Poner un empty state (practicamente es el Accessibility-paragraph)
- * HTML:
- *    Agregar un ID a cada una de las listas para que sea mas facil seleccionar la lista con css envez de hacer queryselector de ul/li
  * CSS-Animations (SOLO SI QUEDA TIEMPO):
  *    animations.css -> agregar el sass que tiene ya animaciones "out of the box"
  */
@@ -55,7 +46,8 @@ export class NovaCascader {
       disabled: false,
       separator: " / ",
       defaultValue: [],
-      changeOnSelect: true
+      changeOnSelect: false,
+      ariaParagraph: "No content selected"
     }
   };
   @Prop() size: string;
@@ -129,7 +121,7 @@ export class NovaCascader {
         }
         if (event === "click") {
           this.setSearch();
-          if (!next.children) this.toggleCascader();
+          if (!next.children) this.Cascader();
         }
       }
     }
@@ -201,10 +193,10 @@ export class NovaCascader {
 
   // Search methods
   /**
-   * toggleCascader
+   * Cascader
    * @description Toggle cascader visibility on click
    */
-  toggleCascader() {
+  Cascader() {
     this.isActive = !this.isActive;
     this.onSelect && this.onPopupVisibleChange(this.result);
   }
@@ -252,17 +244,26 @@ export class NovaCascader {
       <section class="cascader">
         <span class="cascader__search">
           <input
-            onKeyDown={e => readonly && this.disableEvent(e)}
+            onKeyDown={e => readonly ? this.disableEvent(e) : e.key === 'Enter' && this.Cascader()} 
             autoFocus={autofocus}
+            
             name={name}
             value={this.result}
-            onClick={_ => this.toggleCascader()}
+            onClick={_ => this.Cascader()}
             placeholder={placeholder}
+
+            role="combobox"
+            aria-readonly={readonly}
+            aria-controls="Enter"
+            aria-haspopup="true"
+            aria-expanded={this.isActive}
+            aria-label={this.result ? this.result : this.content.configuration.ariaParagraph}
           />
           <nova-icon name="times-circle" onClick={_ => this.clearSearch()} />
           <nova-icon
             name={`${this.isActive ? "chevron-up" : "chevron-down"}`}
           />
+          
         </span>
 
         {/* Cascader options */}
@@ -272,9 +273,15 @@ export class NovaCascader {
             }`}
         >
           {this.data.map((list: cascaderItem[], level: number) => (
-            <ul class="cascader__menu__list">
+            <ul role="listbox" class="cascader__menu__list" id={`js-cascader-list-${level}`}>
               {list.map((item: cascaderItem) => (
                 <li
+                  id={`js-cascader-list-${level}-${item.value}`}
+                  role="option" 
+                  aria-haspopup={ item.children ? "true" : "false"}
+                  aria-label={item.value}
+                  aria-selected={this.path[this.path.length - 1] === item.value ? "true" : "false"}
+                  tabIndex={item.disabled ? -1 : 0}
                   class={`cascader__menu__item ${
                     item.disabled ? "cascader__menu__item--disabled" : ""
                     }`}
@@ -282,6 +289,7 @@ export class NovaCascader {
                     this.updateCascader(list, level, item, "hover")
                   }
                   onClick={_ => this.updateCascader(list, level, item, "click")}
+                  onKeyDown={_event => _event.key === 'Enter' && this.updateCascader(list, level, item, "click")}
                 >
                   {item.label}
                   {item.children && <nova-icon name="chevron-right" />}
