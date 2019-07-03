@@ -21,7 +21,8 @@ interface cascaderConfiguration {
         name?: string,
         readonly?: boolean,
         disabled?: boolean,
-        changeOnSelect?: boolean
+        changeOnSelect?: boolean,
+        ariaParagraph?: string
     }
 }
 interface cascaderStyling {
