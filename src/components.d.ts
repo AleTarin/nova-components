@@ -30,6 +30,7 @@ export namespace Components {
     'type': "month" | "year";
     'validRange': [Moment, Moment];
     'value': Moment;
+    'yearMonthSwitch': boolean;
   }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
@@ -154,6 +155,7 @@ declare namespace LocalJSX {
     'type'?: "month" | "year";
     'validRange'?: [Moment, Moment];
     'value'?: Moment;
+    'yearMonthSwitch'?: boolean;
   }
   interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
     'content'?: cascader;

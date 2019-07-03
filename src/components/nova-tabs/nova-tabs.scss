@@ -1,5 +1,6 @@
 :host {
-  font-family: Arial;
+  font-family: $letra;
+  color: $color_letra;
 }
 
 nova-icon {
@@ -66,23 +67,27 @@ nova-icon {
 }
 
 #tab_container :hover:enabled {
-  color: #3381ff;
+  color: $color_tab_activo;
 }
 
 #tab_container .horizontal.active {
   font-weight: bold;
-  color: #3381ff;
-  border-bottom-color: #3381ff;
+  color: $color_tab_activo;
+  border-bottom-color: $color_tab_activo;
+  background-color: $tab_activa;
+  
 }
 
 #tab_container .vertical.active {
   font-weight: bold;
-  color: #3381ff;
-  border-right-color: #3381ff;
+  color: $color_tab_activo;
+  border-right-color: $color_tab_activo;
+  background-color: $tab_activa;
 }
 
 .tabcontent_container.horizontal{
   padding: 24px 12px;
+  background-color: $color_fondo;
   display: none;
   width: 90%;
   height: 300px;
@@ -90,6 +95,7 @@ nova-icon {
 
 .tabcontent_container.vertical {
   padding: 10px 12px;
+  background-color: $color_fondo;
   margin-left: 180px;
   border: none;
   width: 70%;
