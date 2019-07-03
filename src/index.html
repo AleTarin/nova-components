@@ -14,7 +14,32 @@
 
 <body>
   <nova-cascader></nova-cascader>
-  <nova-tabs mode=""></nova-tabs>
+  <nova-tabs position="horizontal" default="3" prefix="nova" add-button>
+    <h3 slot="tab" disabled="true" closable> First Tab </h1>
+    <section slot="panel" >
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil dolore asperiores placeat repudiandae ullam atque reiciendis suscipit, illum soluta. Mollitia magni modi expedita excepturi vero inventore quod corporis deleniti ducimus.
+      </p>
+    </section>
+    <h3 slot="tab" closable="true"> Second Tab </h1>
+    <div slot="panel">
+      <p>
+        panel 2
+      </p>
+    </div>
+    <h3 slot="tab" closable="true" selected="true"> Third Tab </h1>
+    <div slot="panel">
+      <p>
+        panel 3
+      </p>
+    </div>
+    <h3 slot="tab" closable="true"> Forth Tab </h1>
+    <div slot="panel">
+      <p>
+        panel 4
+      </p>
+    </div>
+  </nova-tabs>
   <nova-popover trigger="click" location="right">
     <button slot="trigger">Click me !</button>
     <p slot="title"> Hi ! </p>
@@ -107,13 +132,13 @@
               instance.onEdit((keyIndex, eventName) => {
                 console.log('onEdit', keyIndex, eventName);
               })
-              instance.addTab({
-                "title": "New tab",
-                "icon": "plus-square",
-                "enable": true,
-                "addTab": true,
-                "content": "<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
-              })
+              // instance.addTab({
+              //   "title": "New tab",
+              //   "icon": "plus-square",
+              //   "enable": true,
+              //   "addTab": true,
+              //   "content": "<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
+              // })
               /*
               instance.openTab(0);
               instance.closeTab(0);

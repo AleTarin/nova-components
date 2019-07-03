@@ -18,5 +18,6 @@ export const KEYCODES = {
   UP: 38,
   HOME: 36,
   END: 35,
-  ENTER: 13
+  ENTER: 13,
+  DELETE: 46
 };
