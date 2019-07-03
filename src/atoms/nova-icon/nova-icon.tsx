@@ -13,8 +13,9 @@ export class NovaIcon {
   @Prop() size?: string = "";
   @Prop() pre?: string = "fas";
   @Prop() options?: string = "";
+  @Prop() color?: string =  "inherit";
 
   render() {
-    return <i class={`${this.pre} fa-${this.name} ${this.options}`} />;
+    return <i style={{color: this.color}}class={`${this.pre} fa-${this.name} ${this.options}`} />;
   }
 }

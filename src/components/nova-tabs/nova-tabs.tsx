@@ -6,7 +6,12 @@ import {Component, Prop,h, Element, State, Method} from "@stencil/core";
  */
 @Component({
   tag: "nova-tabs",
-  styleUrl: "nova-tabs.css",
+  styleUrls: {
+
+    default: "nova-tabstemp.scss",
+    dark: "nova-tabs.dark.scss"
+
+  },
   shadow: true
 })
 export class NovaTabs {
@@ -118,7 +123,7 @@ export class NovaTabs {
       //Button for adding new tabs. If property addTab is false the button is not displayed.
       <button
         style={
-          this.confjson.addTab ? { display: "block" } : { display: "none" }
+          this.confjson && this.confjson.addTab ? { display: "block" } : { display: "none" }
         }
         class="addTab addTab_circulo"
         onClick={() => this.addTab(this.newTabData)}
@@ -127,41 +132,28 @@ export class NovaTabs {
       </button>,
 
       //Tab buttons container
-      <div id="tab_container" class={this.tabPosition + " " + this.tabType}>
+      <div class="tab_container">
         {this.datajson &&
           this.datajson.items.map((tabButton, index) => (
             //Tab creation from json data
-            <button
-              class={
-                this.activeKey === index
-                  ? this.tabPosition + " " + this.tabType + " active"
-                  : this.tabPosition + " " + this.tabType
-              }
-              onClick={event => this.openTab(index, event)}
-              disabled={!tabButton.enable}
-            >
+            [<div
+              id={"bt_" + String(index)}
+              class={`tab_button ${this.activeKey === index ? " active" : ""} ${this.tabPosition === "horizontal" ? " horizontal" : " vertical"} `}  
+              onClick={event => this.openTab(index, event)}>
               <span>
                 <nova-icon name={tabButton.icon} />
                 {tabButton.title}
-                {tabButton.closable ? (
-                  <span onClick={() => this.closeTab(index)} class="closeTab">
-                    {" "}
-                    X{" "}
-                  </span>
-                ) : (
-                  ""
-                )}
+                <span onClick={() => this.closeTab(index)} class="closeTab" style={tabButton.closable ? {display: "in-line block"} : {display: "none"}}>X</span>
               </span>
-            </button>
+              </div>,
+              <div 
+                id={"pn_" + String(index)}
+                class={`tab_pane ${this.activeKey === index ? " active" : ""}`}
+                innerHTML={tabButton.content}>
+              </div>]
+           
           ))}
       </div>,
-
-    //Tab panes container
-    this.datajson && this.datajson.items.map((tabContent, index)=> 
-      <div class={this.activeKey === index ? 
-        this.tabPosition + " tabcontent_container active" : 
-        this.tabPosition + " tabcontent_container"} 
-      innerHTML={tabContent.content}/>
-        )
+      <div class="deadspace"/>
     ]};
 }

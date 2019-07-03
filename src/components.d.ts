@@ -6,9 +6,53 @@
 
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
-
+import {
+  Moment,
+} from 'moment';
 
 export namespace Components {
+  interface NovaCalendar {
+    /**
+    * Changes the view to card
+    */
+    'card': boolean;
+    /**
+    * changeLocale
+    */
+    'changeLocale': (lang: string, localeSpec: object) => Promise<void>;
+    /**
+    * changeValue
+    */
+    'changeValue': (newValue: any) => Promise<void>;
+    /**
+    * Object that contains all data with the items of each date with events and configuration
+    */
+    'content': any;
+    /**
+    * fullScreen
+    */
+    'fullscreen': () => Promise<void>;
+    /**
+    * onChangeValue
+    */
+    'onChangeValue': (Callback: Function) => Promise<void>;
+    /**
+    * onSelectValue
+    */
+    'onSelectValue': (Callback: Function) => Promise<void>;
+    /**
+    * toggleType
+    */
+    'toggleType': (type: "month" | "year") => Promise<void>;
+    /**
+    * Type of calendar, view by month or by year
+    */
+    'type': "month" | "year";
+    /**
+    * Selected moment value
+    */
+    'value': Moment;
+  }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
     /**
@@ -31,6 +75,7 @@ export namespace Components {
     'size': string;
   }
   interface NovaIcon {
+    'color'?: string;
     /**
     * Props
     */
@@ -79,6 +124,12 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLNovaCalendarElement extends Components.NovaCalendar, HTMLStencilElement {}
+  var HTMLNovaCalendarElement: {
+    prototype: HTMLNovaCalendarElement;
+    new (): HTMLNovaCalendarElement;
+  };
+
   interface HTMLNovaCascaderElement extends Components.NovaCascader, HTMLStencilElement {}
   var HTMLNovaCascaderElement: {
     prototype: HTMLNovaCascaderElement;
@@ -103,6 +154,7 @@ declare global {
     new (): HTMLNovaTabsElement;
   };
   interface HTMLElementTagNameMap {
+    'nova-calendar': HTMLNovaCalendarElement;
     'nova-cascader': HTMLNovaCascaderElement;
     'nova-icon': HTMLNovaIconElement;
     'nova-popover': HTMLNovaPopoverElement;
@@ -111,11 +163,30 @@ declare global {
 }
 
 declare namespace LocalJSX {
+  interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
+    /**
+    * Changes the view to card
+    */
+    'card'?: boolean;
+    /**
+    * Object that contains all data with the items of each date with events and configuration
+    */
+    'content'?: any;
+    /**
+    * Type of calendar, view by month or by year
+    */
+    'type'?: "month" | "year";
+    /**
+    * Selected moment value
+    */
+    'value'?: Moment;
+  }
   interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
     'content'?: cascader;
     'size'?: string;
   }
   interface NovaIcon extends JSXBase.HTMLAttributes<HTMLNovaIconElement> {
+    'color'?: string;
     /**
     * Props
     */
@@ -141,6 +212,7 @@ declare namespace LocalJSX {
   }
 
   interface IntrinsicElements {
+    'nova-calendar': NovaCalendar;
     'nova-cascader': NovaCascader;
     'nova-icon': NovaIcon;
     'nova-popover': NovaPopover;

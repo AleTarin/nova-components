@@ -12,15 +12,15 @@
             "children": [
               {
                 "value": "xihu",
-                "label": "West Lake"
+                "label": "Xihu"
               },
               {
                 "value": "xihe",
-                "label": "East Lake"
+                "label": "Xihe"
               },
               {
                 "value": "xiha",
-                "label": "North Lake"
+                "label": "Xiha"
               }
             ]
           },
@@ -82,7 +82,11 @@
   },
   "configuration": {
     "expandTrigger": "click",
-    "defaultValue": ["zhejiang" , "hangzhou", "xihe"] ,
+    "defaultValue": [
+      "zhejiang",
+      "hangzhou",
+      "xihe"
+    ],
     "separator": "//",
     "placeholder": "States",
     "name": "nova-cascader",

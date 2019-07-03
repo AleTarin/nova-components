@@ -13,6 +13,10 @@ import { ClickOutside } from "stencil-click-outside";
  */
 
 /**
+ * @author Alejandro Tarin, Alejandro Roiz
+ */
+
+/**
  * @todo
  * Documentacion:
  *    Explicar dentro del README mas externo (del proyecto) como se manejaría un tema nuevo
@@ -290,7 +294,8 @@ export class NovaCascader {
                   {item.label}
                   {item.children && <nova-icon name="chevron-right" />}
                 </li>
-              ))}
+              ))
+            }
             </ul>
           ))}
         </div>
