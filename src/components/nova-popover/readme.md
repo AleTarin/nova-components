@@ -7,11 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default     |
-| ---------- | ---------- | ----------- | --------- | ----------- |
-| `popclick` | `popclick` |             | `boolean` | `undefined` |
-| `popfocus` | `popfocus` |             | `boolean` | `undefined` |
-| `pophover` | `pophover` |             | `boolean` | `undefined` |
+| Property   | Attribute  | Description | Type                                                                                                                                              | Default     |
+| ---------- | ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `location` | `location` |             | `"bot" \| "botleft" \| "botright" \| "left" \| "leftbot" \| "lefttop" \| "right" \| "rightbot" \| "righttop" \| "top" \| "topleft" \| "topright"` | `undefined` |
+| `trigger`  | `trigger`  |             | `"click" \| "focus" \| "hover"`                                                                                                                   | `"click"`   |
 
 
 ----------------------------------------------

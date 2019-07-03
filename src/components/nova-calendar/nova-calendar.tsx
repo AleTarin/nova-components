@@ -23,41 +23,46 @@ import moment, { Moment } from "moment";
 })
 
 export class NovaCalendar {
-  @Prop() name: string;
+  /** Object that contains all data with the items of each date with events and configuration */
   @Prop() content: any = {
     data: {
       items: {}
+    },
+    configuration: {
+      fullscreen: false
     }
   };
-  @Prop() disabledDate: boolean;
-  @Prop() activeMonth: number = Number(moment().format("M"));
-  @Prop() activeYear: number = Number(moment().format("YYYY"));
-  @Prop() yearMonthSwitch: boolean = true;
-  
 
-  // Props changeable by methods
-  @Prop({ mutable: true }) value: Moment = moment(); //moment
+  // Props
+  /** Selected moment value */
+  @Prop({ mutable: true }) value: Moment = moment(); 
+  /** Type of calendar, view by month or by year */
   @Prop({ mutable: true }) type: "month" | "year" = "month";
+  /** Changes the view to card */
   @Prop({ mutable: true }) card: boolean = false;
-  @Prop({ mutable: true }) validRange: [Moment, Moment];
-  @Prop({ mutable: true }) confjsonFull:boolean;
-  // Locale - update by @method
 
-  // Callbacks
-  @Prop({ mutable: true }) _onSelect: Function = function (_date: Moment) { };
-  @Prop({ mutable: true }) _onChange: Function = function (_date: Moment) { };
 
   // States
   @State() calendar: any[] = [];
   @State() monthCalendar: any[] = [];
+  
   // https://momentjs.com/docs/#/displaying/format/
   @State() now: Moment = moment();
+  @State() activeMonth: number = Number(moment().format("M"));
+  @State() activeYear: number = Number(moment().format("YYYY"));  
+  /** Valid range of years to display the calendar */
+  @State() validRange: [Moment, Moment];
+
   @State() eventsByYear: {};
   @State() eventsByMonth: {};
   @State() generalEvents: {};
   @State() months: string[];
   @State() years: number[];
   @State() days: string[];
+  
+  // Callbacks
+  @State() _onSelect: Function = function (_date: Moment) { };
+  @State() _onChange: Function = function (_date: Moment) { };
 
   // The Calendar Element itself
   @Element() public host: HTMLElement;
@@ -337,7 +342,7 @@ export class NovaCalendar {
         <div class="calendar__controls">
           {/* Barra que va arriba del calendario */}
           {/* De los años */}
-          { this.confjsonFull
+          { this.content.configuration.fullscreen
           ? <nova-icon class="btn_full" name="fas fa-expand fa-2x" onClick={() => this.fullscreen()}></nova-icon> : ""}
                   
           <select onChange={this.nowSetYear.bind(this)}>

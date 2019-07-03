@@ -286,7 +286,8 @@ export class NovaCascader {
                   {item.label}
                   {item.children && <nova-icon name="chevron-right" />}
                 </li>
-              ))}
+              ))
+            }
             </ul>
           ))}
         </div>

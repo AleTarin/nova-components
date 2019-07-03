@@ -12,25 +12,46 @@ import {
 
 export namespace Components {
   interface NovaCalendar {
-    '_onChange': Function;
-    '_onSelect': Function;
-    'activeMonth': number;
-    'activeYear': number;
+    /**
+    * Changes the view to card
+    */
     'card': boolean;
+    /**
+    * changeLocale
+    */
     'changeLocale': (lang: string, localeSpec: object) => Promise<void>;
+    /**
+    * changeValue
+    */
     'changeValue': (newValue: any) => Promise<void>;
-    'confjsonFull': boolean;
+    /**
+    * Object that contains all data with the items of each date with events and configuration
+    */
     'content': any;
-    'disabledDate': boolean;
+    /**
+    * fullScreen
+    */
     'fullscreen': () => Promise<void>;
-    'name': string;
+    /**
+    * onChangeValue
+    */
     'onChangeValue': (Callback: Function) => Promise<void>;
+    /**
+    * onSelectValue
+    */
     'onSelectValue': (Callback: Function) => Promise<void>;
+    /**
+    * toggleType
+    */
     'toggleType': (type: "month" | "year") => Promise<void>;
+    /**
+    * Type of calendar, view by month or by year
+    */
     'type': "month" | "year";
-    'validRange': [Moment, Moment];
+    /**
+    * Selected moment value
+    */
     'value': Moment;
-    'yearMonthSwitch': boolean;
   }
   interface NovaCascader {
     'addCustomTrigger': (el: HTMLElement) => Promise<void>;
@@ -143,19 +164,22 @@ declare global {
 
 declare namespace LocalJSX {
   interface NovaCalendar extends JSXBase.HTMLAttributes<HTMLNovaCalendarElement> {
-    '_onChange'?: Function;
-    '_onSelect'?: Function;
-    'activeMonth'?: number;
-    'activeYear'?: number;
+    /**
+    * Changes the view to card
+    */
     'card'?: boolean;
-    'confjsonFull'?: boolean;
+    /**
+    * Object that contains all data with the items of each date with events and configuration
+    */
     'content'?: any;
-    'disabledDate'?: boolean;
-    'name'?: string;
+    /**
+    * Type of calendar, view by month or by year
+    */
     'type'?: "month" | "year";
-    'validRange'?: [Moment, Moment];
+    /**
+    * Selected moment value
+    */
     'value'?: Moment;
-    'yearMonthSwitch'?: boolean;
   }
   interface NovaCascader extends JSXBase.HTMLAttributes<HTMLNovaCascaderElement> {
     'content'?: cascader;
