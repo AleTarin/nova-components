@@ -101,10 +101,10 @@ export namespace Components {
     * closeTab
     */
     'closeTab': (keyIndex: number) => Promise<void>;
-    'confjson': any;
     'default': string;
     'defaultTag': string;
     'defaultText': string;
+    'jsprefix': string;
     /**
     * onEdit
     */
@@ -206,10 +206,10 @@ declare namespace LocalJSX {
   }
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
     'addButton'?: boolean;
-    'confjson'?: any;
     'default'?: string;
     'defaultTag'?: string;
     'defaultText'?: string;
+    'jsprefix'?: string;
     'position'?: string;
     'type'?: string;
     'updater'?: boolean;

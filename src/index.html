@@ -14,7 +14,7 @@
 
 <body>
   <nova-cascader></nova-cascader>
-  <nova-tabs position="horizontal" default="3" prefix="nova" add-button>
+  <nova-tabs position="vertical" type="card" default="3" prefix="nova" add-button>
     <h3 slot="tab" disabled="true" closable> First Tab </h1>
     <section slot="panel" >
       <p>
@@ -40,6 +40,8 @@
       </p>
     </div>
   </nova-tabs>
+
+
   <nova-popover trigger="click" location="right">
     <button slot="trigger">Click me !</button>
     <p slot="title"> Hi ! </p>
@@ -122,9 +124,6 @@
               return response.json();
             })
             .then(json => {
-              //mandar json como prop
-              instance.datajson = json.data;
-              instance.confjson = json.configuration
               // public api to add a callback on edit (close or add)
               instance.onTabClick(function (keyIndex, event) {
                 console.log('onTabClick', keyIndex, event);
@@ -132,17 +131,14 @@
               instance.onEdit((keyIndex, eventName) => {
                 console.log('onEdit', keyIndex, eventName);
               })
-              // instance.addTab({
-              //   "title": "New tab",
-              //   "icon": "plus-square",
-              //   "enable": true,
-              //   "addTab": true,
-              //   "content": "<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
-              // })
-              /*
-              instance.openTab(0);
+              let defaultText = "Tab"
+              let tab   =  document.createElement('p');
+              let panel = document.createElement('p');
+              tab.innerText =   defaultText;
+              panel.innerHTML = defaultText;
+              instance.addTab(tab, panel)
+              instance.openTab(2);
               instance.closeTab(0);
-              */
 
             })
             .catch(err => {

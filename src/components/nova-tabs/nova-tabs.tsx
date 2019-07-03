@@ -14,7 +14,6 @@ import { KEYCODES } from '../../utils/utils';
 })
 export class NovaTabs {
   //Props
-  @Prop({ mutable: true }) confjson: any;
   @Prop() updater: boolean = true;
   @Prop() defaultText: string = "tab";
   @Prop() defaultTag: string = "div";
@@ -22,9 +21,9 @@ export class NovaTabs {
   @Prop() type: string;
   @Prop() position: string = "horizontal";
   @Prop({attribute: 'add-button'}) addButton: boolean = false;
+  @Prop() jsprefix: string = "nova";
 
   @Element() el: HTMLElement;
-  
   
   // States
   @State() _tabSlot: any[] = [];
@@ -134,7 +133,7 @@ export class NovaTabs {
     switch(event.keyCode) {
       case(KEYCODES.ENTER):
         this.openTab(index, event);
-        (this.el.shadowRoot.querySelector(`#js-tab-${this.activeKey}`) as HTMLElement).focus();
+        (this.el.shadowRoot.querySelector(`#${this.jsprefix}-tab-${this.activeKey}`) as HTMLElement).focus();
         break;
       case(KEYCODES.LEFT):
       case(KEYCODES.UP):
@@ -142,7 +141,7 @@ export class NovaTabs {
           this.activeKey = this.activeKey !== 0 ? this.activeKey - 1 : this._tabSlot.length - 1;
           el = this._tabSlot[this.activeKey];
         } while(el.getAttribute('disabled') === "true")
-        (this.el.shadowRoot.querySelector(`#js-tab-${this.activeKey}`) as HTMLElement).focus();
+        (this.el.shadowRoot.querySelector(`#${this.jsprefix}-tab-${this.activeKey}`) as HTMLElement).focus();
         break;
       case(KEYCODES.RIGHT):
       case(KEYCODES.DOWN):
@@ -150,19 +149,19 @@ export class NovaTabs {
           this.activeKey = this.activeKey !== this._tabSlot.length - 1 ? this.activeKey + 1 : 0;
           el = this._tabSlot[this.activeKey];
         } while(el.getAttribute('disabled') === "true")
-        (this.el.shadowRoot.querySelector(`#js-tab-${this.activeKey}`) as HTMLElement).focus();
+        (this.el.shadowRoot.querySelector(`#${this.jsprefix}-tab-${this.activeKey}`) as HTMLElement).focus();
         break;
       case(KEYCODES.HOME):
         if(this._tabSlot[0].getAttribute('disabled') !== "true"){
           this.activeKey = 0;
         }
-        (this.el.shadowRoot.querySelector(`#js-tab-${this.activeKey}`) as HTMLElement).focus();
+        (this.el.shadowRoot.querySelector(`#${this.jsprefix}-tab-${this.activeKey}`) as HTMLElement).focus();
       break;
       case(KEYCODES.END):
         if(this._tabSlot[this._tabSlot.length - 1].getAttribute('disabled') !== "true"){
           this.activeKey = this._tabSlot.length - 1;
         }
-        (this.el.shadowRoot.querySelector(`#js-tab-${this.activeKey}`) as HTMLElement).focus();
+        (this.el.shadowRoot.querySelector(`#${this.jsprefix}-tab-${this.activeKey}`) as HTMLElement).focus();
       break;
       default:
         break;
@@ -173,6 +172,7 @@ export class NovaTabs {
     let tab   =  document.createElement(this.defaultTag);
     let panel = document.createElement(this.defaultTag);
     tab.innerText = this.defaultText;
+    tab.setAttribute('closable', 'true');
     panel.innerHTML = this.defaultText;
     return [tab, panel]
   }
@@ -202,11 +202,11 @@ export class NovaTabs {
               return (
               <li
                 role="tab"
-                id={`js-tab-${index}`} 
+                id={`${this.jsprefix}-tab-${index}`} 
                 class={`tab__button ${isSelected ? " active" : ""} ${isDisabled ? "disabled": ''}` }
                 aria-selected={isSelected ? "true" : "false"}
                 aria-disabled={isDisabled ? "true" : "false"}
-                aria-controls={`js-panel-${index}`} 
+                aria-controls={`${this.jsprefix}-panel-${index}`} 
                 tabIndex={isDisabled ? -1 : 0}
                 innerHTML={tab.outerHTML}
                 onKeyDown={ e => !isDisabled && this.handleKeyPress(index, e)}
@@ -226,7 +226,7 @@ export class NovaTabs {
           (panel, index) => 
             <section 
             class={`tab__panel ${this.activeKey === index ? "active" : ""}`}
-            id={`js-panel-${index}`} 
+            id={`${this.jsprefix}-panel-${index}`} 
             innerHTML={panel.outerHTML}/>
         )}
       </section>,
