@@ -51,7 +51,8 @@
         &:not(.disabled).active {
           color: $primary;
           background: $background;
-          border-bottom: $background solid 5px;        
+          bottom: -3px;
+          position: relative;
         } 
       }
     }
