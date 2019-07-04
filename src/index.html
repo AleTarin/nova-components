@@ -14,29 +14,29 @@
 
 <body>
   <nova-cascader></nova-cascader>
-  <nova-tabs position="vertical" type="card" default="3" prefix="nova" add-button>
+  <nova-tabs position="vertical" type="card" default="3" prefix="nova" limit="99" add-button>
     <h3 slot="tab" disabled="true" closable> First Tab </h1>
     <section slot="panel" >
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil dolore asperiores placeat repudiandae ullam atque reiciendis suscipit, illum soluta. Mollitia magni modi expedita excepturi vero inventore quod corporis deleniti ducimus.
+        Tab Panel 1
       </p>
     </section>
     <h3 slot="tab" closable="true"> Second Tab </h1>
     <div slot="panel">
       <p>
-        panel 2
+        Tab Panel 2
       </p>
     </div>
     <h3 slot="tab" closable="true" selected="true"> Third Tab </h1>
     <div slot="panel">
       <p>
-        panel 3
+        Tab Panel 3
       </p>
     </div>
-    <h3 slot="tab" closable="true"> Forth Tab </h1>
+    <h3 slot="tab" closable="true"> Fourth Tab </h1>
     <div slot="panel">
       <p>
-        panel 4
+        Tab Panel 4
       </p>
     </div>
   </nova-tabs>
@@ -136,9 +136,11 @@
               let panel = document.createElement('p');
               tab.innerText =   defaultText;
               panel.innerHTML = defaultText;
-              instance.addTab(tab, panel)
-              instance.openTab(2);
-              instance.closeTab(0);
+              /*
+                instance.addTab(tab, panel)
+                instance.openTab(2);
+                instance.closeTab(0);
+              */
 
             })
             .catch(err => {

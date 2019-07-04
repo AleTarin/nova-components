@@ -20,6 +20,7 @@ export class NovaTabs {
   @Prop() default: string = null;  
   @Prop() type: string;
   @Prop() position: string = "horizontal";
+  @Prop() limit: string = "9";
   @Prop({attribute: 'add-button'}) addButton: boolean = false;
   @Prop() jsprefix: string = "nova";
 
@@ -70,10 +71,12 @@ export class NovaTabs {
    */
   @Method()
   async addTab(tabNode?: Node, panelNode?: Node) {
-    this._tabSlot.push(tabNode);
-    this._panelSlot.push(panelNode);
-    this.onEditCallback && this.onEditCallback(this._tabSlot.length, "add");
-    this.updater = !this.updater;
+    if (this._tabSlot.length < Number(this.limit)){
+      this._tabSlot.push(tabNode);
+      this._panelSlot.push(panelNode);
+      this.onEditCallback && this.onEditCallback(this._tabSlot.length, "add");
+      this.updater = !this.updater;
+    }
   }
 
   /**
