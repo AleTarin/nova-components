@@ -7,17 +7,22 @@
 
 ## Properties
 
-| Property     | Attribute  | Description | Type                                                                                    | Default                                                                                                                                                                |
-| ------------ | ---------- | ----------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `confjson`   | `confjson` |             | `any`                                                                                   | `undefined`                                                                                                                                                            |
-| `datajson`   | --         |             | `{ items: any[]; }`                                                                     | `undefined`                                                                                                                                                            |
-| `newTabData` | --         |             | `{ title: string; icon: string; enable: boolean; closable: boolean; content: string; }` | `{     title: "New tab",     icon: "plus-square",     enable: true,     closable: false,     content: "<p>Content of NewTab Pane</p><p>This is an added tab.</p>"   }` |
-| `updater`    | `updater`  |             | `boolean`                                                                               | `true`                                                                                                                                                                 |
+| Property      | Attribute      | Description                                                                     | Type                         | Default        |
+| ------------- | -------------- | ------------------------------------------------------------------------------- | ---------------------------- | -------------- |
+| `addButton`   | `add-button`   | Enables a button to add a new tabs to the list. Remove property to hide button. | `boolean`                    | `false`        |
+| `default`     | `default`      | Default initial active Tab index. Index range starts from 0.                    | `number`                     | `0`            |
+| `defaultTag`  | `default-tag`  | Default tag string of new created tabs                                          | `string`                     | `"div"`        |
+| `defaultText` | `default-text` | Default pane content of new created tabs                                        | `string`                     | `"tab"`        |
+| `jsprefix`    | `jsprefix`     | JS prefix                                                                       | `string`                     | `"nova"`       |
+| `limit`       | `limit`        | Maximum number of open tabs                                                     | `number`                     | `9`            |
+| `position`    | `position`     | Orientation of tabs.                                                            | `"horizontal" \| "vertical"` | `"horizontal"` |
+| `type`        | `type`         | Basic style of tabs. 'Card' style will default position property to horizontal. | `"card" \| "line"`           | `"line"`       |
+| `updater`     | `updater`      | Used to force update on the render. No value.                                   | `boolean`                    | `true`         |
 
 
 ## Methods
 
-### `addTab(tabData: any) => Promise<void>`
+### `addTab(tabNode?: Node, panelNode?: Node) => Promise<void>`
 
 addTab
 
@@ -37,7 +42,7 @@ Type: `Promise<void>`
 
 
 
-### `onEdit(callback: Function) => Promise<void>`
+### `onEdit(callback: any) => Promise<void>`
 
 onEdit
 
@@ -47,7 +52,7 @@ Type: `Promise<void>`
 
 
 
-### `onTabClick(callback: Function) => Promise<void>`
+### `onTabClick(callback: any) => Promise<void>`
 
 onTabClick
 
@@ -67,19 +72,6 @@ Type: `Promise<void>`
 
 
 
-
-## Dependencies
-
-### Depends on
-
-- [nova-icon](..\..\atoms\nova-icon)
-
-### Graph
-```mermaid
-graph TD;
-  nova-tabs --> nova-icon
-  style nova-tabs fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

@@ -13,22 +13,34 @@ import { KEYCODES } from '../../utils/utils';
   shadow: true
 })
 export class NovaTabs {
-  //Props
+  // Props
+  /** Used to force update on the render. No value. */
   @Prop() updater: boolean = true;
+  /** Default pane content of new created tabs */
   @Prop() defaultText: string = "tab";
+  /** Default tag string of new created tabs */
   @Prop() defaultTag: string = "div";
-  @Prop() default: string = null;  
-  @Prop() type: string;
-  @Prop() position: string = "horizontal";
-  @Prop() limit: string = "9";
+  /** Default initial active Tab index. Index range starts from 0.*/
+  @Prop() default: number = 0;  
+  /** Basic style of tabs. 'Card' style will default position property to horizontal. */
+  @Prop() type: "line" | "card" = "line";
+  /** Orientation of tabs. */
+  @Prop() position: "horizontal" | "vertical" = "horizontal";
+  /** Maximum number of open tabs */
+  @Prop() limit: number = 9;
+  /** Enables a button to add a new tabs to the list. Remove property to hide button.*/
   @Prop({attribute: 'add-button'}) addButton: boolean = false;
+  /** JS prefix */
   @Prop() jsprefix: string = "nova";
 
   @Element() el: HTMLElement;
   
   // States
+  /** Array of tab buttons */
   @State() _tabSlot: any[] = [];
+  /** Array of tab panels */
   @State() _panelSlot: any[] = [];
+  /** Current active tab key */
   @State() activeKey: number= -1;
 
   // Callbacks
