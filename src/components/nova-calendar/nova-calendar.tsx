@@ -17,7 +17,8 @@ import moment, { Moment } from "moment";
 @Component({
   tag: "nova-calendar",
   styleUrls: {
-    default: "nova-calendar.scss"
+    default: "nova-calendar.default.scss",
+    dark: "nova-calendar.dark.scss"
   },
   shadow: true
 })
@@ -337,7 +338,7 @@ export class NovaCalendar {
     // let now = moment().format('dddd');
     return [
       
-      <section class={this.card ? "calendar--card" : ""}>
+      <section class={this.card ? "calendar__container calendar--card" : "calendar__container"}>
         <slot>{/* Aqui van los custom headers */}</slot>
         <div class="calendar__controls">
           {/* Barra que va arriba del calendario */}
