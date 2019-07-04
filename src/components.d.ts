@@ -105,6 +105,7 @@ export namespace Components {
     'defaultTag': string;
     'defaultText': string;
     'jsprefix': string;
+    'limit': string;
     /**
     * onEdit
     */
@@ -210,6 +211,7 @@ declare namespace LocalJSX {
     'defaultTag'?: string;
     'defaultText'?: string;
     'jsprefix'?: string;
+    'limit'?: string;
     'position'?: string;
     'type'?: string;
     'updater'?: boolean;
