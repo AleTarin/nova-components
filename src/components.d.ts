@@ -92,31 +92,34 @@ export namespace Components {
     'trigger': "hover" | "focus" | "click";
   }
   interface NovaTabs {
+    'addButton': boolean;
     /**
     * addTab
     */
-    'addTab': (tabData: any) => Promise<void>;
+    'addTab': (tabNode?: Node, panelNode?: Node) => Promise<void>;
     /**
     * closeTab
     */
     'closeTab': (keyIndex: number) => Promise<void>;
-    'confjson': any;
-    'datajson': {
-      items: any[];
-    };
-    'newTabData': { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
+    'default': string;
+    'defaultTag': string;
+    'defaultText': string;
+    'jsprefix': string;
+    'limit': string;
     /**
     * onEdit
     */
-    'onEdit': (callback: Function) => Promise<void>;
+    'onEdit': (callback: any) => Promise<void>;
     /**
     * onTabClick
     */
-    'onTabClick': (callback: Function) => Promise<void>;
+    'onTabClick': (callback: any) => Promise<void>;
     /**
     * openTab
     */
     'openTab': (keyIndex: any, event?: UIEvent) => Promise<void>;
+    'position': string;
+    'type': string;
     'updater': boolean;
   }
 }
@@ -203,11 +206,14 @@ declare namespace LocalJSX {
     'trigger'?: "hover" | "focus" | "click";
   }
   interface NovaTabs extends JSXBase.HTMLAttributes<HTMLNovaTabsElement> {
-    'confjson'?: any;
-    'datajson'?: {
-      items: any[];
-    };
-    'newTabData'?: { title: string; icon: string; enable: boolean; closable: boolean; content: string; };
+    'addButton'?: boolean;
+    'default'?: string;
+    'defaultTag'?: string;
+    'defaultText'?: string;
+    'jsprefix'?: string;
+    'limit'?: string;
+    'position'?: string;
+    'type'?: string;
     'updater'?: boolean;
   }
 

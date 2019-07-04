@@ -1,8 +1,8 @@
 //props cambiantes
-$letra : 'Arial';
-$color_fondo : rgb(77, 77, 77);
-$color_letra : white;
-$tab_activa : rgb(124, 124, 124);
-$color_tab_activo : rgb(180, 180, 180);
+$primary: #1890ff;
+$secondary: black;
+$fontColor: white;
+$borderColor: #d4d4d4;
+$background: black;
 
 @import "./nova-tabs.scss";

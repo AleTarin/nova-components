@@ -14,7 +14,34 @@
 
 <body>
   <nova-cascader></nova-cascader>
-  <nova-tabs mode=""></nova-tabs>
+  <nova-tabs position="vertical" type="card" default="3" jsprefix="nova-tabs" limit="99" add-button>
+    <h3 slot="tab" disabled="true" closable> First Tab </h1>
+    <section slot="panel" >
+      <p>
+        Tab Panel 1
+      </p>
+    </section>
+    <h3 slot="tab" closable="true"> Second Tab </h1>
+    <div slot="panel">
+      <p>
+        Tab Panel 2
+      </p>
+    </div>
+    <h3 slot="tab" closable="true" selected="true"> Third Tab </h1>
+    <div slot="panel">
+      <p>
+        Tab Panel 3
+      </p>
+    </div>
+    <h3 slot="tab" closable="true"> Fourth Tab </h1>
+    <div slot="panel">
+      <p>
+        Tab Panel 4
+      </p>
+    </div>
+  </nova-tabs>
+
+
   <nova-popover trigger="click" location="right">
     <button slot="trigger">Click me !</button>
     <p slot="title"> Hi ! </p>
@@ -97,9 +124,6 @@
               return response.json();
             })
             .then(json => {
-              //mandar json como prop
-              instance.datajson = json.data;
-              instance.confjson = json.configuration
               // public api to add a callback on edit (close or add)
               instance.onTabClick(function (keyIndex, event) {
                 console.log('onTabClick', keyIndex, event);
@@ -107,16 +131,15 @@
               instance.onEdit((keyIndex, eventName) => {
                 console.log('onEdit', keyIndex, eventName);
               })
-              instance.addTab({
-                "title": "New tab",
-                "icon": "plus-square",
-                "enable": true,
-                "addTab": true,
-                "content": "<p>Content of NewTab Pane</p><p>This is an added tab.</p>"
-              })
+              let defaultText = "Tab"
+              let tab   =  document.createElement('p');
+              let panel = document.createElement('p');
+              tab.innerText =   defaultText;
+              panel.innerHTML = defaultText;
               /*
-              instance.openTab(0);
-              instance.closeTab(0);
+                instance.addTab(tab, panel)
+                instance.openTab(2);
+                instance.closeTab(0);
               */
 
             })

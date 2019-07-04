@@ -1,118 +1,118 @@
 :host {
-  font-family: $letra;
-  color: $color_letra;
-}
-
-nova-icon {
-  margin-right: 4px;
-}
-
-.addTab {
-  background-color: rgba(61, 61, 61, 0.897);
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.addTab_circulo {
-  border-radius: 8px;
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-}
-
-#tab_container.horizontal {
-  margin: 10px 0px;
-  height: 24px;
-  float: left;
-  border-bottom: 1px solid #ccc;
-  background-color: inherit;
-}
-
-#tab_container.vertical {
-  width: 150px;
-  float: left;
-  border-right: 1px solid #ccc;
-  background-color: inherit;
-}
-
-#tab_container .horizontal {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 4px 16px;
-  margin-left: 10px;
-  border-bottom: 2px solid transparent;
-}
-
-#tab_container .vertical {
-  width: inherit;
-  display: block;
-  background-color: inherit;
-  padding: 16px 16px;
-  margin-top: 10px;
-  border: none;
-  outline: none;
-  text-align: left;
-  cursor: pointer;
-  border-right: 2px solid transparent;
-}
-
-#tab_container :hover:enabled {
-  color: $color_tab_activo;
-}
-
-#tab_container .horizontal.active {
-  font-weight: bold;
-  color: $color_tab_activo;
-  border-bottom-color: $color_tab_activo;
-  background-color: $tab_activa;
+    font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
+    background-color: $background;
+    color: $fontColor;
+  }
   
-}
+  nova-icon {
+    margin-right: 4px;
+  }
+  
+  .addTab {
+    padding: 10px 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    background: $background;
+    font-size: 16px;
+    color: $fontColor;
+  }
+  
+  .tabs__container {
+    display: flex;
+    flex-wrap: wrap;
+    
+    background-color: $background;
+    color: $fontColor;
 
-#tab_container .vertical.active {
-  font-weight: bold;
-  color: $color_tab_activo;
-  border-right-color: $color_tab_activo;
-  background-color: $tab_activa;
-}
+    &.horizontal .tabs__list {
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex-basis: 100%;
+        border-bottom: 1px solid $borderColor;
 
-.tabcontent_container.horizontal{
-  padding: 24px 12px;
-  background-color: $color_fondo;
-  display: none;
-  width: 90%;
-  height: 300px;
-}
+        .tab__button {
+          margin-right: 1em;
+      
+          &:not(.disabled).active {
+              color: $primary;
+              border-bottom: 3px solid $primary;
+          }
+        }
+    }
 
-.tabcontent_container.vertical {
-  padding: 10px 12px;
-  background-color: $color_fondo;
-  margin-left: 180px;
-  border: none;
-  width: 70%;
-  height: 300px;
-  display: none;
-}
+    &.card.horizontal {
+      .tabs__list .tab__button {
+        border: 1px solid $borderColor;
+        border-radius: 5% 5% 0 0;
+        background: rgba($borderColor, .5);
+        &:not(.disabled).active {
+          color: $primary;
+          background: white;
+          border-bottom: white solid 5px;        } 
+      }
+    }
 
-.tabcontent_container.horizontal.active {
-  display: inline-block;
-}
+    &.vertical .tabs__list {
+        max-width: fit-content;
+        overflow-x: hidden;
+        overflow-y: auto;
+        flex-direction: column;
+        border-right:  1px solid $borderColor;
+        .tab__button {
+          margin-bottom: 2em;
+      
+          &:not(.disabled).active {
+              border-right: 3px solid $primary;
+          }
+      
+        }
+    }
+  }
 
-.tabcontent_container.vertical.active {
-  display: block;
-}
+  
 
- 
-.tabcontent_container {
+  .tabs__list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .tab__button {
+    padding: 0em 1.5em;
+    margin: 0;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    &:not(.disabled) {
+      cursor: pointer;
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+  
+  
+  .tab__button .tab__button__close {
+    font-size: 1.5em;
+    margin-left: 1em;
+  }
+
+  .tab__panel {
+    display:none;
+    min-height: 100px;
+    &.active {
+      padding-left: 1em;
+      display: block;
+    }
+  }
+  
+.tab__panel {
   
   -webkit-animation-duration: 0.3s;
   -webkit-animation-name: slidein;
@@ -132,15 +132,6 @@ nova-icon {
   cursor: pointer;
   color: #dddbdb;
   padding: 5px;
-}
-
-.closeTab:hover {
-  color: #1e1e1e;
-}
-
-.closeTab:hover:disabled {
-  color: #1e1e1e;
-  color: #dddbdb;
 }
 
 @-webkit-keyframes slidein {
