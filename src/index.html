@@ -12,9 +12,8 @@
   <script nomodule src="/build/nova.js"></script>
 </head>
 
-<body>
-  <nova-cascader></nova-cascader>
-  <nova-tabs position="vertical" type="card" default="3" jsprefix="nova-tabs" limit="99" add-button>
+<body>  
+  <nova-tabs mode="dark" position="vertical" type="card" default="3" jsprefix="nova-tabs" limit="99" add-button>
     <h3 slot="tab" disabled="true" closable> First Tab </h1>
     <section slot="panel" >
       <p>
@@ -41,7 +40,6 @@
     </div>
   </nova-tabs>
 
-
   <nova-popover trigger="click" location="right">
     <button slot="trigger">Click me !</button>
     <p slot="title"> Hi ! </p>
@@ -49,7 +47,9 @@
     <p slot="close"> click here to close </p>
   </nova-popover>
 
-  <nova-calendar>
+  <nova-cascader></nova-cascader>
+
+  <nova-calendar card mode="dark">
     <slot name="header">
       <h1>
         Calendario
@@ -118,12 +118,6 @@
       .then(_ => {
         var tabsElement = document.querySelector('nova-tabs');
         tabsElement.componentOnReady().then(instance => {
-          fetch('./assets/tabs.json')
-            .then(response => {
-              // Transform it to JSON
-              return response.json();
-            })
-            .then(json => {
               // public api to add a callback on edit (close or add)
               instance.onTabClick(function (keyIndex, event) {
                 console.log('onTabClick', keyIndex, event);
@@ -142,11 +136,6 @@
                 instance.closeTab(0);
               */
 
-            })
-            .catch(err => {
-              // If any error ocurred, pass it to the console
-              console.error(err)
-            })
         })
       })
   </script>

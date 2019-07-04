@@ -223,7 +223,7 @@ export class NovaTabs {
                 }
               </li>
             )}
-          )},
+          )}
         </ul>
         {this._panelSlot.map( 
           (panel, index) => 

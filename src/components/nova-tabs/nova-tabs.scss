@@ -23,7 +23,7 @@
   .tabs__container {
     display: flex;
     flex-wrap: wrap;
-    
+
     background-color: $background;
     color: $fontColor;
 
@@ -50,8 +50,9 @@
         background: rgba($borderColor, .5);
         &:not(.disabled).active {
           color: $primary;
-          background: white;
-          border-bottom: white solid 5px;        } 
+          background: $background;
+          border-bottom: $background solid 5px;        
+        } 
       }
     }
 
@@ -130,7 +131,7 @@
 .closeTab {
   float: middle;
   cursor: pointer;
-  color: #dddbdb;
+  color: $borderColor;
   padding: 5px;
 }
 
